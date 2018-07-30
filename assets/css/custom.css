@@ -1,0 +1,195 @@
+        span.im-caret {
+            -webkit-animation: 1s blink step-end infinite;
+            animation: 1s blink step-end infinite;
+        }
+        
+        @keyframes blink {
+            from,
+            to {
+                border-right-color: black;
+            }
+            50% {
+                border-right-color: transparent;
+            }
+        }
+        
+        @-webkit-keyframes blink {
+            from,
+            to {
+                border-right-color: black;
+            }
+            50% {
+                border-right-color: transparent;
+            }
+        }
+        
+        span.im-static {
+            color: grey;
+        }
+        
+        div.im-colormask {
+            display: inline-block;
+            border-style: inset;
+            border-width: 2px;
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        
+        div.im-colormask > input {
+            position: absolute;
+            display: inline-block;
+            background-color: transparent;
+            color: transparent;
+            -webkit-appearance: caret;
+            -moz-appearance: caret;
+            appearance: caret;
+            border-style: none;
+            left: 0;
+            /*calculated*/
+        }
+        
+        div.im-colormask > input:focus {
+            outline: none;
+        }
+        
+        div.im-colormask > input::-moz-selection {
+            background: none;
+        }
+        
+        div.im-colormask > input::selection {
+            background: none;
+        }
+        
+        div.im-colormask > input::-moz-selection {
+            background: none;
+        }
+        
+        div.im-colormask > div {
+            color: black;
+            display: inline-block;
+            width: 100px;
+            /*calculated*/
+        }
+
+
+
+.m-body .m-content {
+    padding: 0px 10px;
+}
+
+
+
+@media (min-width: 993px) {
+    body.m-aside-left--skin-dark .m-header .m-header-head {
+        -webkit-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1);
+        -moz-box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1);
+        box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.1);
+    }
+
+
+    .m-header-menu .m-menu__nav > .m-menu__item {
+        padding: 0px 10px;
+
+    }
+
+
+
+    .m-header {
+        height: 70px; 
+    }
+
+
+.m-header-menu .m-menu__nav > .m-menu__item > .m-menu__link .m-menu__link-text {
+    font-weight: 300;
+    font-size: 1.0rem;
+
+}
+
+
+
+.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav > .m-menu__item:not(.m-menu__item--parent):not(.m-menu__item--open):not(.m-menu__item--expanded):not(.m-menu__item--active):hover {
+    -webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+    -ms-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    background-color: #e7e8ec;
+}
+
+
+.m-aside-menu.m-aside-menu--skin-dark .m-menu__nav > .m-menu__item.m-menu__item--open {
+    -webkit-transition: background-color 0.3s;
+    -moz-transition: background-color 0.3s;
+    -ms-transition: background-color 0.3s;
+    -o-transition: background-color 0.3s;
+    transition: background-color 0.3s;
+    background-color: #e7e8ec;
+}
+
+
+}
+
+
+.btn.m-btn--pill {
+    -webkit-border-radius: 60px;
+    -moz-border-radius: 60px;
+    -ms-border-radius: 60px;
+    -o-border-radius: 60px;
+    border-radius: 10px;
+}
+
+
+.btn-focus {
+    color: #fff;
+    background-color: #716aca;
+    border-color: #716aca;
+}
+
+.m-portlet__head-title{
+
+margin-top: 65px;
+
+}
+
+
+.m-portlet .m-portlet__head .m-portlet__head-caption .m-portlet__head-title .m-portlet__head-text {
+    
+    font-size: 1.7rem;
+    }
+
+.m-portlet .m-portlet__head .m-portlet__head-text {
+    color: #8b8d94;
+}
+
+
+.m-form--disabled .form-control[readonly],.m-form--disabled .form-control {
+    border-color: #fff!important;
+    color: #575962;
+}
+
+.wd110{
+    width: 80px;
+}
+
+.wd110{
+    width: 100px;
+}
+
+.wd110{
+    width: 110px;
+}
+
+.wd140{
+    width: 140px;
+}
+
+
+.bld{
+   font-weight: 600!important;
+}
+
+
+.mar-rig70{
+    margin-right: -70px;
+}
