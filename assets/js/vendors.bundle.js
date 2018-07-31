@@ -54319,7 +54319,7 @@ var Toolbar = /** @class */ (function () {
         $toolbarWrapper.css({
             height: toolbarHeight
         });
-        // check if the web app is currently using another static bar
+        // check if the web BmsApp is currently using another static bar
         var otherBarHeight = 0;
         if (this.options.otherStaticBar) {
             otherBarHeight = $$1(this.options.otherStaticBar).outerHeight();
