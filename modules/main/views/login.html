@@ -1,52 +1,74 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 login-container">
 
 
-            <div class="content" style="width: 360px;margin: 0 auto; padding: 20px 30px 15px;">
-                <!-- BEGIN LOGIN FORM -->
-                <form class="login-form" name="loginForm" ng-submit="login()"  >
-                    <input type="submit" style="display: none;">
-
-                    <h3 class="form-title">Login to BMS</h3>
-
-                    <div class="form-group">
-
-                        <label class="control-label visible-ie8 visible-ie9">Email</label>
-                        <div class="input-icon">
-                            <i class="fa fa-user"></i>
-                            <input class="form-control placeholder-no-fix" type="text" autocomplete="off" required placeholder="Email"  ng-model="loginData.email"> </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label visible-ie8 visible-ie9">Password</label>
-                        <div class="input-icon">
-                            <i class="fa fa-lock"></i>
-                            <input class="form-control placeholder-no-fix" type="password" required autocomplete="off" placeholder="Password"  ng-model="loginData.password"> </div>
+<header class="m-grid__item    m-header " data-minimize-offset="200" data-minimize-mobile-offset="200">
+    <div class="m-container m-container--fluid m-container--full-height">
+        <div class="m-stack m-stack--ver m-stack--desktop">
+            <!-- BEGIN: Brand -->
+            <div class="m-stack__item m-brand  m-brand--skin-dark " style="background: #fff;">
+                <div class="m-stack m-stack--ver m-stack--general">
+                    <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                        <a class="m-brand__logo-wrapper">
+                            <img alt="" src="assets/img/logo_default_dark.png">
+                        </a>
                     </div>
 
-                    <div class="form-actions">
-                        <label class="rememberme mt-checkbox mt-checkbox-outline">
-                            <input type="checkbox" name="remember" value="1"> Remember me
-                            <span></span>
-                        </label>
-
-                        <div ng-activity-indicator="CircledDark"></div>
-
-                        <button ng-hide="AILoading" class="btn green pull-right" type="submit"  ng-disabled="loginForm.$invalid"> Login</button>
-
-
-                    </div>
-
-                    <div class="forget-password">
-                        <h4>Forgot your password ?</h4>
-                        <p> no worries, click
-                            <a href="javascript:;" id="forget-password"> here </a> to reset your password. </p>
-                    </div>
-
-                </form>
-                <!-- END LOGIN FORM -->
+                </div>
             </div>
+            <!-- END: Brand -->
 
         </div>
     </div>
+</header>
+<!-- end:: Header -->
+
+
+<!-- begin:: Page -->
+<div class="m-grid m-grid--hor m-grid--root m-page">
+
+    <div class="m-login m-login--signin  m-login--5" id="m_login" >
+
+        <div class="m-login__wrapper-2 m-portlet-full-height">
+            <div class="m-login__contanier">
+
+                <div class="m-login__signin">
+                    <div class="m-login__head">
+                        <h3 class="m-login__title">Login To BMS</h3>
+                    </div>
+                    <form class="m-login__form m-form" name="loginForm" ng-submit="login()">
+                        <input type="submit" style="display: none;">
+                        <div class="form-group m-form__group">
+                            <input class="form-control m-input" type="email" required="" placeholder="Email" ng-model="loginData.email" name="email" autocomplete="off">
+                        </div>
+                        <div class="form-group m-form__group">
+                            <input class="form-control m-input m-login__form-input--last" required="" type="Password" placeholder="Password" ng-model="loginData.password" name="password">
+                        </div>
+                        <div class="row m-login__form-sub">
+                            <div class="col m--align-left">
+                                <label class="m-checkbox m-checkbox--focus">
+                                    <input type="checkbox" name="remember"> Remember me
+                                    <span></span>
+                                </label>
+                            </div>
+                            <div class="col m--align-right">
+                                <a href="javascript:;" id="m_login_forget_password" class="m-link">Forget Password ?</a>
+                            </div>
+                        </div>
+                        <div class="m-login__form-action">
+                            <button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air" ng-disabled="loginForm.$invalid">Sign In</button>
+                            <div ng-activity-indicator="CircledDark"></div>
+                        </div>
+                    </form>
+
+                    <div class="m-login__form-action powered" style="padding: 7% 35%">
+                        <small>Powered by</small>  <img width="80%" src="assets/img/curacel.png" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
+<!-- end:: Page -->
+
+
