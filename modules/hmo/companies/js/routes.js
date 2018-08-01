@@ -8,12 +8,12 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
     
         //Companies list view
-        .state('app.companiesList', {
+        .state('hmo.companiesList', {
             url: "/companies",
             views:{
                 "dash":{
-                    templateUrl: "modules/companies/views/list.html",
-                    controller: "CompaniesListCtrl",
+                    templateUrl: "modules/hmo/companies/views/list.html",
+                    controller: "HmoCompaniesListCtrl",
 
                 }
             },
@@ -22,12 +22,12 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
         //create new / edit provider view
-        .state('app.companiesCreate', {
+        .state('hmo.companiesCreate', {
             url: "/companies/edit/:id",
             views:{
                 "dash":{
-                    templateUrl: "modules/companies/views/create.html",
-                    controller: "CompaniesCreateCtrl",
+                    templateUrl: "modules/hmo/companies/views/create.html",
+                    controller: "HmoCompaniesCreateCtrl",
                 }
             },
             data: {pageTitle: 'New Company'},

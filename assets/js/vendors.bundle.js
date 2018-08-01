@@ -5001,7 +5001,7 @@ jQuery.event = {
 			handler.guid = jQuery.guid++;
 		}
 
-		// Init the element's event structure and main handler, if this is the first
+		// Init the element's event structure and app handler, if this is the first
 		if ( !( events = elemData.events ) ) {
 			events = elemData.events = {};
 		}
@@ -12172,7 +12172,7 @@ var modifiers = {
    * - `vw`, CSS viewport width unit
    * - `vh`, CSS viewport height unit
    *
-   * For length is intended the main axis relative to the placement of the popper.<br />
+   * For length is intended the app axis relative to the placement of the popper.<br />
    * This means that if the placement is `top` or `bottom`, the length will be the
    * `width`. In case of `left` or `right`, it will be the height.
    *
@@ -16223,7 +16223,7 @@ and dependencies (minified).
 							return;
 						}
 					}
-					/* update on main element and scrollbar size changes */
+					/* update on app element and scrollbar size changes */
 					if(o.advanced.updateOnContentResize){
 						d.poll.size.n=$this[0].scrollHeight+$this[0].scrollWidth+mCSB_container[0].offsetHeight+$this[0].offsetHeight+$this[0].offsetWidth;
 						if(d.poll.size.n!==d.poll.size.o){
@@ -21671,7 +21671,7 @@ $.fn.timepicker.defaults = $.extend(true, {}, $.fn.timepicker.defaults, {
         }
 
         if (!$this.data('content')) {
-          // Prepend any icon and append any subtext to the main text.
+          // Prepend any icon and append any subtext to the app text.
           text = icon + '<span class="text">' + text + subtext + '</span>';
         }
 
@@ -57798,7 +57798,7 @@ function merge_text_nodes( jsonml ) {
                             'class': 'md-header btn-toolbar'
                             });
 
-        // Merge the main & additional button groups together
+        // Merge the app & additional button groups together
         var allBtnGroups = [];
         if (options.buttons.length > 0) allBtnGroups = allBtnGroups.concat(options.buttons[0]);
         if (options.additionalButtons.length > 0) {
@@ -62653,7 +62653,7 @@ $.notifyDefaults({
 			return this.element;
 		},
 		/**
-		 * returns the jQuery extended main UL node inside the instance container. Used internally.
+		 * returns the jQuery extended app UL node inside the instance container. Used internally.
 		 * @private
 		 * @name get_container_ul()
 		 * @return {jQuery}
@@ -82298,7 +82298,7 @@ var Chartist = {
   }
 
   /**
-   * Use this function to register event handlers. The handler callbacks are synchronous and will run in the main thread rather than the event loop.
+   * Use this function to register event handlers. The handler callbacks are synchronous and will run in the app thread rather than the event loop.
    *
    * @memberof Chartist.Base
    * @param {String} event Name of the event. Check the examples for supported events.

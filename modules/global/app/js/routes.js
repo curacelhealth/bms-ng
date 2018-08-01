@@ -12,7 +12,7 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
             url: "/login",
             views:{
                 "main":{
-                    templateUrl: "modules/main/views/login.html",
+                    templateUrl: "modules/global/app/views/login.html",
                     controller: "LoginCtrl",
                 }
             },
@@ -20,25 +20,25 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
 
-        //app dashboard parent route (abstract)
-        .state('app', {
-            url: "/app",
+        //hmo app dashboard parent route (abstract)
+        .state('hmo', {
+            url: "/hmo",
 
             abstract:true,
             views:{
                 "main":{
-                    templateUrl: "modules/main/views/app.html",
+                    templateUrl: "modules/global/app/views/hmo-app.html",
                     controller: "AppCtrl"
                 }
             }
         })
 
-        //app homepage i.e dashboard home
-        .state('app.home', {
+        //hmo app homepage i.e dashboard home
+        .state('hmo.home', {
             url: "/home",
             views:{
                 "dash":{
-                    templateUrl: "modules/main/views/home.html",
+                    templateUrl: "modules/global/app/views/hmo-home.html",
                     //controller: "HomeCtrl",
 
                 }

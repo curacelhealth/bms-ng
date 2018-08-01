@@ -14,7 +14,7 @@ BmsApp.controller('LoginCtrl', function($scope,$activityIndicator,UserService,$s
                 var user = UserService.getUserData();
                 console.log(user);
 
-                $state.go('app.home')
+                $state.go('hmo.home')
 
                 $activityIndicator.stopAnimating();
             })
@@ -26,7 +26,7 @@ BmsApp.controller('LoginCtrl', function($scope,$activityIndicator,UserService,$s
     }
 });
 
-//main controller for the app/dashboard after login
+//app controller for the app/dashboard after login
 BmsApp.controller('AppCtrl', function($scope,$activityIndicator,UserService,$state) {
     $scope.user = UserService.getUserData();
 
