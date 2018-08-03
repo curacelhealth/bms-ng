@@ -3,6 +3,8 @@ var BmsApp = angular.module('BmsApp',
 		'ui.router',
 		'ngActivityIndicator',
 		'angular-jwt',
+		'datatables',
+		"ngSanitize",
 	]
 )
 	.constant('API_HOST', BMS_API) // from config.js
