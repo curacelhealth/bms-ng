@@ -30,7 +30,7 @@ BmsApp.controller('LoginCtrl', function($scope,$activityIndicator,UserService,$s
 BmsApp.controller('AppCtrl', function($scope,$activityIndicator,UserService,$state) {
     $scope.user = UserService.getUserData();
 
-
+    $('body').layout('fix')
 
     $scope.logout = function(){
         swal({
