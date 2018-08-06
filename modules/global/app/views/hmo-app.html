@@ -1,0 +1,58 @@
+
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+
+        <!-- BEGIN: Header -->
+        <div ng-include="'modules/global/app/views/includes/header.html'"></div>
+        <!-- END: Header -->
+
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+
+            <!-- BEGIN: Left Aside -->
+            <div ng-include="'modules/global/app/views/includes/sidebar.html'"></div>
+            <!-- END: Aside Menu -->
+            <!-- END: Left Aside -->
+
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <div class="m-content">
+
+                    <!--Begin::Section-->
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <!--begin::Portlet-->
+
+                            <div class="m-portlet m-portlet-mobile">
+                                <div ng-include="'modules/global/app/views/includes/subheader.html'"></div>
+                                <div class="m-portlet__body  m-portlet__body--no-padding">
+                                    <div class="row m-row--no-padding m-row--col-separator-xl">
+                                        <!--begin:: Widgets/Stats2-1 -->
+                                        <div ui-view="dash"></div>
+                                        <!--end:: Widgets/Stats2-1 -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Portlet-->
+
+                        </div>
+                    </div>
+                    <!--End::Section-->
+
+                </div>
+            </div>
+
+        </div>
+        <!-- end:: Body -->
+        <!-- begin::Footer -->
+        <div ng-include="'modules/global/app/views/includes/footer.html'"></div>
+        <!-- end::Footer -->
+    </div>
+    <!-- end:: Page -->
+    <!-- begin::Quick Sidebar -->
+    <div ng-include="'modules/global/app/views/includes/slidebar.html'"></div>
+    <!-- end::Quick Sidebar -->
+    <!-- begin::Scroll Top -->
+    <div class="m-scroll-top m-scroll-top--skin-top" data-toggle="m-scroll-top" data-scroll-offset="500" data-scroll-speed="300">
+        <i class="la la-arrow-up"></i>
+    </div>
+
