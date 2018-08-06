@@ -13,9 +13,12 @@
 
     <link href="assets/css/vendors.bundle.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css">
+
+    <link href="libs/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="libs/datatables/css/angular-datatables.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/font.css" rel="stylesheet" type="text/css">
     <link href="assets/css/custom.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="assets/css/font.css" media="all">
+
 
     <script src="assets/js/webfont.js"></script>
 
@@ -43,10 +46,19 @@
 
 
 
-<script type="text/javascript" src="libs/angularjs/angular.min.js"></script>
-<script type="text/javascript" src="libs/angularjs/plugins/angular-ui-router.min.js"></script>
 
 <!-- plugins--->
+
+<script type="text/javascript" src="libs/jquery.min.js"></script>
+<script type="text/javascript" src="libs/datatables/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="libs/angularjs/angular.min.js"></script>
+<script type="text/javascript" src="libs/datatables/angular-datatables.min.js"></script>
+
+<script type="text/javascript" src="libs/angularjs/plugins/angular-ui-router.min.js"></script>
+
+<!-- plugins -->
+
 <script src="libs/activityindicator/ngActivityIndicator.min.js"></script>
 <link href="libs/activityindicator/ngActivityIndicator.min.css" rel="stylesheet">
 
@@ -55,6 +67,7 @@
 <!-- end plugins--->
 
 <!--- load app files proper--->
+
 <script src="config.js"></script>
 <script type="text/javascript" src="app.js"></script>
 
@@ -62,13 +75,17 @@
 <script src="modules/global/app/js/controllers.js"></script>
 <script src="modules/global/app/js/user-service.js"></script>
 
-<!-- providers---->
+
+<!-- providers -->
+
 <script src="modules/hmo/providers/js/routes.js"></script>
 <script src="modules/hmo/providers/js/controllers.js"></script>
 <script src="modules/hmo/providers/js/service.js"></script>
 
 
-<!-- companies---->
+
+<!-- companies -->
+
 <script src="modules/hmo/companies/js/routes.js"></script>
 <script src="modules/hmo/companies/js/controllers.js"></script>
 <script src="modules/hmo/companies/js/service.js"></script>
