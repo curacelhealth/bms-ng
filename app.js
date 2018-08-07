@@ -25,3 +25,8 @@ var BmsApp = angular.module('BmsApp',
 
 		$httpProvider.interceptors.push('jwtInterceptor');
 	})
+	.run(["$rootScope", "$state","authManager", function($rootScope, $state,authManager) {
+		$rootScope.$state = $state; // state to be accessed from view
+		authManager.checkAuthOnRefresh();
+		authManager.redirectWhenUnauthenticated();
+	}]);
