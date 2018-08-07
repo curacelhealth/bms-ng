@@ -69,6 +69,10 @@
 <script src="libs/datatables/angular-datatables.min.js"></script>
 <script src="libs/angular-jwt.min.js"></script>
 
+<script src="libs/ng-file-upload-all.min.js"></script>
+
+<script src="libs/ngMask/ngMask.min.js"></script>
+
 <!-- end plugins--->
 
 <!--- load app files proper--->
@@ -78,8 +82,8 @@
 
 <script src="modules/global/app/js/routes.js"></script>
 <script src="modules/global/app/js/controllers.js"></script>
-<script src="modules/global/app/js/user-service.js"></script>
-<script src="modules/global/app/js/option-service.js"></script>
+<script src="modules/global/app/js/services/user.js"></script>
+<script src="modules/global/app/js/services/options.js"></script>
 
 
 <!-- providers -->
@@ -111,6 +115,10 @@
 
 <link href="assets/css/custom-styles.css" rel="stylesheet">
 
+
+<div id="loader" ng-show="AILoading">
+    <div ng-activity-indicator="CircledDark" ></div>
+</div>
 
 </body>
 
