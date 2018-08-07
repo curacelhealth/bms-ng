@@ -22,48 +22,68 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                <form role="form" class="form-horizontal">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="example-text-input" class="col-2 col-form-label">Company Name</label>
-                            <div class="col-10">
+                            <label for="example-text-input" class="col-md-2 col-form-label">Company Name</label>
+                            <div class="col-md-10">
                                 <input class="form-control m-input" type="text" value="" id="example-text-input">
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-search-input" class="col-2 col-form-label">Plan</label>
-                            <div class="col-10">
+                            <label for="example-search-input" class="col-md-2 col-form-label">Plan</label>
+                            <div class="col-md-10">
                                 <input class="form-control m-input" type="text" value="" id="example-search-input">
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-email-input" class="col-2 col-form-label">Number of lives</label>
-                            <div class="col-10">
+                            <label for="example-email-input" class="col-md-2 col-form-label">Number of lives</label>
+                            <div class="col-md-10">
                                 <input class="form-control m-input" type="number" value="" id="example-email-input">
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-url-input" class="col-2 col-form-label">Company Rep.Name</label>
-                            <div class="col-10">
+                            <label for="example-url-input" class="col-md-2 col-form-label">Company Rep.Name</label>
+                            <div class="col-md-10">
                                 <input class="form-control m-input" type="text" value="" id="example-url-input">
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-tel-input" class="col-2 col-form-label">Rep. Telephone</label>
-                            <div class="col-10">
+                            <label for="example-tel-input" class="col-md-2 col-form-label">Rep. Telephone</label>
+                            <div class="col-md-10">
                                 <input class="form-control m-input" type="tel" value="" id="example-tel-input">
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-password-input" class="col-2 col-form-label">Rep. Email</label>
-                            <div class="col-10">
+                            <label for="example-password-input" class="col-md-2 col-form-label">Rep. Email</label>
+                            <div class="col-md-10">
                                 <input class="form-control m-input" type="email" value="" id="example-password-input">
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label  class="col-2 col-form-label">Address</label>
-                            <div class="col-10">
-                                <textarea class="form-control m-input" id="exampleTextarea" rows="3"></textarea>
+                            <label  class="col-md-2 col-form-label">Address</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control " id="exampleTextarea" rows="3"></textarea>
+                            </div>
+
+                            <label class="col-md-1">State</label>
+                            <div class="col-md-4">
+
+                                <ui-select ng-model="company.state" required
+                                           theme="bootstrap"
+                                >
+
+                                    <ui-select-match placeholder="State">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+
+                                    <ui-select-choices
+                                            repeat="item as item in (states | filter: $select.search) track by item.id"
+                                    >
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+
                             </div>
                         </div>
                     </div>

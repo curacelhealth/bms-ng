@@ -7,7 +7,12 @@ BmsApp.controller('HmoCompaniesListCtrl', function($scope,$activityIndicator,Use
 });
 
 //provider create / edit controller
-BmsApp.controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state) {
+BmsApp.controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state,OptionService) {
+
+    $scope.states = []
+    OptionService.getStates().success(function (resp) {
+        $scope.states = resp
+    })
     
 });
 

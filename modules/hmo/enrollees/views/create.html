@@ -1,0 +1,89 @@
+
+
+<section class="content-header">
+    <h1>
+        Create Enrollee
+
+    </h1>
+
+    <ol class="breadcrumb">
+        <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="hmo.enrolleeList"><i class="fa fa-users"></i> Enrollees</a></li>
+        <li class="active">Create</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Supply New Enrollee's Details</h3>
+                </div>
+                <!-- /.box-header -->
+
+                <!-- form start -->
+                <form class="form-horizontal">
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="enrollee-first-name" class="col-sm-2 control-label" >First Name</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" required class="form-control" id="enrollee-first-name" ng-model="enrollee.first_name" placeholder="First Name">
+                            </div>
+
+                            <label  class="col-sm-2 control-label">Last Name</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" required class="form-control" ng-model="enrollee.last_name"  placeholder="Last Name">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >Birth Date</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask required class="form-control"  ng-model="enrollee.birthdate" >
+                            </div>
+
+                            <label  class="col-sm-2 control-label">Sex</label>
+
+                            <div class="col-sm-4">
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-success pull-right">Create</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</section>
+
+
+
