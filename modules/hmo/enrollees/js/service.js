@@ -4,6 +4,7 @@
 BmsApp
     .service('EnrolleeService', function ( $http,API_HOST,$httpParamSerializer) {
 
+        var sexes = {'M':'Male','F':'Female'}
         return {
             fetchList: function (search,limit, type_to_show) {
                 type_to_show = type_to_show || ''
@@ -33,6 +34,10 @@ BmsApp
             fetchStatuses: function () {
                 return $http.get(API_HOST+'/enrollee-statuses/')
             }
+            ,getSex: function (code) {
+                return sexes[code]
+            }
+
 
 
         };

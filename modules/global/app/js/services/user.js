@@ -22,7 +22,9 @@ BmsApp
             getUserData : function(){
                 if(userData==null){
                     userData = jwtHelper.decodeToken(this.loadToken());
+
                 }
+                if(userData.exp>=(Date.now()+60)) this.logout();
                 return userData;
             },
 
