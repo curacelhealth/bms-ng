@@ -19,7 +19,8 @@
 <section class="content container-fluid">
 
     <div ng-controller="ProvidersListCtrl as showCase">
-        <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="row-border hover"></table>
+        <button ui-sref="hmo.providersCreate" class="btn btn-primary">CREATE NEW PROVIDER</button>
+        <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="table-striped row-border hover"></table>
     </div>
 
 </section>

@@ -34,16 +34,29 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
             data: {pageTitle: 'Providers'},
         })
         
-        //create new / edit provider view
+        //create create provider view
         .state('hmo.providersCreate', {
-            url: "/providers/edit/:id",
+            url: "/providers/create",
             views:{
                 "dash":{
                     templateUrl: "modules/hmo/providers/views/create.html",
                     controller: "ProvidersCreateCtrl",
                 }
             },
-            data: {pageTitle: 'New Provider'},
+            data: {pageTitle: 'Providers'},
+
+        })
+        
+        //create edit provider view
+        .state('hmo.providersEdit', {
+            url: "/providers/edit/:id",
+            views:{
+                "dash":{
+                    templateUrl: "modules/hmo/providers/views/edit.html",
+                    controller: "ProvidersEditCtrl",
+                }
+            },
+            data: {pageTitle: 'Providers'},
 
         })
 
