@@ -2,10 +2,11 @@
  * Created by JFlash on 7/31/18.
  */
 //enrollees List controller
-BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$activityIndicator,EnrolleeService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
+BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$compile,$activityIndicator,EnrolleeService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
 
     $scope.dtInstance = {}; //instance ref for data tables
     $scope.filters = {}; // filters
+
 
 
     //init options for datatable grid on this scope
@@ -40,17 +41,20 @@ BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$activityIndicator,Enro
             }),
         
         DTColumnBuilder.newColumn('phone').withTitle('Phone'),
-        DTColumnBuilder.newColumn('sex').withTitle('Sex'),
+        DTColumnBuilder.newColumn('sex').withTitle('Sex')
+            .renderWith(function (data,type,full) {
+               return EnrolleeService.getSex(data)
+            }),
         DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
             .renderWith(function (data,type,full) {
-                if(angular.isDefined(full.plan))
+                if(full.plan)
                     return full.plan.name
                 else  return ''
             }),
         
         DTColumnBuilder.newColumn('enrollee_status_code').withTitle('Status').notSortable()
             .renderWith(function(data,type,full) {
-                if(angular.isDefined(full.status))
+                if(full.status)
                     return full.status.name
                 else  return ''
             }),
@@ -58,7 +62,7 @@ BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$activityIndicator,Enro
         DTColumnBuilder.newColumn('action').withTitle('').notSortable()
             .renderWith(function(data, type, full) {
                 var actions = [];
-                var view = '<a href="#/hmo/piles/'+full.id+'/claims" class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a>';
+                var view = '<a  class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a>';
                 actions.push(view);
                
                 return actions.join(" ");
@@ -68,8 +72,65 @@ BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$activityIndicator,Enro
 });
 
 //enrollee create / edit controller
-BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state) {
-    $scope.enrollee = {}
+BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompanyService,EnrolleeService,OptionService) {
+    $scope.enrollee = {
+        type:'P'
+    }
+
+
+    // enrollee companies
+    $scope.companies = [];
+    $scope.searchCompanies = function (q) {
+        CompanyService.fetchList(q,10).success(function (resp) {
+            $scope.companies = resp;
+        })
+    }
+
+
+    // principals
+    $scope.principals = [];
+    $scope.searchPrincipals = function (q) {
+        EnrolleeService.fetchList(q,10,'P').success(function (resp) {
+            $scope.principals = resp;
+        })
+    }
+
+    //states
+    $scope.states = []
+    OptionService.getStates().success(function (resp) {
+        $scope.states = resp
+    })
+
+    //plans
+    $scope.plans = []
+    EnrolleeService.fetchPlans().success(function (resp) {
+        $scope.plans = resp
+    })
+
+    //statuses
+    $scope.statuses = []
+    EnrolleeService.fetchStatuses().success(function (resp) {
+        $scope.statuses = resp
+    })
+
+    //submit enrollee
+    $scope.submitEnrollee = function () {
+        $activityIndicator.startAnimating();
+        if(angular.isDefined($scope.enrollee.id)){
+
+        }else {
+            EnrolleeService.createNew($scope.enrollee)
+                .success(function (resp) {
+                    $activityIndicator.stopAnimating()
+                    $scope.enrollee = {}
+                    swal('Enrollee Created Successfully','','success')
+                })
+                .error(function (err) {
+                    $activityIndicator.stopAnimating()
+                    swal('Error Creating Enrollee',err.message,'error')
+                })
+        }
+    }
     
 });
 
