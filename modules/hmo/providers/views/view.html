@@ -2,7 +2,7 @@
 <section class="content-header">
     <h1>
         Providers
-        <small>Optional description</small>
+        <small>View Provider</small>
     </h1>
 
     <ol class="breadcrumb">
@@ -14,41 +14,47 @@
 
 <!-- Main content -->
 <section class="content container-fluid">
-	<div class="table-responsive">
-		<table class="table table-bordered">
-			<tr>
-				<th class="col-md-4 col-sm-3" style="text-align: right">ID</th>
-				<td class="col-md-8 col-sm-9">{{id}}</td>
-			</tr>
-			<tr>
-				<th class="col-md-4 col-sm-3" class="col-md-6 col-sm-9" style="text-align: right">Name</th>
-				<td class="col-md-8 col-sm-9">{{name}}</td>
-			</tr>
-			<tr>
-				<th class="col-md-4 col-sm-3" style="text-align: right">Email</th>
-				<td class="col-md-8 col-sm-9">{{email}}</td>
-			</tr>
-			<tr>
-				<th class="col-md-4 col-sm-3" style="text-align: right">Phone Number</th>
-				<td class="col-md-8 col-sm-9">{{phone}}</td>
-			</tr>
-			<tr>
-				<th class="col-md-4 col-sm-3" style="text-align: right">Home Address</th>
-				<td class="col-md-8 col-sm-9">{{address}}</td>
-			</tr>
-			<tr>
-				<th class="col-md-4 col-sm-3" style="text-align: right">State ID</th>
-				<td class="col-md-8 col-sm-9">{{state_name}}</td>
-			</tr>
-			<tr>
-				<th class="col-md-4 col-sm-3" style="text-align: right">RC Number</th>
-				<td class="col-md-8 col-sm-9">{{rc_no}}</td>
-			</tr>
-			<tr>
-				<th class="col-md-4 col-sm-3" style="text-align: right">Provider Tier ID</th>
-				<td class="col-md-8 col-sm-9">{{provider_tier_id}}</td>
-			</tr>
-		</table>
+    <div class="margin-bottom">
+        <button ui-sref="hmo.providersEdit({id:id})" class="btn btn-primary">EDIT PROVIDER</button>
+        <button ui-sref="" class="btn btn-danger">DELETE PROVIDER</button>
+    </div>
+	<div class="table-responsive box">
+        <div class="box-body">
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th class="col-md-4 col-sm-3" style="text-align: right">ID</th>
+					<td class="col-md-8 col-sm-9">{{id}}</td>
+				</tr>
+				<tr>
+					<th class="col-md-4 col-sm-3" class="col-md-6 col-sm-9" style="text-align: right">Name</th>
+					<td class="col-md-8 col-sm-9">{{name}}</td>
+				</tr>
+				<tr>
+					<th class="col-md-4 col-sm-3" style="text-align: right">Email</th>
+					<td class="col-md-8 col-sm-9">{{email}}</td>
+				</tr>
+				<tr>
+					<th class="col-md-4 col-sm-3" style="text-align: right">Phone Number</th>
+					<td class="col-md-8 col-sm-9">{{phone}}</td>
+				</tr>
+				<tr>
+					<th class="col-md-4 col-sm-3" style="text-align: right">Home Address</th>
+					<td class="col-md-8 col-sm-9">{{address}}</td>
+				</tr>
+				<tr>
+					<th class="col-md-4 col-sm-3" style="text-align: right">State ID</th>
+					<td class="col-md-8 col-sm-9">{{state_name}}</td>
+				</tr>
+				<tr>
+					<th class="col-md-4 col-sm-3" style="text-align: right">RC Number</th>
+					<td class="col-md-8 col-sm-9">{{rc_no}}</td>
+				</tr>
+				<tr>
+					<th class="col-md-4 col-sm-3" style="text-align: right">Provider Tier ID</th>
+					<td class="col-md-8 col-sm-9">{{provider_tier_id}}</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 
 </section>

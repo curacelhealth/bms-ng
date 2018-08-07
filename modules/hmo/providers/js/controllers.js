@@ -48,8 +48,8 @@ BmsApp.controller('ProvidersListCtrl', function($scope,$compile, $activityIndica
             .renderWith(function(data, type, full, meta) {
                 // you should use full.id instead of data.id here
                 // they shouldnt be able to delete a provider here, so i removed the delete button
-                return '<a ui-sref="hmo.providersView({id:'+full.id+'})" class="btn btn-primary" style="border-radius: 50px; width:75px" title="View details"><i class="fa fa-binoculars"></i> View</a><br>'+
-                	   '<a ui-sref="hmo.providersEdit({id:'+full.id+'})" class="btn btn-primary" style="border-radius: 50px; width:75px" title="Edit details"><i class="fa fa-edit"></i> Edit</a>'
+                return '<a ui-sref="hmo.providersView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-binoculars"></i></a>&nbsp;'+
+                	   '<a ui-sref="hmo.providersEdit({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="Edit details"><i class="fa fa-pencil"></i></a>'
             }),
     ];
     
