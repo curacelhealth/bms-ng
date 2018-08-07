@@ -25,7 +25,7 @@
                 <!-- /.box-header -->
 
                 <!-- form start -->
-                <form class="form-horizontal">
+                <form class="form-horizontal" name="regForm" ng-submit="submitEnrollee()">
                     <div class="box-body">
 
                         <div class="form-group">
@@ -43,6 +43,18 @@
                                     <input  type="radio" name="type" ng-model="enrollee.type" value="D" >
                                     Dependant
                                 </label>
+                            </div>
+
+                            <label class="col-sm-2 control-label" >Photo:</label>
+                            <div class="col-sm-4">
+                                <div class="margin-bottom">
+                                    <img ngf-thumbnail="enrollee.photo_b64 || 'assets/img/user.jpg'" width="100" class="user-image">
+                                </div>
+
+
+                                <div class="btn btn-default" ngf-select ng-model="enrollee.photo_b64" name="file" ngf-pattern="'image/*'"
+                                     ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+                                >Select Photo</div>
                             </div>
 
                         </div>
@@ -145,13 +157,13 @@
                             <label class="col-sm-2 control-label" >Phone</label>
 
                             <div class="col-sm-4">
-                                <input type="text" required class="form-control"  ng-model="enrollee.phone" placeholder="07088345435345">
+                                <input type="text"  class="form-control"  ng-model="enrollee.phone" placeholder="07088345435345">
                             </div>
 
                             <label  class="col-sm-2 control-label">Email Address</label>
 
                             <div class="col-sm-4">
-                                <input type="text" required class="form-control" ng-model="enrollee.email"  placeholder="john@doe.com">
+                                <input type="text"  class="form-control" ng-model="enrollee.email"  placeholder="john@doe.com">
                             </div>
                         </div>
 
@@ -167,7 +179,7 @@
 
                             <div class="col-md-4">
 
-                                <ui-select ng-model="enrollee.state_id" required
+                                <ui-select ng-model="enrollee.state_id"
                                            theme="bootstrap"
                                 >
 
@@ -209,7 +221,7 @@
 
                             <div class="col-md-4">
 
-                                <ui-select ng-model="enrollee.enrollee_status_code" required
+                                <ui-select ng-model="enrollee.enrollee_status_code"
                                            theme="bootstrap"
                                 >
 
@@ -234,7 +246,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="button" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-success pull-right">Create</button>
+                        <button type="submit" class="btn btn-success pull-right" ng-disabled="regForm.$invalid">Create</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>

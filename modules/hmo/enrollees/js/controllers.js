@@ -108,6 +108,11 @@ BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,Us
     EnrolleeService.fetchStatuses().success(function (resp) {
         $scope.statuses = resp
     })
+
+    //submit enrollee
+    $scope.submitEnrollee = function () {
+
+    }
     
 });
 

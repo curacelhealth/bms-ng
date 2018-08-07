@@ -69,6 +69,8 @@
 <script src="libs/datatables/angular-datatables.min.js"></script>
 <script src="libs/angular-jwt.min.js"></script>
 
+<script src="libs/ng-file-upload-all.min.js"></script>
+
 <!-- end plugins--->
 
 <!--- load app files proper--->
@@ -111,6 +113,10 @@
 
 <link href="assets/css/custom-styles.css" rel="stylesheet">
 
+
+<div id="loader" ng-show="AILoading">
+    <div ng-activity-indicator="CircledDark" ></div>
+</div>
 
 </body>
 
