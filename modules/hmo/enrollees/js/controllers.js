@@ -69,6 +69,7 @@ BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$activityIndicator,Enro
 
 //enrollee create / edit controller
 BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state) {
+    $scope.enrollee = {}
     
 });
 

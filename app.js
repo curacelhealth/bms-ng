@@ -4,7 +4,8 @@ var BmsApp = angular.module('BmsApp',
 		'ngActivityIndicator',
 		'angular-jwt',
 		'datatables',
-		"ngSanitize"
+		"ngSanitize",
+		'ui.select',
 	]
 )
 	.constant('API_HOST', BMS_API) // from config.js
@@ -24,3 +25,8 @@ var BmsApp = angular.module('BmsApp',
 
 		$httpProvider.interceptors.push('jwtInterceptor');
 	})
+	.run(["$rootScope", "$state","authManager", function($rootScope, $state,authManager) {
+		$rootScope.$state = $state; // state to be accessed from view
+		authManager.checkAuthOnRefresh();
+		authManager.redirectWhenUnauthenticated();
+	}]);
