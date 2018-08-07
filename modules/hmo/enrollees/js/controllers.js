@@ -68,8 +68,46 @@ BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$activityIndicator,Enro
 });
 
 //enrollee create / edit controller
-BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state) {
-    $scope.enrollee = {}
+BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompanyService,EnrolleeService,OptionService) {
+    $scope.enrollee = {
+        type:'P'
+    }
+
+
+    // enrollee companies
+    $scope.companies = [];
+    $scope.searchCompanies = function (q) {
+        CompanyService.fetchList(q,10).success(function (resp) {
+            $scope.companies = resp;
+        })
+    }
+
+
+    // principals
+    $scope.principals = [];
+    $scope.searchPrincipals = function (q) {
+        EnrolleeService.fetchList(q,10,'P').success(function (resp) {
+            $scope.principals = resp;
+        })
+    }
+
+    //states
+    $scope.states = []
+    OptionService.getStates().success(function (resp) {
+        $scope.states = resp
+    })
+
+    //plans
+    $scope.plans = []
+    EnrolleeService.fetchPlans().success(function (resp) {
+        $scope.plans = resp
+    })
+
+    //statuses
+    $scope.statuses = []
+    EnrolleeService.fetchStatuses().success(function (resp) {
+        $scope.statuses = resp
+    })
     
 });
 

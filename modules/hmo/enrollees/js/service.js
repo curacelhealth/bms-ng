@@ -5,8 +5,12 @@ BmsApp
     .service('EnrolleeService', function ( $http,API_HOST,$httpParamSerializer) {
 
         return {
-            fetchList: function (search,limit) {
+            fetchList: function (search,limit, type_to_show) {
+                type_to_show = type_to_show || ''
                 var data = {search:search || '', limit:limit || 10}
+                if(type_to_show=='P') data.principals_only= true
+                else if(type_to_show=='D') data.dependants_only = true
+
                 var qs = $httpParamSerializer(data)
                 return $http.get(API_HOST+'/enrollees/?'+qs)
             },
@@ -21,6 +25,13 @@ BmsApp
             
             fetchSingleByID: function (id) {
                 
+            },
+
+            fetchPlans: function () {
+                return $http.get(API_HOST+'/enrollee-plans/')
+            },
+            fetchStatuses: function () {
+                return $http.get(API_HOST+'/enrollee-statuses/')
             }
 
 
