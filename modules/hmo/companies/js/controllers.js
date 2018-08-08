@@ -31,33 +31,67 @@ BmsApp.controller('HmoCompaniesListCtrl', function($scope,$activityIndicator,Com
 
             //create columns for this grid
     $scope.dtColumns = [
-        DTColumnBuilder.newColumn('company_name').withTitle('Company Name').notSortable(),
-        DTColumnBuilder.newColumn('company_plan').withTitle('Plan')
-            .renderWith(function (data,type,full) {
-               return data +' '+full.plan
-            }),
-        
-        DTColumnBuilder.newColumn('number_of_lives').withTitle('No Of Lives'),
-        DTColumnBuilder.newColumn('sex').withTitle('Sex'),
-        DTColumnBuilder.newColumn('company_rep_name').withTitle('Company Rep.Name'),
-        DTColumnBuilder.newColumn('rep_telephone').withTitle('Rep.Telephone'),
-        DTColumnBuilder.newColumn('rep_email').withTitle('Rep.Email'),
+        DTColumnBuilder.newColumn('name').withTitle('Comp.Name').notSortable(),
+        DTColumnBuilder.newColumn('email').withTitle('Email'),        
+        DTColumnBuilder.newColumn('phone').withTitle('Phone'),
+        DTColumnBuilder.newColumn('website').withTitle('Website'),
         DTColumnBuilder.newColumn('address').withTitle('Address'),
-        DTColumnBuilder.newColumn('state').withTitle('State'),
-        DTColumnBuilder.newColumn('action').withTitle('Action').notSortable()
-                       .renderWith(function(data, type, full, meta) {
-                return '<a ui-sref="hmo.companiesCreate({id:'+full.id+'})" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon m-btn--pill" title="Edit details"> <i class="la la-book"></i>View</a><br>'
+        DTColumnBuilder.newColumn('state_id').withTitle('State')
+                 .renderWith(function(data,type,full) {
+                if(full.status)
+                    return full.status.name
+                else  return ''
             }),
+        DTColumnBuilder.newColumn('status_code').withTitle('Status Code'),
+        DTColumnBuilder.newColumn('company_plan_id').withTitle('Plan')
+                    .renderWith(function (data,type,full) {
+                if(full.plan)
+                    return full.plan.name
+                else  return ''
+            }),
+        DTColumnBuilder.newColumn('rep_name').withTitle('Rep.Name'),
+        DTColumnBuilder.newColumn('rep_phone').withTitle('Rep.Phone'),
+        DTColumnBuilder.newColumn('rep_email').withTitle('Rep.Email'),
+        DTColumnBuilder.newColumn('action').withTitle('').notSortable()
+                         .renderWith(function(data, type, full) {
+                var actions = [];
+                var view = '<a  class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a>';
+                actions.push(view);
+               
+                return actions.join(" ");
+            })
+        ,
     ];
 });
 
 //provider create / edit controller
-BmsApp.controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state,OptionService) {
+BmsApp.controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state,OptionService,CompaniesService) {
 
     $scope.states = []
     OptionService.getStates().success(function (resp) {
         $scope.states = resp
     })
     
+    $scope.createCompany = function() {
+
+    	if ($scope.companyCreateForm.$valid) {
+    	var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
+    	"website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
+    	"status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
+    	"rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email};
+    	CompaniesService.createNewCompany(newDataObj)
+
+    	.success(function(response) {
+    		$('#companyCreateForm')[0].reset();
+    		$scope.state = {};
+            console.log(response.id);
+            swal('Success', 'Company created successfully', 'success');
+    	})
+
+    	.error(function(response) {
+    		console.log(response);
+    	});
+    	}
+    }
 });
 

@@ -1,4 +1,4 @@
-<section class="content-header">
+<!-- <section class="content-header">
     <h1>
         CREATE A NEW COMPANY
 
@@ -22,54 +22,72 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form" class="form-horizontal">
+                <form id="createCompanyForm" name="createCompanyForm" ng-contoller="HmoCompaniesCreateCtrl" role="form" class="form-horizontal">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="example-text-input" class="col-md-2 col-form-label">Company Name</label>
+                            <label class="col-md-2 col-form-label">Company Name</label>
                             <div class="col-md-10">
-                                <input class="form-control m-input" type="text" value="" id="example-text-input">
+                                <input ng-model="name" class="form-control m-input" type="text" value="" id="company_name" required>
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-search-input" class="col-md-2 col-form-label">Plan</label>
+                            <label class="col-md-2 col-form-label">Email</label>
                             <div class="col-md-10">
-                                <input class="form-control m-input" type="text" value="" id="example-search-input">
+                                <input ng-model="email" class="form-control m-input" type="email" value="" id="email" required>
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-email-input" class="col-md-2 col-form-label">Number of lives</label>
+                            <label class="col-md-2 col-form-label">Phone</label>
                             <div class="col-md-10">
-                                <input class="form-control m-input" type="number" value="" id="example-email-input">
+                                <input ng-model="phone" class="form-control m-input" type="tel" value="" id="phone" required>
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-url-input" class="col-md-2 col-form-label">Company Rep.Name</label>
+                            <label class="col-md-2 col-form-label">Website</label>
                             <div class="col-md-10">
-                                <input class="form-control m-input" type="text" value="" id="example-url-input">
+                                <input ng-model="website" class="form-control m-input" type="text" value="" id="number" required>
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-tel-input" class="col-md-2 col-form-label">Rep. Telephone</label>
+                            <label class="col-md-2 col-form-label">Plan</label>
                             <div class="col-md-10">
-                                <input class="form-control m-input" type="tel" value="" id="example-tel-input">
+                                <input ng-model="company_plan_id" class="form-control m-input" type="text" value="" id="plan" required>
+                            </div>
+                        </div>
+                            <div class="form-group ">
+                            <label class="col-md-2 col-form-label">Status Code</label>
+                            <div class="col-md-10">
+                                <input ng-model="status_code" class="form-control m-input" type="number" value="" id="status_code" required>
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label for="example-password-input" class="col-md-2 col-form-label">Rep. Email</label>
+                            <label class="col-md-2 col-form-label">Company Rep.Name</label>
                             <div class="col-md-10">
-                                <input class="form-control m-input" type="email" value="" id="example-password-input">
+                                <input ng-model="rep_name" class="form-control m-input" type="text" value="" id="comp_rep_name" required>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-md-2 col-form-label">Rep. Telephone</label>
+                            <div class="col-md-10">
+                                <input ng-model="rep_phone" class="form-control m-input" type="number" value="" id="rep_telephone" required>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-md-2 col-form-label">Rep. Email</label>
+                            <div class="col-md-10">
+                                <input ng-model="rep_email" class="form-control m-input" type="email" value="" id="rep_email" required>
                             </div>
                         </div>
                         <div class="form-group ">
                             <label  class="col-md-2 col-form-label">Address</label>
                             <div class="col-md-4">
-                                <textarea class="form-control " id="exampleTextarea" rows="3"></textarea>
+                                <textarea ng-model="address" class="form-control " id="exampleTextarea" rows="3"></textarea>
                             </div>
 
                             <label class="col-md-1">State</label>
                             <div class="col-md-4">
 
-                                <ui-select ng-model="company.state" required
+                                <ui-select ng-model="state_id" required
                                            theme="bootstrap"
                                 >
 
@@ -90,7 +108,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <button ng-click="createCompany()" type="submit" class="btn btn-success">Submit</button>
                         <button type="reset" class="btn btn-secondary">Cancel</button>
 
                     </div>
@@ -98,8 +116,4 @@
             </div>
         </div>
     </div>
-
-
-
 </section>
-

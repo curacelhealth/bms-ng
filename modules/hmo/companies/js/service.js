@@ -17,6 +17,12 @@ BmsApp
 
             fetchSingleByID: function (id) {
                return $http.get(API_HOST+'/companies/'+id) 
+            },
+
+
+            createNewCompany: function (obj) {
+                return $http.post(API_HOST+'/companies/create', obj);
+                
             }
 
 
