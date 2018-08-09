@@ -18,11 +18,11 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Supply Company Details</h3>
+                    <h3 class="box-title">Edit a Company's Details</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form id="createCompanyForm" name="createCompanyForm" ng-contoller="HmoCompaniesCreateCtrl" role="form" class="form-horizontal">
+                <form id="companyEditForm" name="companyEditForm" ng-contoller="HmoCompaniesEditCtrl" role="form" class="form-horizontal">
                     <div class="box-body">
                         <div class="form-group">
                             <label class="col-md-2 col-form-label">Company Name</label>
@@ -108,7 +108,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button ng-click="createCompany()" type="submit" class="btn btn-success">Submit</button>
+                        <button ng-click="companyUpdate()" type="submit" class="btn btn-success">Submit</button>
                         <button type="reset" class="btn btn-secondary">Cancel</button>
 
                     </div>
