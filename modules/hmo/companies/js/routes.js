@@ -53,7 +53,7 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
             views:{
                 "dash":{
                     templateUrl: "modules/hmo/companies/views/view.html",
-                    controller: "CompaniesViewCtrl"
+                    controller: "HmoCompaniesViewCtrl"
                 }
             },
             
