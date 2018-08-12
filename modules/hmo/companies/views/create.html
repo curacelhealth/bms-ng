@@ -50,14 +50,31 @@
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Plan</label>
-                            <div class="col-md-10">
-                                <input ng-model="company_plan_id" class="form-control m-input" type="text" value="" id="plan" required>
+                            <div class="col-md-2">
+                                <ui-select ng-model="plan" required theme="bootstrap">
+
+                                    <ui-select-match placeholder="Plan">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                            repeat="item as item in (plan | filter: $select.search) track by item.id"
+                                    >
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
                             </div>
-                        </div>
-                            <div class="form-group ">
-                            <label class="col-md-2 col-form-label">Status Code</label>
-                            <div class="col-md-10">
-                                <input ng-model="status_code" class="form-control m-input" type="number" value="" id="status_code" required>
+                            <label class="col-md-1 col-form-label">Status Code</label>
+                            <div class="col-md-2">
+                                <ui-select ng-model="status_code" required theme="bootstrap">
+                                    <ui-select-match placeholder="Status Code">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices
+                                            repeat="item as item in (status | filter: $select.search) track by item.id"
+                                    >
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
                             </div>
                         </div>
                         <div class="form-group ">
