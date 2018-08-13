@@ -2,7 +2,7 @@
  * Created by JFlash on 12/14/17.
  */
 BmsApp
-    .service('CompaniesService', function ( $http,API_HOST) {
+    .service('CompaniesService', function ( $http,API_HOST,$httpParamSerializer) {
 
         return {
             fetchList: function (search,limit) {
