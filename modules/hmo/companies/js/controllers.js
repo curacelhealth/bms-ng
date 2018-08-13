@@ -2,7 +2,7 @@
  * Created by JFlash on 7/31/18.
  */
 //Companies List controller
-BmsApp.controller('HmoCompaniesListCtrl', function($scope,$activityIndicator,CompaniesService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
+BmsApp.controller('HmoCompaniesListCtrl', function($scope,$compile,$activityIndicator,CompaniesService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
    	$scope.dtInstance = {}; //instance reference for datatables
     $scope.filters = {}; // filters
 

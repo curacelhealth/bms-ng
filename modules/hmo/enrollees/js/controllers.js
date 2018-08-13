@@ -72,7 +72,7 @@ BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$compile,$activityIndic
 });
 
 //enrollee create / edit controller
-BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompanyService,EnrolleeService,OptionService) {
+BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService) {
     $scope.enrollee = {
         type:'P'
     }
@@ -81,7 +81,7 @@ BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,Us
     // enrollee companies
     $scope.companies = [];
     $scope.searchCompanies = function (q) {
-        CompanyService.fetchList(q,10).success(function (resp) {
+        CompaniesService.fetchList(q,10).success(function (resp) {
             $scope.companies = resp;
         })
     }
