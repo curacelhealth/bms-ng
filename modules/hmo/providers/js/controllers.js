@@ -32,7 +32,8 @@ BmsApp.controller('ProvidersListCtrl', function($scope,$compile, $activityIndica
         .withOption('fnRowCallback',
             function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
                 $compile(nRow)($scope); // this ensures angular directives are compiled after each row is created
-            });
+            }
+        );
     
     vm.dtColumns = [
         DTColumnBuilder.newColumn('id').withTitle('ID'),
@@ -47,37 +48,83 @@ BmsApp.controller('ProvidersListCtrl', function($scope,$compile, $activityIndica
             .renderWith(function(data, type, full, meta) {
                 // you should use full.id instead of data.id here
                 // they shouldnt be able to delete a provider here, so i removed the delete button
-                return '<a ui-sref="hmo.providersCreate({id:'+full.id+'})" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon m-btn--pill" title="Edit details"> <i class="la la-book"></i>View</a><br>'+
-                	   '<a ui-sref="hmo.providersView({id:'+full.id+'})" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon m-btn--pill" title="Edit details"> <i class="la la-edit"></i>Edit</a><br>'
+                return '<a ui-sref="hmo.providersView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-binoculars"></i></a>&nbsp;'+
+                	   '<a ui-sref="hmo.providersEdit({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="Edit details"><i class="fa fa-pencil"></i></a>'
             }),
     ];
     
 });
 
 //provider view controller
-BmsApp.controller('ProvidersViewCtrl', function($scope, $stateParams, DTOptionsBuilder, DTColumnDefBuilder) {
-    $scope.id = $stateParams.id;
-    $scope.name = 'Test User';
-    $scope.email = 'user@test.mail';
-    $scope.phone = '234567890';
-    $scope.address = 'Curacel base';
-    $scope.state_id = '23401';
-    $scope.rc_no ='what ever that is';
-    $scope.provider_tier_id = 'tier120';
-
-    var vm = this;
-    vm.dtOptions = DTOptionsBuilder.newOptions()
-        .withDOM('t');
-    vm.dtColumnDefs = [
-        DTColumnDefBuilder.newColumnDef(0).notVisible().notSortable(),
-        DTColumnDefBuilder.newColumnDef(1).notSortable(),
-        DTColumnDefBuilder.newColumnDef(2).notSortable()
-    ];
+BmsApp.controller('ProvidersViewCtrl', function($scope, $stateParams, ProviderService) {
+    ProviderService.fetchSingleByID($stateParams.id)
+    .success(function(response){
+        $scope.id = response.id;
+        $scope.name = response.name;
+        $scope.email = response.email;
+        $scope.phone =  parseInt(response.phone, 10);
+        $scope.address = response.address;
+        $scope.state_name = response.state.name;
+        $scope.rc_no =response.rc_no;
+        $scope.provider_tier_id = response.provider_tier_id;
+    })
+    .error(function(response){
+        console.log(response.message);
+    });
 });
 
 //provider create controller
-BmsApp.controller('ProvidersCreateCtrl', function($scope,$activityIndicator,UserService,$state) {
+BmsApp.controller('ProvidersCreateCtrl', function($scope, ProviderService, OptionService) {
+    $scope.state = {};
 
-    
+    $scope.states = [];
+    OptionService.getStates().success(function (resp) {
+        $scope.states = resp;
+    });
+
+    $scope.createProvider = function (){
+        if ($scope.providerCreateForm.$valid) {
+            var newDataObj={"name": $scope.name, "email": $scope.email, "phone": $scope.phone, "address": $scope.address, "state_id": $scope.state.state.id, "rc_no": $scope.rc_no, "provider_tier_id": $scope.provider_tier_id};
+            ProviderService.createNewProvider(newDataObj)
+            .success(function(response){
+                $('#providerCreateForm')[0].reset();
+                $scope.state = {};
+                console.log(response.id);
+                swal('Success', 'Provider created successfully', 'success');
+            })
+            .error(function(response){
+                console.log(response.message);
+            });
+        }
+    }
 });
 
+//provider edit controller
+BmsApp.controller('ProvidersEditCtrl', function($scope, $stateParams, ProviderService, OptionService) {
+    ProviderService.fetchSingleByID($stateParams.id)
+    .success(function(response){
+        $scope.state = {};
+        $scope.id = response.id;
+        $scope.name = response.name;
+        $scope.email = response.email;
+        $scope.phone =  parseInt(response.phone, 10);
+        $scope.address = response.address;
+        $scope.state.state = response.state;
+        $scope.rc_no =response.rc_no;
+        $scope.provider_tier_id = response.provider_tier_id;
+
+        $scope.states = [];
+        OptionService.getStates().success(function (resp) {
+            $scope.states = resp;
+        });
+    })
+    .error(function(response){
+        console.log(response.message);
+    });
+
+    $scope.updateProvider = function (){
+        if ($scope.providerEditForm.$valid) {
+            var editedDataObj='{id: "'+$scope.id+'", name: "'+$scope.name+'", email: "'+$scope.email+'", phone: "'+$scope.phone+'", address: "'+$scope.address+'", state_id: "'+$scope.state.state.id+'", rc_no: "'+$scope.rc_no+'", provider_tier_id: "'+$scope.provider_tier_id+'"}';
+        }
+    }
+});

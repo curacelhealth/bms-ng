@@ -6,13 +6,13 @@
 <section class="content-header">
     <h1>
         Providers
-        <small>Create new provider</small>
+        <small>Edit existing provider</small>
     </h1>
 
     <ol class="breadcrumb">
-        <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="hmo.home"><i class="fa fa-dashboard"></i>Home</a></li>
         <li><a ui-sref="hmo.providersList">Providers</a></li>
-        <li class="active">Create</li>
+        <li class="active">Edit</li>
     </ol>
 </section>
 
@@ -21,7 +21,7 @@
 
     <div class="box">
         <div class="box-body">
-			<form id="providerCreateForm" name="providerCreateForm" ng-controller="ProvidersCreateCtrl" class="form-horizontal">
+			<form id="providerEditForm" name="providerEditForm" class="form-horizontal">
 				<div class="form-group">
 					<label class="control-label col-md-3 col-sm-3">Name</label>
 					<div class="col-md-5 col-sm-8">
@@ -74,7 +74,7 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-md-5 col-sm-8">
-						<button ng-click="createProvider()" class="form-control btn btn-primary">CREATE PROVIDER</button>
+						<button ng-click="updateProvider()" class="form-control btn btn-primary">EDIT PROVIDER</button>
 					</div>
 				</div>
 			</form>

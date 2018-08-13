@@ -6,6 +6,8 @@ var BmsApp = angular.module('BmsApp',
 		'datatables',
 		"ngSanitize",
 		'ui.select',
+        'ngFileUpload',
+		'ngMask'
 	]
 )
 	.constant('API_HOST', BMS_API) // from config.js

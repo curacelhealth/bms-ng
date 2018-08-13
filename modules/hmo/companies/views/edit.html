@@ -18,11 +18,11 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Supply Company Details</h3>
+                    <h3 class="box-title">Edit a Company's Details</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form id="createCompanyForm" name="createCompanyForm" ng-contoller="HmoCompaniesCreateCtrl" role="form" class="form-horizontal">
+                <form id="companyEditForm" name="companyEditForm" ng-contoller="HmoCompaniesEditCtrl" role="form" class="form-horizontal">
                     <div class="box-body">
                         <div class="form-group">
                             <label class="col-md-2 col-form-label">Company Name</label>
@@ -50,31 +50,14 @@
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Plan</label>
-                            <div class="col-md-2">
-                                <ui-select ng-model="plan" required theme="bootstrap">
-
-                                    <ui-select-match placeholder="Plan">
-                                        <span>{{$select.selected.name}}</span>
-                                    </ui-select-match>
-                                    <ui-select-choices
-                                            repeat="item as item in (plan | filter: $select.search) track by item.id"
-                                    >
-                                        <span> {{item.name}}</span>
-                                    </ui-select-choices>
-                                </ui-select>
+                            <div class="col-md-10">
+                                <input ng-model="company_plan_id" class="form-control m-input" type="text" value="" id="plan" required>
                             </div>
-                            <label class="col-md-1 col-form-label">Status Code</label>
-                            <div class="col-md-2">
-                                <ui-select ng-model="status_code" required theme="bootstrap">
-                                    <ui-select-match placeholder="Status Code">
-                                        <span>{{$select.selected.name}}</span>
-                                    </ui-select-match>
-                                    <ui-select-choices
-                                            repeat="item as item in (status | filter: $select.search) track by item.id"
-                                    >
-                                        <span> {{item.name}}</span>
-                                    </ui-select-choices>
-                                </ui-select>
+                        </div>
+                            <div class="form-group ">
+                            <label class="col-md-2 col-form-label">Status Code</label>
+                            <div class="col-md-10">
+                                <input ng-model="status_code" class="form-control m-input" type="number" value="" id="status_code" required>
                             </div>
                         </div>
                         <div class="form-group ">
@@ -125,7 +108,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button ng-click="createCompany()" type="submit" class="btn btn-success">Submit</button>
+                        <button ng-click="companyUpdate()" type="submit" class="btn btn-success">Submit</button>
                         <button type="reset" class="btn btn-secondary">Cancel</button>
 
                     </div>
