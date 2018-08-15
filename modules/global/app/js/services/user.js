@@ -1,7 +1,7 @@
 /**
  * Created by JFlash on 12/14/17.
  */
-BmsApp
+angular.module('BmsApp')
     .service('UserService', function (API_HOST_AUTH , $http,jwtHelper,$state) {
         
         var token_name = "curacel_auth_token";

@@ -2,7 +2,8 @@
  * Created by JFlash on 7/31/18.
  */
 //enrollees List controller
-BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$compile,$activityIndicator,EnrolleeService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
+angular.module('BmsApp')
+    .controller('HmoEnrolleeListCtrl', function($scope,$compile,$activityIndicator,EnrolleeService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
 
     $scope.dtInstance = {}; //instance ref for data tables
     $scope.filters = {}; // filters
@@ -69,10 +70,10 @@ BmsApp.controller('HmoEnrolleeListCtrl', function($scope,$compile,$activityIndic
             })
         ,
     ];
-});
+})
 
 //enrollee create / edit controller
-BmsApp.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService) {
+.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService) {
     $scope.enrollee = {
         type:'P'
     }

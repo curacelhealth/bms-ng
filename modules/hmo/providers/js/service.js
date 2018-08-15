@@ -1,7 +1,7 @@
 /**
  * Created by JFlash on 12/14/17.
  */
-BmsApp
+angular.module('BmsApp')
     .service('ProviderService', function ( $http,API_HOST) {
 
         return {

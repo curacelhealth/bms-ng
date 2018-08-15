@@ -2,7 +2,8 @@
  * Created by JFlash on 7/31/18.
  */
 //providers List controller
-BmsApp.controller('ProvidersListCtrl', function($scope,$compile, $activityIndicator, UserService, $state, DTOptionsBuilder, DTColumnBuilder,ProviderService) {
+angular.module('BmsApp')
+    .controller('ProvidersListCtrl', function($scope,$compile, $activityIndicator, UserService, $state, DTOptionsBuilder, DTColumnBuilder,ProviderService) {
     var vm = this;
     //vm.dtOptions = DTOptionsBuilder.fromSource('modules/hmo/providers/data.json') 
     // .withPaginationType('full_numbers');
@@ -52,10 +53,10 @@ BmsApp.controller('ProvidersListCtrl', function($scope,$compile, $activityIndica
             }),
     ];
     
-});
+})
 
 //provider view controller
-BmsApp.controller('ProvidersViewCtrl', function($scope, $stateParams, ProviderService) {
+.controller('ProvidersViewCtrl', function($scope, $stateParams, ProviderService) {
     ProviderService.fetchSingleByID($stateParams.id)
     .success(function(response){
         $scope.id = response.id;
@@ -70,10 +71,10 @@ BmsApp.controller('ProvidersViewCtrl', function($scope, $stateParams, ProviderSe
     .error(function(response){
         console.log(response.message);
     });
-});
+})
 
 //provider create controller
-BmsApp.controller('ProvidersCreateCtrl', function($scope, ProviderService, OptionService) {
+.controller('ProvidersCreateCtrl', function($scope, ProviderService, OptionService) {
     $scope.state = {};
 
     $scope.states = [];
@@ -96,10 +97,10 @@ BmsApp.controller('ProvidersCreateCtrl', function($scope, ProviderService, Optio
             });
         }
     }
-});
+})
 
 //provider edit controller
-BmsApp.controller('ProvidersEditCtrl', function($scope, $stateParams, ProviderService, OptionService) {
+.controller('ProvidersEditCtrl', function($scope, $stateParams, ProviderService, OptionService) {
     ProviderService.fetchSingleByID($stateParams.id)
     .success(function(response){
         $scope.state = {};

@@ -1,7 +1,7 @@
 /**
  * Created by JFlash on 12/14/17.
  */
-BmsApp
+angular.module('BmsApp')
     .service('EnrolleeService', function ( $http,API_HOST,$httpParamSerializer) {
 
         var sexes = {'M':'Male','F':'Female'}
