@@ -17,6 +17,18 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
                 }
             },
             data: {pageTitle: 'Login'},
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'BmsApp',
+                        //insertBefore: '#ng_load_plugins_before', // load the above css files before a LINK element with this ID. Dynamic CSS files must be loaded between core and theme css files
+                        files: [
+                            'modules/global/app/js/services/user.js',
+                            'modules/global/app/js/controllers.js',
+                        ]
+                    });
+                }]
+            }
         })
 
 
@@ -30,7 +42,8 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
                     templateUrl: "modules/global/app/views/hmo-app.html",
                     controller: "AppCtrl"
                 }
-            }
+            },
+
         })
 
         //hmo app homepage i.e dashboard home
