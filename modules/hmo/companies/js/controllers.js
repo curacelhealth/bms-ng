@@ -55,8 +55,7 @@ BmsApp.controller('HmoCompaniesListCtrl', function($scope,$compile,$activityIndi
         DTColumnBuilder.newColumn('rep_email').withTitle('Rep.Email'),
         DTColumnBuilder.newColumn('action').withTitle('').notSortable()
              .renderWith(function(data, type, full, meta) {
-                return '<a ui-sref="hmo.companiesView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-binoculars"></i></a>&nbsp;'+
-                	   '<a ui-sref="hmo.companiesEdit({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="Edit details"><i class="fa fa-pencil"></i></a>'
+                return '<a ui-sref="hmo.companiesView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>&nbsp;'
             }),
     ];
 });

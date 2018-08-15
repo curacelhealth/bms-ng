@@ -4,12 +4,12 @@
     <!-- Main Header -->
     <header class="main-header">
         <!-- Logo -->
-        <a  class="logo">
+        <a ui-sref="hmo.home"class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>B</b>MS</span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg">
-                <img alt="" src="assets/img/logo_default_dark.png" width="50">
+                <img alt="" src="assets/img/logo_default_dark.png" width="70">
             </span>
         </a>
 
@@ -183,20 +183,20 @@
         <section class="sidebar">
 
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel">
+            <!-- <div class="user-panel">
                 <div class="pull-left image">
                     <img src="libs/admin-lte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{user.first_name}} {{user.last_name}}</p>
                 </div>
-            </div>
+            </div> -->
 
             <!-- search form (Optional) -->
             <form  method="get" class="sidebar-form">
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Search...">
-             <span class="input-group-btn">
+                    <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
             </span>
@@ -207,7 +207,7 @@
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
+                <li class="header">MENU</li>
                 <!-- Optionally, you can add icons to the links -->
 
                 <li >
@@ -231,20 +231,175 @@
                     </a>
                 </li>
 
-                <li class="treeview">
-                    <a href=""><i class="fa fa-link"></i> <span>Multilevel</span>
+                <li>
+                    <a ui-sref="hmo.enrolleeList">
+                        <i class="fa fa-users"></i>
+                        <span>Claims</span>
+                    </a>
+                </li>
 
-                    <span class="pull-right-container">
+                <li>
+                    <a ui-sref="hmo.enrolleeList">
+                        <i class="fa fa-users"></i>
+                        <span>PA Codes</span>
+                    </a>
+                </li>
+
+
+                <li class="treeview">
+                    <a href=""><i class="fa fa-link"></i> <span>Policy & Benefits</span>
+
+                        <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
 
                     </a>
 
                     <ul class="treeview-menu">
-                        <li><a href="">Link in level 2</a></li>
-                        <li><a href="">Link in level 2</a></li>
+                        <li>
+                            <a ui-sref="hmo.enrolleeList">
+                                <i class="fa fa-users"></i>
+                                <span>Policies</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a ui-sref="hmo.enrolleeList">
+                                <i class="fa fa-users"></i>
+                                <span>Plans</span>
+                            </a>
+
+
+                        </li>
+
+                        <li>
+                            <a ui-sref="hmo.enrolleeList">
+                                <i class="fa fa-users"></i>
+                                <span>Premiums</span>
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a ui-sref="hmo.enrolleeList">
+                                <i class="fa fa-users"></i>
+                                <span>Benefits</span>
+                            </a>
+
+
+                        </li>
+
+                        <li>
+                            <a ui-sref="hmo.enrolleeList">
+                                <i class="fa fa-users"></i>
+                                <span>Services</span>
+                            </a>
+
+                        </li>
                     </ul>
                 </li>
+
+
+                <li class="treeview">
+                    <a href=""><i class="fa fa-link"></i> <span>Communications</span>
+
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
+                    </a>
+
+                    <ul class="treeview-menu">
+                        <li>
+                            <a ui-sref="hmo.enrolleeList">
+                                <i class="fa fa-users"></i>
+                                <span>Messages</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a ui-sref="hmo.enrolleeList">
+                                <i class="fa fa-users"></i>
+                                <span>SMS</span>
+                            </a>
+
+                        </li>
+
+                        <li>
+                            <a ui-sref="hmo.enrolleeList">
+                                <i class="fa fa-users"></i>
+                                <span>Email</span>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href=""><i class="fa fa-link"></i> <span>Administration</span>
+
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
+                    </a>
+
+                    <ul class="treeview-menu">
+                        <li><a href="">PA Codes</a></li>
+                        <li><a href="">.</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href=""><i class="fa fa-link"></i> <span>Accounts</span>
+
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
+                    </a>
+
+                    <ul class="treeview-menu">
+                        <li><a href="">PA Codes</a></li>
+                        <li><a href="">.</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href=""><i class="fa fa-link"></i> <span>HR</span>
+
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
+                    </a>
+
+                    <ul class="treeview-menu">
+                        <li><a href="">PA Codes</a></li>
+                        <li><a href="">.</a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href=""><i class="fa fa-link"></i> <span>Finance</span>
+
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+
+                    </a>
+
+                    <ul class="treeview-menu">
+                        <li><a href="">PA Codes</a></li>
+                        <li><a href="">.</a></li>
+                    </ul>
+                </li>
+
+
+
             </ul>
             <!-- /.sidebar-menu -->
 
@@ -263,13 +418,13 @@
 
 
     <!-- Main Footer -->
-    <footer class="main-footer">
+    <footer class="main-footer pull-center">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
 
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 <a >Curacel</a>.</strong> All rights reserved.
+        <small>Powered by</small>  <img width="8%" src="assets/img/curacel.png" alt=""> <small>&nbsp;Copyright &copy; 2018&nbsp; All rights reserved.</small>
     </footer>
 
 
@@ -307,7 +462,7 @@
                         <a href="javascript:;">
                             <h4 class="control-sidebar-subheading">
                                 Custom Template Design
-                <span class="pull-right-container">
+                                <span class="pull-right-container">
                     <span class="label label-danger pull-right">70%</span>
                   </span>
                             </h4>
