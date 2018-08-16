@@ -38,8 +38,7 @@ angular.module('BmsApp').config(function($stateProvider) {
 
         })
 
-
-        //providers unit view
+        //providers unit view/edit
         .state('hmo.providers.providersView', {
             url: "/view/:id",
             templateUrl: "modules/hmo/providers/views/view.html",
@@ -55,16 +54,5 @@ angular.module('BmsApp').config(function($stateProvider) {
             data: {pageTitle: 'Providers'},
 
         })
-        
-        //create edit provider view // not needed
-        .state('hmo.providers.providersEdit', {
-            url: "/edit/:id",
-            templateUrl: "modules/hmo/providers/views/edit.html",
-            controller: "ProvidersEditCtrl",
-
-            data: {pageTitle: 'Providers'},
-
-        })
-
     
 });

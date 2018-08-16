@@ -13,31 +13,73 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <strong><i class="fa fa-map-marker margin-r-5"></i> RC No</strong>
-                    <p class="text-muted">
-                        {{rc_no}}
-                    </p>
-                    <hr>
-                    <strong><i class="fa fa-map-marker margin-r-5"></i> Provider Tier</strong>
-                    <p class="text-muted">
-                        {{provider_tier_id}}
-                    </p>
-                    <hr>
-                    <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
-                    <p class="text-muted">
-                        {{address}}
-                    </p>
-                    <hr>
-                    <strong><i class="fa fa-map-marker margin-r-5"></i> State</strong>
-                    <p class="text-muted">
-                        {{state_name}}
-                    </p>
-                    <hr>
-                    <strong><i class="fa fa-email margin-r-5"></i> Email</strong>
-                    <p class="text-muted">{{email}}</p>
-                    <hr>
-                    <strong><i class="fa fa-globe margin-r-5"></i> Website</strong>
-                    <p>{{website}}</p>
+                    <form name="providerEditForm" id="providerEditForm">
+                        <strong><i class="fa fa-map-marker margin-r-5"></i> RC No</strong>
+                        <input ng-model="rc_no" ng-show="editView" style="width: 100%" class="form-control" type="number" name="rc_no" placeholder="RC Number" maxlength="100" required>
+                        <p class="text-muted" ng-hide="editView">{{rc_no}}</p>
+                        <hr>
+
+                        <strong><i class="fa fa-map-marker margin-r-5"></i> Provider Tier</strong>
+                        <ui-select ng-model="tier" ng-show="editView" theme="bootstrap" style="width: 100%" required>
+                                <ui-select-match placeholder="Tier">
+                                    <span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item as item in (tiers | filter: $select.search) track by item.id">
+                                    <span> {{item.name}}</span>
+                                </ui-select-choices>
+                        </ui-select>
+                        <input ng-model="tier.id" type="hidden" name="tier_id" required>
+                        <p class="text-muted" ng-hide="editView">{{tier.name}}</p>
+                        <hr>
+
+                        <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
+                            <input ng-model="address" ng-show="editView" style="width: 100%" class="form-control" type="text" name="address" placeholder="Address" maxlength="100" required>
+                        <p class="text-muted" ng-hide="editView">
+                            {{address}}
+                        </p>
+                        <hr>
+
+                        <strong><i class="fa fa-map-marker margin-r-5"></i> State</strong>
+                        <ui-select ng-model="state" ng-show="editView" theme="bootstrap" style="width: 100%" required>
+                                <ui-select-match placeholder="State">
+                                    <span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item as item in (states | filter: $select.search) track by item.id">
+                                    <span> {{item.name}}</span>
+                                </ui-select-choices>
+                        </ui-select>
+                        <input ng-model="state.id" type="hidden" name="state_id" required>
+                        <p class="text-muted" ng-hide="editView">{{state.name}}</p>
+                        <hr>
+
+                        <strong><i class="fa fa-email margin-r-5"></i> Email</strong>
+                        <input ng-model="email" ng-show="editView" style="width: 100%" class="form-control" type="email" name="email" placeholder="Email" maxlength="100" required>
+                        <p class="text-muted" ng-hide="editView">{{email}}</p>
+                        <hr>
+
+                        <strong><i class="fa fa-email margin-r-5"></i> Phone Number</strong>
+                        <input ng-model="phone" ng-show="editView" style="width: 100%" class="form-control" type="number" name="phone" placeholder="Phone Number" maxlength="100" required>
+                        <p class="text-muted" ng-hide="editView">{{phone}}</p>
+                        <hr>
+
+                        <strong><i class="fa fa-globe margin-r-5"></i> Website</strong>
+                        <input ng-model="website" ng-show="editView" style="width: 100%" class="form-control" type="text" name="website" placeholder="Website" maxlength="100" required>
+                        <p class="text-muted" ng-hide="editView">{{website}}</p>
+                        <hr>
+
+                        <strong><i class="fa fa-map-marker margin-r-5"></i> Status</strong>
+                        <ui-select ng-model="status" ng-show="editView" theme="bootstrap" style="width: 100%" required>
+                                <ui-select-match placeholder="Status">
+                                    <span>{{$select.selected.name}}</span>
+                                </ui-select-match>
+                                <ui-select-choices repeat="item as item in (statuses | filter: $select.search) track by item.id">
+                                    <span> {{item.name}}</span>
+                                </ui-select-choices>
+                        </ui-select>
+                        <input ng-model="status.id" type="hidden" name="status_id" required>
+                        <p class="text-muted" ng-hide="editView">{{status.name}}</p>
+                        <hr>
+                    </form>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -49,22 +91,31 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <strong><i class="fa fa-book margin-r-5"></i> Name</strong>
-                    <p class="text-muted">
-                        Reps Name
-                    </p>
+
+                    <strong><i class="fa fa-book margin-r-5"></i> Representative Name</strong>
+                    <input ng-model="representative_name" ng-show="editView" style="width: 100%" class="form-control" type="text" name="representative_name" placeholder="Representative Name" maxlength="100" required>
+                    <p class="text-muted" ng-hide="editView">{{representative_name}}</p>
                     <hr>
-                    <strong><i class="fa fa-email"></i> Reps Email</strong>
-                    <p class="text-muted">rep@provider.com</p>
+
+                    <strong><i class="fa fa-email"></i> Representative Email</strong>
+                    <input ng-model="representative_email" ng-show="editView" style="width: 100%" class="form-control" type="email" name="representative_email" placeholder="Representative Email" maxlength="100" required>
+                    <p class="text-muted" ng-hide="editView">{{representative_email}}</p>
                     <hr>
-                    <strong><i class="fa fa-pencil margin-r-5"></i> Staff Strength</strong>
-                    <p>
-                        <span class="label label-success">12</span>
-                    </p>
+
+                    <strong><i class="fa fa-email"></i> Representative Phone Number</strong>
+                    <input ng-model="representative_number" ng-show="editView" style="width: 100%" class="form-control" type="number" name="representative_number" placeholder="Representative Number" maxlength="100" required>
+                    <p class="text-muted" ng-hide="editView">{{representative_number}}</p>
                     <hr>
+
                 </div>
                 <!-- /.box-body -->
             </div>
         </div>
+    </div>
+
+    <div class="form-group text-center">
+        <button ng-hide="editView" ng-click="editView=true" class="btn btn-primary">EDIT</button>
+        <button ng-show="editView" ng-click="updateProvider()" class="btn btn-primary">SUBMIT</button>
+        <button ng-show="editView" ng-click="editView=false" class="btn btn-danger">CANCEL</button>
     </div>
 </div>
