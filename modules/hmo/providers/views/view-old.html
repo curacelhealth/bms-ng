@@ -1,0 +1,891 @@
+<section class="content-header">
+    <h1>
+        {{name}}
+        <small>Active</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="hmo.providersList">Providers</a></li>
+        <li class="active">{{name}}</li>
+    </ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="nav-tabs-custom">
+                <!-- TABS HEADER -->
+                <ul class="nav nav-tabs">
+                    <li><a href="#info" data-toggle="tab">Info</a></li>
+                    <li><a href="#messages" data-toggle="tab">Messages</a></li>
+                    <li><a href="#enrollees" data-toggle="tab">Enrollees</a></li>
+                    <li><a href="#financials" data-toggle="tab">Financials</a></li>
+                    <li><a href="#pacodes" data-toggle="tab">PA Codes</a></li>
+                    <li><a href="#tariffs" data-toggle="tab">Tariffs</a></li>
+                    <li><a href="#claims" data-toggle="tab">Claims</a></li>
+                    <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
+                </ul>
+
+				<uib-tabset active="active">
+					
+					<uib-tab index="0" heading="Info">
+						<ng-include src="'modules/hmo/providers/views/tab-info.html'"/>
+
+					</uib-tab>
+
+					<uib-tab index="$index + 1" ng-repeat="tab in tabs" heading="{{tab.title}}" disable="tab.disabled">
+						{{tab.content}}
+					</uib-tab>
+
+					<uib-tab index="3" select="alertMe()">
+						<uib-tab-heading>
+							<i class="fa fa-gear"></i> Settings
+						</uib-tab-heading>
+
+
+						<div class="active tab-pane" id="settings">
+
+
+							<ul class="timeline">
+
+								<li>
+									<i class="fa fa-envelope bg-blue"></i>
+
+									<div class="timeline-item">
+										<span class="time"> ..</span>
+
+										<h3 class="timeline-header"><a href="#">Edit Provider Info</a></h3>
+
+										<div class="timeline-body">
+											<form class="form-horizontal">
+
+												<div class="row">
+
+													<div class="col-md-6">
+
+
+														<div class="form-group">
+															<label for="inputName" class="col-sm-2 control-label">Name</label>
+															<div class="col-sm-10">
+																<input type="email" class="form-control" id="inputName" placeholder="Name">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputEmail" class="col-sm-2 control-label">Address</label>
+															<div class="col-sm-10">
+																<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputName" class="col-sm-2 control-label">State</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="inputName" placeholder="Name">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputExperience" class="col-sm-2 control-label">Website</label>
+															<div class="col-sm-10">
+																<textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputSkills" class="col-sm-2 control-label">Email</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+															</div>
+														</div>
+
+
+													</div>
+													<div class="col-md-6">
+
+														<div class="form-group">
+															<label for="inputName" class="col-sm-2 control-label">Reps Name</label>
+															<div class="col-sm-10">
+																<input type="email" class="form-control" id="inputName" placeholder="Reps Name">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputEmail" class="col-sm-2 control-label">Reps Email </label>
+															<div class="col-sm-10">
+																<input type="email" class="form-control" id="inputEmail" placeholder="Reps Email">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputName" class="col-sm-2 control-label">Reps Phone</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="inputName" placeholder="Reps Phone">
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label for="inputName" class="col-sm-2 control-label">Staff Strength</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="inputName" placeholder="Staff Strength">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputExperience" class="col-sm-2 control-label">Payment Info</label>
+															<div class="col-sm-10">
+																<textarea class="form-control" id="inputExperience" placeholder=""></textarea>
+															</div>
+														</div>
+
+													</div>
+
+
+												</div>
+
+
+
+											</form>
+										</div>
+										<div class="timeline-footer">
+											<div class="form-group">
+												<button type="button" class="btn btn-block btn-primary">Save</button>
+											</div>
+										</div>
+									</div>
+								</li>
+
+
+								<li>
+									<i class="fa fa-user bg-aqua"></i>
+
+									<div class="timeline-item">
+
+										<div class="timeline-body">
+											<div class="row">
+												<div class="col-md-3">
+													To Delist Provider: Type DELIST
+													<div class="input-group margin">
+														<input type="text" class="form-control">
+														<span class="input-group-btn">
+							                      <button type="button" class="btn btn-info btn-flat">DELIST</button>
+							                    </span>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+
+								</li>
+
+
+								<li>
+									<i class="fa fa-envelope bg-blue"></i>
+
+									<div class="timeline-item">
+										<span class="time"> ..</span>
+
+										<h3 class="timeline-header"><a href="#">Edit Profile Info</a></h3>
+
+										<div class="timeline-body">
+											<form class="form-horizontal">
+
+												<div class="row">
+													<div class="col-md-3">
+														Set Portal State:
+														<div class="btn-group">
+															<button type="button" class="btn btn-default">Action</button>
+															<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+																<span class="caret"></span>
+																<span class="sr-only">Toggle Dropdown</span>
+															</button>
+															<ul class="dropdown-menu" role="menu">
+																<li><a href="#">ON</a></li>
+																<li><a href="#">OFF</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+
+												<div class="row">
+
+
+
+													<div class="col-md-6">
+														<h3>New Portal Credentials</h3>
+
+														<div class="form-group">
+															<label for="inputName" class="col-sm-2 control-label">Email</label>
+															<div class="col-sm-10">
+																<input type="email" class="form-control" id="inputName" placeholder="Email">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputEmail" class="col-sm-2 control-label">Password</label>
+															<div class="col-sm-10">
+																<input type="password" class="form-control" id="inputEmail" placeholder="password">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputName" class="col-sm-2 control-label">Confirm Password</label>
+															<div class="col-sm-10">
+																<input type="password" class="form-control" id="inputName" placeholder="password">
+															</div>
+														</div>
+														<div class="form-group">
+															<label for="inputSkills" class="col-sm-2 control-label">Role</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="inputSkills" placeholder="Role">
+															</div>
+														</div>
+
+														<button type="button" class="btn btn-block btn-primary">Save</button>
+
+
+													</div>
+													<div class="col-md-6">
+
+														<div class="box-body table-responsive no-padding">
+															<table class="table table-hover">
+																<tbody>
+																<tr>
+																	<th>Email</th>
+																	<th>Role</th>
+																	<th>Password</th>
+																	<th colspan="2">Action</th>
+																</tr>
+
+
+																<tr>
+																	<td>info@aniyun.com</td>
+																	<td>HMO Admin</td>
+																	<td>password</td>
+																	<td colspan="2"><a href="#" class="btn btn-info btn-sm" title="View details">Edit</a>
+																		<a href="#" class="btn btn-danger btn-sm" title="View details">Del</a>
+																	</td>
+																</tr>
+																</tbody></table>
+														</div>
+
+													</div>
+
+
+												</div>
+
+
+
+											</form>
+										</div>
+									</div>
+								</li>
+
+
+
+								<li>
+									<i class="fa fa-user bg-aqua"></i>
+
+									<div class="timeline-item">
+
+									</div>
+								</li>
+
+							</ul>
+
+
+
+
+
+						</div>
+						<!-- /.tab-pane -->
+
+					</uib-tab>
+
+				</uib-tabset>
+
+                <div class="tab-content">
+
+                    <!-- /.info tab end -->
+
+                    <div class="tab-pane" id="messages">
+                        <!-- Messages -->
+                        <section class="content">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a href="#modal-default" data-toggle="modal" class="btn btn-primary btn-block margin-bottom">Compose</a>
+                                    <div class="box box-primary">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Message List</h3>
+                                            <div class="box-tools pull-right">
+                                                <div class="has-feedback">
+                                                    <input type="text" class="form-control input-sm" placeholder="Search Mail">
+                                                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                                </div>
+                                            </div>
+                                            <!-- /.box-tools -->
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body no-padding">
+                                            <div class="mailbox-controls">
+                                                <!-- Check all button -->
+                                                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                                                <div class="pull-right">
+                                                    1-50/200
+                                                </div>
+                                                <!-- /.pull-right -->
+                                            </div>
+                                            <div class="table-responsive mailbox-messages">
+                                                <table class="table table-hover table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                                                    <input type="checkbox" style="position: absolute; opacity: 0;">
+                                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                                </div>
+                                                            </td>
+                                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                                                            <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                                                            <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                                                            </td>
+                                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                                            <td class="mailbox-date">12 days ago</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                                                    <input type="checkbox" style="position: absolute; opacity: 0;">
+                                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                                </div>
+                                                            </td>
+                                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                                            <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                                                            <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                                                            </td>
+                                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                                            <td class="mailbox-date">14 days ago</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
+                                                                    <input type="checkbox" style="position: absolute; opacity: 0;">
+                                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                                </div>
+                                                            </td>
+                                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                                            <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                                                            <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                                                            </td>
+                                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                                                            <td class="mailbox-date">15 days ago</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!-- /.table -->
+                                            </div>
+                                            <!-- /.mail-box-messages -->
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer no-padding">
+                                            <!-- /.pull-right -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /. box -->
+                                <div class="col-md-8">
+                                    <div class="box box-primary">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Read Mail</h3>
+                                            <div class="box-tools pull-right">
+                                                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Previous"><i class="fa fa-chevron-left"></i></a>
+                                                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Next"><i class="fa fa-chevron-right"></i></a>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body no-padding">
+                                            <div class="mailbox-read-info">
+                                                <h3>Message Subject Is Placed Here</h3>
+                                                <h5>From: help@example.com
+                  			      <span class="mailbox-read-time pull-right">15 Feb. 2016 11:03 PM</span></h5>
+                                            </div>
+                                            <!-- /.mailbox-read-info -->
+                                            <div class="mailbox-controls with-border text-center">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Delete">
+                                                        <i class="fa fa-trash-o"></i></button>
+                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Reply">
+                                                        <i class="fa fa-reply"></i></button>
+                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Forward">
+                                                        <i class="fa fa-share"></i></button>
+                                                </div>
+                                                <!-- /.btn-group -->
+                                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="" data-original-title="Print">
+                                                    <i class="fa fa-print"></i></button>
+                                            </div>
+                                            <!-- /.mailbox-controls -->
+                                            <div class="mailbox-read-message">
+                                                <p>Hello John,</p>
+                                                <p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack gluten-free. Marfa butcher vegan quinoa, bicycle rights disrupt tofu scenester chillwave 3 wolf moon asymmetrical taxidermy pour-over. Quinoa tote bag fashion axe, Godard disrupt migas church-key tofu blog locavore. Thundercats cronut polaroid Neutra tousled, meh food truck selfies narwhal American Apparel.
+                                                </p>
+                                                <p>Raw denim McSweeney's bicycle rights, iPhone trust fund quinoa Neutra VHS kale chips vegan PBR&amp;B literally Thundercats +1. Forage tilde four dollar toast, banjo health goth paleo butcher. Four dollar toast Brooklyn pour-over American Apparel sustainable, lumbersexual listicle gluten-free health goth umami hoodie. Synth Echo Park bicycle rights DIY farm-to-table, retro kogi sriracha dreamcatcher PBR&amp;B flannel hashtag irony Wes Anderson. Lumbersexual Williamsburg Helvetica next level. Cold-pressed slow-carb pop-up normcore Thundercats Portland, cardigan literally meditation lumbersexual crucifix. Wayfarers raw denim paleo Bushwick, keytar Helvetica scenester keffiyeh 8-bit irony mumblecore whatever viral Truffaut.ally trust fund. Distillery master cleanse migas, Vice sriracha flannel chambray chia cronut.</p>
+                                                <p>Thanks,
+                                                    <br>Jane</p>
+                                            </div>
+                                            <!-- /.mailbox-read-message -->
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                        </div>
+                                        <!-- /.box-footer -->
+                                        <div class="box-footer">
+                                            <div class="pull-right">
+                                                <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
+                                                <button type="button" class="btn btn-default"><i class="fa fa-share"></i> Forward</button>
+                                            </div>
+                                            <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
+                                            <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                   
+                    <!-- /.row -->
+                    </section>
+                </div>
+                <!-- /.tab-pane -->
+
+                <div class="tab-pane" id="enrollees">
+                	
+					<div class="row">
+						<div class="col-xs-12">
+						          <div class="box">
+						            <div class="box-header">
+						              <h3 class="box-title"></h3>
+
+						              <div class="box-tools">
+						                <div class="input-group input-group-sm" style="width: 150px;">
+						                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+						                  <div class="input-group-btn">
+						                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+						                  </div>
+						                </div>
+						              </div>
+						            </div>
+						            <!-- /.box-header -->
+						            <div class="box-body table-responsive no-padding">
+						              <table class="table table-hover">
+						                <tbody>
+											<tr>
+											    <th>ID</th>
+											    <th>Photo</th>
+											    <th>Insurance No</th>
+											    <th>Name</th>
+											    <th>Plan</th>
+											    <th>Status</th>
+											    <th>Type</th>
+											    <th>Action</th>
+											</tr>
+											                
+						                
+						                <tr>
+						                  <td>12</td>
+						                  <td><img width="60px" class=" " src="assets/img/logo_default_dark.png" alt="Provider Image" >
+											  
+										 </td>
+						                  <td>RED/DRS/232</td>
+						                  <td>1Mike Spencer</td>
+						                  <td><span class="label label-danger">Bronze</span></td>
+						                  <td>Active</td>
+						                  <td>Enrollee</td>
+						                  <td><a href="#" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a></td>
+						                </tr>
+						              </tbody></table>
+						            </div>
+						            <!-- /.box-body -->
+						          </div>
+						          <!-- /.box -->
+						</div>
+					</div>
+
+                </div>
+                <!-- /.tab-pane -->
+
+
+
+                <div class="tab-pane" id="financials">
+                	
+					<div class="row">
+						<div class="col-xs-12">
+						          <div class="box">
+						            <div class="box-header">
+						              <h3 class="box-title">Payments</h3>
+						                <br>
+
+										 
+
+						              <div class="box-tools">
+						                <div class="input-group input-group-sm" style="width: 150px;">
+						                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+						                  <div class="input-group-btn">
+						                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+						                  </div>
+						                </div>
+						              </div>
+						            </div>
+						            <!-- /.box-header -->
+						             <div class="row">
+			                                <div class="col-md-2">
+			                                    <a href="#" class="btn btn-primary btn-block margin-bottom">Add Payment</a>
+			                                </div>
+			                              </div>
+						            <div class="box-body table-responsive no-padding">
+						              <table class="table table-hover">
+						                <tbody>
+											<tr>
+											    <th>SN</th>
+											    <th>Date</th>
+											    <th>Narration</th>
+											    <th>Amount</th>
+											    <th>Payment Advice</th>
+											    <th>Status</th>
+											    <th>Transaction ID</th>
+											    <th>Created</th>
+											</tr>
+											                
+						                
+						                <tr>
+						                  <td>12</td>
+						                  <td>12/12/12</td>
+						                  <td>Lorem ipsum dolor sit amet, consectetur adbdb dkd dbd d</td>
+						                  <td>N232,323</td>
+						                  <td><a href="#" class="btn btn-primary btn-sm" title="View details"><i class="fa fa-eye"></i>&nbsp;View</a></td>
+						                  <td><span class="label label-danger">Paid</span></td>
+						                  <td>2323</td>
+						                  <td>11/23/12</td>
+						                </tr>
+						              </tbody></table>
+						            </div>
+						            <!-- /.box-body -->
+						          </div>
+						          <!-- /.box -->
+						</div>
+					</div>
+
+                </div>
+                <!-- /.tab-pane -->
+
+
+                <div class="tab-pane" id="pacodes">
+                	
+					<div class="row">
+						<div class="col-xs-12">
+						          <div class="box">
+						            <div class="box-header">
+						              <h3 class="box-title">Given PA Codes</h3>
+						                <br>
+
+										 
+
+						              <div class="box-tools">
+						                <div class="input-group input-group-sm" style="width: 150px;">
+						                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+						                  <div class="input-group-btn">
+						                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+						                  </div>
+						                </div>
+						              </div>
+						            </div>
+						            <!-- /.box-header -->
+						            <div class="box-body table-responsive no-padding">
+						              <table class="table table-hover">
+						                <tbody>
+											<tr>
+											    <th>SN</th>
+											    <th>Code</th>
+											    <th>Enrollee</th>
+											    <th>Created At</th>
+											    <th>Issued By</th>
+											    <th>View</th>
+											</tr>
+											                
+						                
+						                <tr>
+						                  <td>12</td>
+						                  <td>RC/OL/23/2333</td>
+						                  <td>02/12/12</td>
+						                  <td>Dr York</td>
+						                  <td><a href="#" class="btn btn-primary btn-sm" title="View details"><i class="fa fa-eye"></i>&nbsp;View</a></td>
+						                </tr>
+						              </tbody></table>
+						            </div>
+						            <!-- /.box-body -->
+						          </div>
+						          <!-- /.box -->
+						</div>
+					</div>
+
+                </div>
+                <!-- /.tab-pane -->
+
+
+
+                <div class="tab-pane" id="tariffs">
+
+                </div>
+                 <!-- /.tab-pane -->
+
+
+                <div class="tab-pane" id="claims">
+
+                </div>
+                 <!-- /.tab-pane -->
+
+
+
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- /.nav-tabs-custom -->
+    </div>
+    </div>
+</section>
+
+
+
+
+<div class="modal fade" id="modal-default" style="display: none;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Default Modal</h4>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                	<div class="col-md-9">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Compose New Message</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="form-group">
+                <input class="form-control" placeholder="To:">
+              </div>
+              <div class="form-group">
+                <input class="form-control" placeholder="Subject:">
+              </div>
+              <div class="form-group">
+                    <ul class="wysihtml5-toolbar" style=""><li class="dropdown">
+  <a class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+    
+      <span class="glyphicon glyphicon-font"></span>
+    
+    <span class="current-font">Normal text</span>
+    <b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p" tabindex="-1" href="javascript:;" unselectable="on" class="wysihtml5-command-active">Normal text</a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1" tabindex="-1" href="javascript:;" unselectable="on">Heading 1</a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2" tabindex="-1" href="javascript:;" unselectable="on">Heading 2</a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3" tabindex="-1" href="javascript:;" unselectable="on">Heading 3</a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4" tabindex="-1" href="javascript:;" unselectable="on">Heading 4</a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5" tabindex="-1" href="javascript:;" unselectable="on">Heading 5</a></li>
+    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6" tabindex="-1" href="javascript:;" unselectable="on">Heading 6</a></li>
+  </ul>
+</li>
+<li>
+  <div class="btn-group">
+    <a class="btn btn-default" data-wysihtml5-command="bold" title="CTRL+B" tabindex="-1" href="javascript:;" unselectable="on">Bold</a>
+    <a class="btn btn-default" data-wysihtml5-command="italic" title="CTRL+I" tabindex="-1" href="javascript:;" unselectable="on">Italic</a>
+    <a class="btn btn-default" data-wysihtml5-command="underline" title="CTRL+U" tabindex="-1" href="javascript:;" unselectable="on">Underline</a>
+    
+    <a class="btn btn-default" data-wysihtml5-command="small" title="CTRL+S" tabindex="-1" href="javascript:;" unselectable="on">Small</a>
+    
+  </div>
+</li>
+<li>
+  <a class="btn btn-default" data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="blockquote" data-wysihtml5-display-format-name="false" tabindex="-1" href="javascript:;" unselectable="on">
+    
+      <span class="glyphicon glyphicon-quote"></span>
+    
+  </a>
+</li>
+<li>
+  <div class="btn-group">
+    <a class="btn btn-default" data-wysihtml5-command="insertUnorderedList" title="Unordered list" tabindex="-1" href="javascript:;" unselectable="on">
+    
+      <span class="glyphicon glyphicon-list"></span>
+    
+    </a>
+    <a class="btn btn-default" data-wysihtml5-command="insertOrderedList" title="Ordered list" tabindex="-1" href="javascript:;" unselectable="on">
+    
+      <span class="glyphicon glyphicon-th-list"></span>
+    
+    </a>
+    <a class="btn btn-default" data-wysihtml5-command="Outdent" title="Outdent" tabindex="-1" href="javascript:;" unselectable="on">
+    
+      <span class="glyphicon glyphicon-indent-right"></span>
+    
+    </a>
+    <a class="btn btn-default" data-wysihtml5-command="Indent" title="Indent" tabindex="-1" href="javascript:;" unselectable="on">
+    
+      <span class="glyphicon glyphicon-indent-left"></span>
+    
+    </a>
+  </div>
+</li>
+<li>
+  <div class="bootstrap-wysihtml5-insert-link-modal modal fade" data-wysihtml5-dialog="createLink">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
+          <h3>Insert link</h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <input value="http://" class="bootstrap-wysihtml5-insert-link-url form-control" data-wysihtml5-dialog-field="href">
+          </div> 
+          <div class="checkbox">
+            <label> 
+              <input type="checkbox" class="bootstrap-wysihtml5-insert-link-target" checked="">Open link in new window
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-default" data-dismiss="modal" data-wysihtml5-dialog-action="cancel" href="#">Cancel</a>
+          <a href="#" class="btn btn-primary" data-dismiss="modal" data-wysihtml5-dialog-action="save">Insert link</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-default" data-wysihtml5-command="createLink" title="Insert link" tabindex="-1" href="javascript:;" unselectable="on">
+    
+      <span class="glyphicon glyphicon-share"></span>
+    
+  </a>
+</li>
+<li>
+  <div class="bootstrap-wysihtml5-insert-image-modal modal fade" data-wysihtml5-dialog="insertImage">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
+          <h3>Insert image</h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <input value="http://" class="bootstrap-wysihtml5-insert-image-url form-control" data-wysihtml5-dialog-field="src">
+          </div> 
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-default" data-dismiss="modal" data-wysihtml5-dialog-action="cancel" href="#">Cancel</a>
+          <a class="btn btn-primary" data-dismiss="modal" data-wysihtml5-dialog-action="save" href="#">Insert image</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="btn btn-default" data-wysihtml5-command="insertImage" title="Insert image" tabindex="-1" href="javascript:;" unselectable="on">
+    
+      <span class="glyphicon glyphicon-picture"></span>
+    
+  </a>
+</li>
+</ul><textarea id="compose-textarea" class="form-control" style="height: 300px; display: none;">                      &lt;h1&gt;&lt;u&gt;Heading Of Message&lt;/u&gt;&lt;/h1&gt;
+                      &lt;h4&gt;Subheading&lt;/h4&gt;
+                      &lt;p&gt;But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain
+                        was born and I will give you a complete account of the system, and expound the actual teachings
+                        of the great explorer of the truth, the master-builder of human happiness. No one rejects,
+                        dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know
+                        how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again
+                        is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain,
+                        but because occasionally circumstances occur in which toil and pain can procure him some great
+                        pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise,
+                        except to obtain some advantage from it? But who has any right to find fault with a man who
+                        chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that
+                        produces no resultant pleasure? On the other hand, we denounce with righteous indignation and
+                        dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so
+                        blinded by desire, that they cannot foresee
+              </div>
+              <div class="form-group">
+                <div class="btn btn-default btn-file">
+                  <i class="fa fa-paperclip"></i> Attachment
+                  <input type="file" name="attachment">
+                </div>
+                <p class="help-block">Max. 32MB</p>
+              </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <div class="pull-right">
+                <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+              </div>
+              <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
+            </div>
+            <!-- /.box-footer -->
+          </div>
+          <!-- /. box -->
+        </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+
+
+<section class="content container-fluid">
+    <div class="margin-bottom">
+        <button ui-sref="hmo.providersEdit({id:id})" class="btn btn-primary">EDIT PROVIDER</button>
+        <button ui-sref="" class="btn btn-danger">DELETE PROVIDER</button>
+    </div>
+    <div class="table-responsive box">
+        <div class="box-body">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th class="col-md-4 col-sm-3" style="text-align: right">ID</th>
+                    <td class="col-md-8 col-sm-9">{{id}}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-4 col-sm-3" class="col-md-6 col-sm-9" style="text-align: right">Name</th>
+                    <td class="col-md-8 col-sm-9">{{name}}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-4 col-sm-3" style="text-align: right">Email</th>
+                    <td class="col-md-8 col-sm-9">{{email}}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-4 col-sm-3" style="text-align: right">Phone Number</th>
+                    <td class="col-md-8 col-sm-9">{{phone}}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-4 col-sm-3" style="text-align: right">Home Address</th>
+                    <td class="col-md-8 col-sm-9">{{address}}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-4 col-sm-3" style="text-align: right">State ID</th>
+                    <td class="col-md-8 col-sm-9">{{state_name}}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-4 col-sm-3" style="text-align: right">RC Number</th>
+                    <td class="col-md-8 col-sm-9">{{rc_no}}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-4 col-sm-3" style="text-align: right">Provider Tier ID</th>
+                    <td class="col-md-8 col-sm-9">{{provider_tier_id}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>

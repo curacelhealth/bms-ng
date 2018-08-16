@@ -15,686 +15,76 @@
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            <div class="nav-tabs-custom">
-                <!-- TABS HEADER -->
-                <ul class="nav nav-tabs">
-                    <li><a href="#info" data-toggle="tab">Info</a></li>
-                    <li><a href="#messages" data-toggle="tab">Messages</a></li>
-                    <li><a href="#enrollees" data-toggle="tab">Enrollees</a></li>
-                    <li><a href="#financials" data-toggle="tab">Financials</a></li>
-                    <li><a href="#pacodes" data-toggle="tab">PA Codes</a></li>
-                    <li><a href="#tariffs" data-toggle="tab">Tariffs</a></li>
-                    <li><a href="#claims" data-toggle="tab">Claims</a></li>
-                    <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-                </ul>
-
-                <div class="tab-content">
-                    <div class="tab-pane" id="info">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="box-body box-profile">
-                                    <img class="profile-user-img img-responsive" src="assets/img/logo_default_dark.png" alt="Provider Image">
-                                    <h3 class="profile-username text-center">{{name}}</h3>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="box box-primary">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Provider Contact</h3>
-                                    </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <strong><i class="fa fa-map-marker margin-r-5"></i> RC No</strong>
-                                        <p class="text-muted">
-                                            {{rc_no}}
-                                        </p>
-                                        <hr>
-                                        <strong><i class="fa fa-map-marker margin-r-5"></i> Provider Tier</strong>
-                                        <p class="text-muted">
-                                            {{provider_tier_id}}
-                                        </p>
-                                        <hr>
-                                        <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
-                                        <p class="text-muted">
-                                            {{address}}
-                                        </p>
-                                        <hr>
-                                        <strong><i class="fa fa-map-marker margin-r-5"></i> State</strong>
-                                        <p class="text-muted">
-                                            {{state_name}}
-                                        </p>
-                                        <hr>
-                                        <strong><i class="fa fa-email margin-r-5"></i> Email</strong>
-                                        <p class="text-muted">{{email}}</p>
-                                        <hr>
-                                        <strong><i class="fa fa-globe margin-r-5"></i> Website</strong>
-                                        <p>{{website}}</p>
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="box box-primary">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title">Representative Contact</h3>
-                                    </div>
-                                    <!-- /.box-header -->
-                                    <div class="box-body">
-                                        <strong><i class="fa fa-book margin-r-5"></i> Name</strong>
-                                        <p class="text-muted">
-                                            Reps Name
-                                        </p>
-                                        <hr>
-                                        <strong><i class="fa fa-email"></i> Reps Email</strong>
-                                        <p class="text-muted">rep@provider.com</p>
-                                        <hr>
-                                        <strong><i class="fa fa-pencil margin-r-5"></i> Staff Strength</strong>
-                                        <p>
-                                            <span class="label label-success">12</span>
-                                        </p>
-                                        <hr>
-                                    </div>
-                                    <!-- /.box-body -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.info tab end -->
-
-                    <div class="tab-pane" id="messages">
-                        <!-- Messages -->
-                        <section class="content">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <a href="#modal-default" data-toggle="modal" class="btn btn-primary btn-block margin-bottom">Compose</a>
-                                    <div class="box box-primary">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">Message List</h3>
-                                            <div class="box-tools pull-right">
-                                                <div class="has-feedback">
-                                                    <input type="text" class="form-control input-sm" placeholder="Search Mail">
-                                                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                                </div>
-                                            </div>
-                                            <!-- /.box-tools -->
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body no-padding">
-                                            <div class="mailbox-controls">
-                                                <!-- Check all button -->
-                                                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                                                <div class="pull-right">
-                                                    1-50/200
-                                                </div>
-                                                <!-- /.pull-right -->
-                                            </div>
-                                            <div class="table-responsive mailbox-messages">
-                                                <table class="table table-hover table-striped">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
-                                                                    <input type="checkbox" style="position: absolute; opacity: 0;">
-                                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                                                </div>
-                                                            </td>
-                                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                                                            <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                                                            <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                                            </td>
-                                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                                                            <td class="mailbox-date">12 days ago</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
-                                                                    <input type="checkbox" style="position: absolute; opacity: 0;">
-                                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                                                </div>
-                                                            </td>
-                                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                                                            <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                                                            <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                                            </td>
-                                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                                                            <td class="mailbox-date">14 days ago</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;">
-                                                                    <input type="checkbox" style="position: absolute; opacity: 0;">
-                                                                    <ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                                                </div>
-                                                            </td>
-                                                            <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                                                            <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                                                            <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                                            </td>
-                                                            <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                                                            <td class="mailbox-date">15 days ago</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <!-- /.table -->
-                                            </div>
-                                            <!-- /.mail-box-messages -->
-                                        </div>
-                                        <!-- /.box-body -->
-                                        <div class="box-footer no-padding">
-                                            <!-- /.pull-right -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /. box -->
-                                <div class="col-md-8">
-                                    <div class="box box-primary">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">Read Mail</h3>
-                                            <div class="box-tools pull-right">
-                                                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Previous"><i class="fa fa-chevron-left"></i></a>
-                                                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Next"><i class="fa fa-chevron-right"></i></a>
-                                            </div>
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body no-padding">
-                                            <div class="mailbox-read-info">
-                                                <h3>Message Subject Is Placed Here</h3>
-                                                <h5>From: help@example.com
-                  			      <span class="mailbox-read-time pull-right">15 Feb. 2016 11:03 PM</span></h5>
-                                            </div>
-                                            <!-- /.mailbox-read-info -->
-                                            <div class="mailbox-controls with-border text-center">
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Delete">
-                                                        <i class="fa fa-trash-o"></i></button>
-                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Reply">
-                                                        <i class="fa fa-reply"></i></button>
-                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="" data-original-title="Forward">
-                                                        <i class="fa fa-share"></i></button>
-                                                </div>
-                                                <!-- /.btn-group -->
-                                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="" data-original-title="Print">
-                                                    <i class="fa fa-print"></i></button>
-                                            </div>
-                                            <!-- /.mailbox-controls -->
-                                            <div class="mailbox-read-message">
-                                                <p>Hello John,</p>
-                                                <p>Keffiyeh blog actually fashion axe vegan, irony biodiesel. Cold-pressed hoodie chillwave put a bird on it aesthetic, bitters brunch meggings vegan iPhone. Dreamcatcher vegan scenester mlkshk. Ethical master cleanse Bushwick, occupy Thundercats banjo cliche ennui farm-to-table mlkshk fanny pack gluten-free. Marfa butcher vegan quinoa, bicycle rights disrupt tofu scenester chillwave 3 wolf moon asymmetrical taxidermy pour-over. Quinoa tote bag fashion axe, Godard disrupt migas church-key tofu blog locavore. Thundercats cronut polaroid Neutra tousled, meh food truck selfies narwhal American Apparel.
-                                                </p>
-                                                <p>Raw denim McSweeney's bicycle rights, iPhone trust fund quinoa Neutra VHS kale chips vegan PBR&amp;B literally Thundercats +1. Forage tilde four dollar toast, banjo health goth paleo butcher. Four dollar toast Brooklyn pour-over American Apparel sustainable, lumbersexual listicle gluten-free health goth umami hoodie. Synth Echo Park bicycle rights DIY farm-to-table, retro kogi sriracha dreamcatcher PBR&amp;B flannel hashtag irony Wes Anderson. Lumbersexual Williamsburg Helvetica next level. Cold-pressed slow-carb pop-up normcore Thundercats Portland, cardigan literally meditation lumbersexual crucifix. Wayfarers raw denim paleo Bushwick, keytar Helvetica scenester keffiyeh 8-bit irony mumblecore whatever viral Truffaut.ally trust fund. Distillery master cleanse migas, Vice sriracha flannel chambray chia cronut.</p>
-                                                <p>Thanks,
-                                                    <br>Jane</p>
-                                            </div>
-                                            <!-- /.mailbox-read-message -->
-                                        </div>
-                                        <!-- /.box-body -->
-                                        <div class="box-footer">
-                                        </div>
-                                        <!-- /.box-footer -->
-                                        <div class="box-footer">
-                                            <div class="pull-right">
-                                                <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Reply</button>
-                                                <button type="button" class="btn btn-default"><i class="fa fa-share"></i> Forward</button>
-                                            </div>
-                                            <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
-                                            <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Print</button>
-                                        </div>
-                                        <!-- /.box-footer -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.col -->
-                   
-                    <!-- /.row -->
-                    </section>
-                </div>
-                <!-- /.tab-pane -->
-
-                <div class="tab-pane" id="enrollees">
-                	
-					<div class="row">
-						<div class="col-xs-12">
-						          <div class="box">
-						            <div class="box-header">
-						              <h3 class="box-title"></h3>
-
-						              <div class="box-tools">
-						                <div class="input-group input-group-sm" style="width: 150px;">
-						                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-						                  <div class="input-group-btn">
-						                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-						                  </div>
-						                </div>
-						              </div>
-						            </div>
-						            <!-- /.box-header -->
-						            <div class="box-body table-responsive no-padding">
-						              <table class="table table-hover">
-						                <tbody>
-											<tr>
-											    <th>ID</th>
-											    <th>Photo</th>
-											    <th>Insurance No</th>
-											    <th>Name</th>
-											    <th>Plan</th>
-											    <th>Status</th>
-											    <th>Type</th>
-											    <th>Action</th>
-											</tr>
-											                
-						                
-						                <tr>
-						                  <td>12</td>
-						                  <td><img width="60px" class=" " src="assets/img/logo_default_dark.png" alt="Provider Image" >
-											  
-										 </td>
-						                  <td>RED/DRS/232</td>
-						                  <td>1Mike Spencer</td>
-						                  <td><span class="label label-danger">Bronze</span></td>
-						                  <td>Active</td>
-						                  <td>Enrollee</td>
-						                  <td><a href="#" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a></td>
-						                </tr>
-						              </tbody></table>
-						            </div>
-						            <!-- /.box-body -->
-						          </div>
-						          <!-- /.box -->
-						</div>
-					</div>
-
-                </div>
-                <!-- /.tab-pane -->
-
-
-
-                <div class="tab-pane" id="financials">
-                	
-					<div class="row">
-						<div class="col-xs-12">
-						          <div class="box">
-						            <div class="box-header">
-						              <h3 class="box-title">Payments</h3>
-						                <br>
-
-										 
-
-						              <div class="box-tools">
-						                <div class="input-group input-group-sm" style="width: 150px;">
-						                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-						                  <div class="input-group-btn">
-						                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-						                  </div>
-						                </div>
-						              </div>
-						            </div>
-						            <!-- /.box-header -->
-						             <div class="row">
-			                                <div class="col-md-2">
-			                                    <a href="#" class="btn btn-primary btn-block margin-bottom">Add Payment</a>
-			                                </div>
-			                              </div>
-						            <div class="box-body table-responsive no-padding">
-						              <table class="table table-hover">
-						                <tbody>
-											<tr>
-											    <th>SN</th>
-											    <th>Date</th>
-											    <th>Narration</th>
-											    <th>Amount</th>
-											    <th>Payment Advice</th>
-											    <th>Status</th>
-											    <th>Transaction ID</th>
-											    <th>Created</th>
-											</tr>
-											                
-						                
-						                <tr>
-						                  <td>12</td>
-						                  <td>12/12/12</td>
-						                  <td>Lorem ipsum dolor sit amet, consectetur adbdb dkd dbd d</td>
-						                  <td>N232,323</td>
-						                  <td><a href="#" class="btn btn-primary btn-sm" title="View details"><i class="fa fa-eye"></i>&nbsp;View</a></td>
-						                  <td><span class="label label-danger">Paid</span></td>
-						                  <td>2323</td>
-						                  <td>11/23/12</td>
-						                </tr>
-						              </tbody></table>
-						            </div>
-						            <!-- /.box-body -->
-						          </div>
-						          <!-- /.box -->
-						</div>
-					</div>
-
-                </div>
-                <!-- /.tab-pane -->
-
-
-                <div class="tab-pane" id="pacodes">
-                	
-					<div class="row">
-						<div class="col-xs-12">
-						          <div class="box">
-						            <div class="box-header">
-						              <h3 class="box-title">Given PA Codes</h3>
-						                <br>
-
-										 
-
-						              <div class="box-tools">
-						                <div class="input-group input-group-sm" style="width: 150px;">
-						                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-
-						                  <div class="input-group-btn">
-						                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-						                  </div>
-						                </div>
-						              </div>
-						            </div>
-						            <!-- /.box-header -->
-						            <div class="box-body table-responsive no-padding">
-						              <table class="table table-hover">
-						                <tbody>
-											<tr>
-											    <th>SN</th>
-											    <th>Code</th>
-											    <th>Enrollee</th>
-											    <th>Created At</th>
-											    <th>Issued By</th>
-											    <th>View</th>
-											</tr>
-											                
-						                
-						                <tr>
-						                  <td>12</td>
-						                  <td>RC/OL/23/2333</td>
-						                  <td>02/12/12</td>
-						                  <td>Dr York</td>
-						                  <td><a href="#" class="btn btn-primary btn-sm" title="View details"><i class="fa fa-eye"></i>&nbsp;View</a></td>
-						                </tr>
-						              </tbody></table>
-						            </div>
-						            <!-- /.box-body -->
-						          </div>
-						          <!-- /.box -->
-						</div>
-					</div>
-
-                </div>
-                <!-- /.tab-pane -->
-
-
-
-                <div class="tab-pane" id="tariffs">
-
-                </div>
-                 <!-- /.tab-pane -->
-
-
-                <div class="tab-pane" id="claims">
-
-                </div>
-                 <!-- /.tab-pane -->
-
-
-                <div class="active tab-pane" id="settings">
-
-
-                	<ul class="timeline">
-
-                		<li>
-			              <i class="fa fa-envelope bg-blue"></i>
-
-			              <div class="timeline-item">
-			                <span class="time"> ..</span>
-
-			                <h3 class="timeline-header"><a href="#">Edit Provider Info</a></h3>
-
-			                <div class="timeline-body">
-			                  <form class="form-horizontal">
-
-			                  	<div class="row">
-
-			                  		<div class="col-md-6">
-
-
-			                  			 <div class="form-group">
-		                            <label for="inputName" class="col-sm-2 control-label">Name</label>
-		                            <div class="col-sm-10">
-		                                <input type="email" class="form-control" id="inputName" placeholder="Name">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputEmail" class="col-sm-2 control-label">Address</label>
-		                            <div class="col-sm-10">
-		                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputName" class="col-sm-2 control-label">State</label>
-		                            <div class="col-sm-10">
-		                                <input type="text" class="form-control" id="inputName" placeholder="Name">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputExperience" class="col-sm-2 control-label">Website</label>
-		                            <div class="col-sm-10">
-		                                <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputSkills" class="col-sm-2 control-label">Email</label>
-		                            <div class="col-sm-10">
-		                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-		                            </div>
-		                        </div>
-			                  			
-
-			                  		</div>
-			                  		<div class="col-md-6">
-
-			                  			 <div class="form-group">
-		                            <label for="inputName" class="col-sm-2 control-label">Reps Name</label>
-		                            <div class="col-sm-10">
-		                                <input type="email" class="form-control" id="inputName" placeholder="Reps Name">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputEmail" class="col-sm-2 control-label">Reps Email </label>
-		                            <div class="col-sm-10">
-		                                <input type="email" class="form-control" id="inputEmail" placeholder="Reps Email">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputName" class="col-sm-2 control-label">Reps Phone</label>
-		                            <div class="col-sm-10">
-		                                <input type="text" class="form-control" id="inputName" placeholder="Reps Phone">
-		                            </div>
-		                        </div>
-
-		                        <div class="form-group">
-		                            <label for="inputName" class="col-sm-2 control-label">Staff Strength</label>
-		                            <div class="col-sm-10">
-		                                <input type="text" class="form-control" id="inputName" placeholder="Staff Strength">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputExperience" class="col-sm-2 control-label">Payment Info</label>
-		                            <div class="col-sm-10">
-		                                <textarea class="form-control" id="inputExperience" placeholder=""></textarea>
-		                            </div>
-		                        </div>
-
-			                  		</div>
-			                  		
-
-			                  	</div>
-
-
-		                       
-		                    </form>
-			                </div>
-			                <div class="timeline-footer">
-			                  <div class="form-group">
-		                             <button type="button" class="btn btn-block btn-primary">Save</button>
-		                        </div>
-			                </div>
-			              </div>
-			            </li>
-
-
-			            <li>
-			              <i class="fa fa-user bg-aqua"></i>
-
-			              <div class="timeline-item">
-
-			              	<div class="timeline-body">
-			              		<div class="row">
-			              			<div class="col-md-3">
-			              				To Delist Provider: Type DELIST
-			              				<div class="input-group margin">
-							                <input type="text" class="form-control">
-							                    <span class="input-group-btn">
-							                      <button type="button" class="btn btn-info btn-flat">DELIST</button>
-							                    </span>
-							              </div>
-			              			</div>
-			              		</div>
-			              	</div>
-			                
-			              </div>
-
-
-			            </li>
-
-
-			            <li>
-			              <i class="fa fa-envelope bg-blue"></i>
-
-			              <div class="timeline-item">
-			                <span class="time"> ..</span>
-
-			                <h3 class="timeline-header"><a href="#">Edit Profile Info</a></h3>
-
-			                <div class="timeline-body">
-			                  <form class="form-horizontal">
-
-			                  	<div class="row">
-			              			<div class="col-md-3">
-			              				Set Portal State: 
-			              				<div class="btn-group">
-						                  <button type="button" class="btn btn-default">Action</button>
-						                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						                    <span class="caret"></span>
-						                    <span class="sr-only">Toggle Dropdown</span>
-						                  </button>
-						                  <ul class="dropdown-menu" role="menu">
-						                    <li><a href="#">ON</a></li>
-						                    <li><a href="#">OFF</a></li>
-						                  </ul>
-						                </div>
-			              			</div>
-			              		</div>
-
-			                  	<div class="row">
-
-
-
-			                  		<div class="col-md-6">
-									<h3>New Portal Credentials</h3>
-
-			                  			 <div class="form-group">
-		                            <label for="inputName" class="col-sm-2 control-label">Email</label>
-		                            <div class="col-sm-10">
-		                                <input type="email" class="form-control" id="inputName" placeholder="Email">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputEmail" class="col-sm-2 control-label">Password</label>
-		                            <div class="col-sm-10">
-		                                <input type="password" class="form-control" id="inputEmail" placeholder="password">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputName" class="col-sm-2 control-label">Confirm Password</label>
-		                            <div class="col-sm-10">
-		                                <input type="password" class="form-control" id="inputName" placeholder="password">
-		                            </div>
-		                        </div>
-		                        <div class="form-group">
-		                            <label for="inputSkills" class="col-sm-2 control-label">Role</label>
-		                            <div class="col-sm-10">
-		                                <input type="text" class="form-control" id="inputSkills" placeholder="Role">
-		                            </div>
-		                        </div>
-
-		                        <button type="button" class="btn btn-block btn-primary">Save</button>
-			                  			
-
-			                  		</div>
-			                  		<div class="col-md-6">
-
-			                  		<div class="box-body table-responsive no-padding">
-						              <table class="table table-hover">
-						                <tbody>
-											<tr>
-											    <th>Email</th>
-											    <th>Role</th>
-											    <th>Password</th>
-											    <th colspan="2">Action</th>
-											</tr>
-											                
-						                
-						                <tr>
-						                  <td>info@aniyun.com</td>
-						                  <td>HMO Admin</td>
-						                  <td>password</td>
-						                  <td colspan="2"><a href="#" class="btn btn-info btn-sm" title="View details">Edit</a>
-						                  	<a href="#" class="btn btn-danger btn-sm" title="View details">Del</a>
-						                  </td>
-						                </tr>
-						              </tbody></table>
-						            </div>
-
-			                  		</div>
-			                  		
-
-			                  	</div>
-
-
-		                       
-		                    </form>
-			                </div>
-			              </div>
-			            </li>
-
-
-
-			            <li>
-			              <i class="fa fa-user bg-aqua"></i>
-
-			              <div class="timeline-item">
-			                
-			              </div>
-			            </li>
-                		
-                	</ul>
-
-
-
-
-                    
-                </div>
-                <!-- /.tab-pane -->
-            </div>
-            <!-- /.tab-content -->
-        </div>
-        <!-- /.nav-tabs-custom -->
+			<div class="nav-tabs-custom">
+				<uib-tabset active="active">
+
+					<uib-tab >
+						<uib-tab-heading><i class="fa fa-info"></i> Info</uib-tab-heading>
+
+						<ng-include src="'modules/hmo/providers/views/tab-info.html'"/>
+
+					</uib-tab>
+
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-envelope"></i> Messages</uib-tab-heading>
+
+						<ng-include src="'modules/hmo/providers/views/tab-messages.html'"/>
+
+					</uib-tab>
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-users"></i> Enrollees</uib-tab-heading>
+
+						<ng-include src="'modules/hmo/providers/views/tab-enrollees.html'"/>
+
+					</uib-tab>
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-money"></i> Financials</uib-tab-heading>
+
+						<ng-include src="'modules/hmo/providers/views/tab-financials.html'"/>
+
+					</uib-tab>
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-user-secret"></i> PA Codes</uib-tab-heading>
+
+						<ng-include src="'modules/hmo/providers/views/tab-pa.html'"/>
+
+					</uib-tab>
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-list"></i> Tariffs</uib-tab-heading>
+
+						<ng-include src="'modules/hmo/providers/views/tab-tariffs.html'"/>
+
+					</uib-tab>
+
+
+					<uib-tab heading="Claims" >
+
+					</uib-tab>
+
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-gear"></i> Settings</uib-tab-heading>
+
+						<ng-include src="'modules/hmo/providers/views/tab-settings.html'"/>
+
+
+						<!-- /.tab-pane -->
+
+					</uib-tab>
+
+				</uib-tabset>
+
+			</div>
+
+
+
+
+
     </div>
     </div>
 </section>

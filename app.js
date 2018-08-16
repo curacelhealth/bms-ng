@@ -2,12 +2,14 @@ var BmsApp = angular.module('BmsApp',
 	[
 		'ui.router',
 		'ngActivityIndicator',
-		'angular-jwt',
+        "oc.lazyLoad",
+        'angular-jwt',
 		'datatables',
 		"ngSanitize",
 		'ui.select',
         'ngFileUpload',
-		'ngMask'
+		'ngMask',
+        'ui.bootstrap'
 	]
 )
 	.constant('API_HOST', BMS_API) // from config.js
@@ -27,6 +29,11 @@ var BmsApp = angular.module('BmsApp',
 
 		$httpProvider.interceptors.push('jwtInterceptor');
 	})
+    .config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
+        $ocLazyLoadProvider.config({
+            // global configs go here
+        });
+    }])
 	.run(["$rootScope", "$state","authManager", function($rootScope, $state,authManager) {
 		$rootScope.$state = $state; // state to be accessed from view
 		authManager.checkAuthOnRefresh();

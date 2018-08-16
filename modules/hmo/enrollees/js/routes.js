@@ -1,35 +1,48 @@
 /**
  * Created by JFlash on 7/31/18.
  */
-BmsApp.config(function($stateProvider, $urlRouterProvider) {
+angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
 
 
 
     $stateProvider
-    
-        //providers list view
-        .state('hmo.enrolleeList', {
-            url: "/enrollees",
-            views:{
-                "dash":{
-                    templateUrl: "modules/hmo/enrollees/views/list.html",
-                    controller: "HmoEnrolleeListCtrl",
 
-                }
-            },
+    //enrollees parent state
+        .state('hmo.enrollees',{
+            url: "/enrollees",
+            abstract: true,
+            views:{"dash":{template:"<ui-view/>"}},
+
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'BmsApp',
+
+                        files: [
+                            'modules/hmo/enrollees/js/service.js',
+                            'modules/hmo/enrollees/js/controllers.js',
+
+
+                        ]
+                    });
+                }]
+            }
+        })
+
+        //list view
+        .state('hmo.enrollees.enrolleeList', {
+            url: "/",
+            templateUrl: "modules/hmo/enrollees/views/list.html",
+            controller: "HmoEnrolleeListCtrl",
             data: {pageTitle: 'Enrollees'},
 
         })
 
         //create new / edit provider view
-        .state('hmo.enrolleeCreate', {
-            url: "/enrollees/edit/:id",
-            views:{
-                "dash":{
-                    templateUrl: "modules/hmo/enrollees/views/create.html",
-                    controller: "HmoEnrolleeCreateCtrl",
-                }
-            },
+        .state('hmo.enrollees.enrolleeCreate', {
+            url: "/create",
+            templateUrl: "modules/hmo/enrollees/views/create.html",
+            controller: "HmoEnrolleeCreateCtrl",
             data: {pageTitle: 'New Enrollee'},
 
         })
