@@ -49,7 +49,7 @@ angular.module('BmsApp')
             .renderWith(function(data, type, full, meta) {
                 // you should use full.id instead of data.id here
                 // they shouldnt be able to delete a provider here, so i removed the delete button
-                return '<a ui-sref="hmo.providersView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>&nbsp;'
+                return '<a ui-sref="hmo.providers.providersView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>&nbsp;'
             }),
     ];
     
