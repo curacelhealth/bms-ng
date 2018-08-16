@@ -60,14 +60,17 @@ angular.module('BmsApp')
 })
 
 //provider create controller
-.controller('ProvidersCreateCtrl', function($scope, ProviderService, OptionService, ProviderService) {
-    $scope.status = {};
+.controller('ProvidersCreateCtrl', function($scope, ProviderService, OptionService) {
+
+    $scope.provider = {} // always use a containing object for such data
+
+    //$scope.status = {}; no longer needed
     $scope.statuses = [];
 
-    $scope.tier = {};
+    //$scope.tier = {}; no longer needed
     $scope.tiers = [];
 
-    $scope.state = {};
+    //$scope.state = {}; no longer
     $scope.states = [];
 
     ProviderService.getProviderTier()
@@ -92,7 +95,9 @@ angular.module('BmsApp')
     });
 
     $scope.createProvider = function (){
-        if ($scope.providerCreateForm.$valid) {
+        if (true /*$scope.providerCreateForm.$valid not needed anymore*/) {
+
+            /* not needed thanks to the container
             var newDataObj = {
                 "provider": {
                     "name": $scope.name,
@@ -108,11 +113,12 @@ angular.module('BmsApp')
                     "provider_status_id": $scope.status.status.id,
                     "provider_tier_id": $scope.tier.tier.id
                 }
-            };
+            };*/
 
-            ProviderService.createNewProvider(newDataObj)
+            ProviderService.createNewProvider({provider:$scope.provider}) // easy way to parse all the data with the container
             .success(function(response){
-                $('#providerCreateForm')[0].reset();
+                //$('#providerCreateForm')[0].reset();// this is not the angular  way// imagine there was no jquery loaded
+                $scope.provider = {};  //this is the angular way // another benefit of the container
                 $scope.state = {};
                 swal('Success', 'Provider created successfully', 'success');
             })

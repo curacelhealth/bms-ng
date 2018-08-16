@@ -25,78 +25,78 @@
 				<div class="row">
 					<div class="col-md-offset-3 col-md-3" style="margin-right: 5px;">
 						<div class="form-group">
-							<input ng-model="name" style="width: 100%" class="form-control" type="text" name="name" placeholder="Name" maxlength="100" required>
+							<input ng-model="provider.name" style="width: 100%" class="form-control" type="text" name="name" placeholder="Name" maxlength="100" required>
 						</div>
 						<div class="form-group">
-							<input ng-model="address" style="width: 100%" class="form-control" type="text" name="address" placeholder="Address" maxlength="100" required>
+							<input ng-model="provider.address" style="width: 100%" class="form-control" type="text" name="address" placeholder="Address" maxlength="100" required>
 						</div>
 						<div class="form-group">
-							<input ng-model="email" style="width: 100%" class="form-control" type="email" name="email" placeholder="Email" maxlength="100" required>
+							<input ng-model="provider.email" style="width: 100%" class="form-control" type="email" name="email" placeholder="Email" maxlength="100" required>
 						</div>
 						<div class="form-group">
-							<input ng-model="website" style="width: 100%" class="form-control" type="text" name="website" placeholder="Website" maxlength="100" required>
+							<input ng-model="provider.website" style="width: 100%" class="form-control" type="text" name="website" placeholder="Website" maxlength="100" required>
 						</div>
 					</div>
 					<div class="col-md-3" style="margin-left: 5px;">
 						<div class="form-group">
-							<input ng-model="rc_no" style="width: 100%" class="form-control" type="number" name="rc_no" placeholder="RC Number" maxlength="100" required>
+							<input ng-model="provider.rc_no" style="width: 100%" class="form-control" type="text" name="rc_no" placeholder="RC Number" maxlength="100" required>
 						</div>
 						<div class="form-group">
-				        	<ui-select ng-model="state.state" theme="bootstrap" style="width: 100%" required>
+				        	<ui-select ng-model="provider.state_id" theme="bootstrap" style="width: 100%" required>
 					                <ui-select-match placeholder="State">
 					                    <span>{{$select.selected.name}}</span>
 					                </ui-select-match>
-					                <ui-select-choices repeat="item as item in (states | filter: $select.search) track by item.id">
+					                <ui-select-choices repeat="item.id as item in (states | filter: $select.search) track by item.id">
 					                    <span> {{item.name}}</span>
 					                </ui-select-choices>
 					        </ui-select>
-							<input ng-model="state.state.id" type="hidden" name="state_id" required>
+
 						</div>
 						<div class="form-group">
-							<input ng-model="phone" style="width: 100%" class="form-control" type="number" name="phone" placeholder="Phone Number" maxlength="100" required>
+							<input ng-model="provider.phone" style="width: 100%" class="form-control" type="number" name="phone" placeholder="Phone Number" maxlength="100" required>
 						</div>
 						<div class="form-group">
-				        	<ui-select ng-model="tier.tier" theme="bootstrap" style="width: 100%" required>
+				        	<ui-select ng-model="provider.provider_tier_id" theme="bootstrap" style="width: 100%" required>
 					                <ui-select-match placeholder="Tier">
 					                    <span>{{$select.selected.name}}</span>
 					                </ui-select-match>
-					                <ui-select-choices repeat="item as item in (tiers | filter: $select.search) track by item.id">
+					                <ui-select-choices repeat="item.id as item in (tiers | filter: $select.search) track by item.id">
 					                    <span> {{item.name}}</span>
 					                </ui-select-choices>
 					        </ui-select>
-							<input ng-model="tier.tier.id" type="hidden" name="tier_id" required>
+
 				    	</div>
 				    </div>
 				</div>
 				<div class="row">
 					<div class="col-md-offset-3 col-md-3" style="margin-right: 5px;">
 						<div class="form-group">
-							<input ng-model="representative_name" style="width: 100%" class="form-control" type="text" name="representative_name" placeholder="Representative Name" maxlength="100" required>
+							<input ng-model="provider.rep_name" style="width: 100%" class="form-control" type="text" name="representative_name" placeholder="Representative Name" maxlength="100" required>
 						</div>
 						<div class="form-group">
-							<input ng-model="representative_email" style="width: 100%" class="form-control" type="email" name="representative_email" placeholder="Representative Email" maxlength="100" required>
+							<input ng-model="provider.rep_email" style="width: 100%" class="form-control" type="email" name="representative_email" placeholder="Representative Email" maxlength="100" required>
 						</div>
 					</div>
 					<div class="col-md-3" style="margin-left: 5px;">
 						<div class="form-group">
-							<input ng-model="representative_number" style="width: 100%" class="form-control" type="number" name="representative_number" placeholder="Representative Number" maxlength="100" required>
+							<input ng-model="provider.rep_phone" style="width: 100%" class="form-control" type="number" name="representative_number" placeholder="Representative Number" maxlength="100" required>
 						</div>
 						<div class="form-group">
-				        	<ui-select ng-model="status.status" theme="bootstrap" style="width: 100%" required>
+				        	<ui-select ng-model="provider.provider_status_id" theme="bootstrap" style="width: 100%" required>
 					                <ui-select-match placeholder="Status">
 					                    <span>{{$select.selected.name}}</span>
 					                </ui-select-match>
-					                <ui-select-choices repeat="item as item in (statuses | filter: $select.search) track by item.id">
+					                <ui-select-choices repeat="item.id as item in (statuses | filter: $select.search) track by item.id">
 					                    <span> {{item.name}}</span>
 					                </ui-select-choices>
 					        </ui-select>
-							<input ng-model="status.status.id" type="hidden" name="status_id" required>
+
 					    </div>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-md-offset-3 col-md-6 text-center">
-						<button ng-click="createProvider()" class="btn btn-primary">CREATE PROVIDER</button>
+						<button ng-click="createProvider()" ng-disabled="providerCreateForm.$invalid" class="btn btn-primary">CREATE PROVIDER</button>
 					</div>
 				</div>
 			</form>
