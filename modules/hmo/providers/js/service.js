@@ -2,7 +2,7 @@
  * Created by JFlash on 12/14/17.
  */
 angular.module('BmsApp')
-    .service('ProviderService', function ( $http,API_HOST) {
+    .service('ProviderService', function ( $http, API_HOST) {
 
         return {
             fetchList: function () {
@@ -22,6 +22,18 @@ angular.module('BmsApp')
             createNewProvider: function (obj) {
                 return $http.post(API_HOST+'/providers/create', obj);
                 
+            },
+
+            getProviderStatus: function (){
+                return $http.get(API_HOST+'/provider-statuses/');
+            },
+
+            getProviderTier: function (){
+                return $http.get(API_HOST+'/provider-tiers/');
+            },
+
+            editSingleProvider: function (id, obj) {
+                return $http.post(API_HOST+'/providers/'+id+'/update', obj);
             }
 
         };
