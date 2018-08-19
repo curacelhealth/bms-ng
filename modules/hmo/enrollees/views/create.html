@@ -52,7 +52,7 @@
                                 </div>
 
 
-                                <div class="btn btn-default" ngf-select ng-model="enrollee.photo_b64" name="file" ngf-pattern="'image/*'"
+                                <div class="btn btn-default" ngf-select="photoSelected($file)" ng-model="enrollee.photo_b64" name="file" ngf-pattern="'image/*'"
                                      ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
                                 >Select Photo</div>
                             </div>
