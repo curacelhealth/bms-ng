@@ -35,13 +35,14 @@ angular.module('BmsApp')
 
     //create columns for this grid
     $scope.dtColumns = [
+        DTColumnBuilder.newColumn('photo').withTitle('Photo').notSortable(),
         DTColumnBuilder.newColumn('insurance_no').withTitle('Insurance No').notSortable(),
         DTColumnBuilder.newColumn('first_name').withTitle('Name')
             .renderWith(function (data,type,full) {
                return data +' '+full.last_name
             }),
         
-        DTColumnBuilder.newColumn('phone').withTitle('Phone'),
+        //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
         DTColumnBuilder.newColumn('sex').withTitle('Sex')
             .renderWith(function (data,type,full) {
                return EnrolleeService.getSex(data)
@@ -73,11 +74,21 @@ angular.module('BmsApp')
 })
 
 //enrollee create / edit controller
-.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService) {
+.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService,Upload) {
     $scope.enrollee = {
         type:'P'
     }
 
+    //photo
+    $scope.photoSelected = function(file){
+        Upload.base64DataUrl(file).then(function (bs64) {
+            $scope.enrollee.photo = {
+                base64:bs64,
+                name:file.name
+            }
+
+        })
+    }
 
     // enrollee companies
     $scope.companies = [];
@@ -117,6 +128,10 @@ angular.module('BmsApp')
     //submit enrollee
     $scope.submitEnrollee = function () {
         $activityIndicator.startAnimating();
+
+
+
+
         if(angular.isDefined($scope.enrollee.id)){
 
         }else {
@@ -128,6 +143,7 @@ angular.module('BmsApp')
                 })
                 .error(function (err) {
                     $activityIndicator.stopAnimating()
+                    if(err.message.constructor===Array) err.message = err.message.join("<br/>")
                     swal('Error Creating Enrollee',err.message,'error')
                 })
         }

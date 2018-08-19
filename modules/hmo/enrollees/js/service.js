@@ -9,8 +9,8 @@ angular.module('BmsApp')
             fetchList: function (search,limit, type_to_show) {
                 type_to_show = type_to_show || ''
                 var data = {search:search || '', limit:limit || 10}
-                if(type_to_show=='P') data.principals_only= true
-                else if(type_to_show=='D') data.dependants_only = true
+                if(type_to_show==='P') data.principals_only= true
+                else if(type_to_show==='D') data.dependants_only = true
 
                 var qs = $httpParamSerializer(data)
                 return $http.get(API_HOST+'/enrollees/?'+qs)
@@ -29,7 +29,7 @@ angular.module('BmsApp')
             },
 
             fetchPlans: function () {
-                return $http.get(API_HOST+'/enrollee-plans/')
+                return $http.get(API_HOST+'/plans/')
             },
             fetchStatuses: function () {
                 return $http.get(API_HOST+'/enrollee-statuses/')
