@@ -8,8 +8,8 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
     // parent state
-        .state('hmo.benefits',{
-            url: "/benefits",
+        .state('hmo.services',{
+            url: "/services",
             abstract: true,
             views:{"dash":{template:"<ui-view/>"}},
 
@@ -19,8 +19,8 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
                         name: 'BmsApp',
 
                         files: [
-                            'modules/hmo/benefits/js/service.js',
-                            'modules/hmo/benefits/js/controllers.js',
+                            'modules/hmo/services/js/service.js',
+                            'modules/hmo/services/js/controllers.js',
 
 
                         ]
@@ -30,20 +30,20 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
         })
 
         //list view
-        .state('hmo.benefits.benefitList', {
+        .state('hmo.services.serviceList', {
             url: "/",
-            templateUrl: "modules/hmo/benefits/views/list.html",
-            controller: "HmoBenefitListCtrl",
+            templateUrl: "modules/hmo/services/views/list.html",
+            controller: "HmoServiceListCtrl",
             data: {pageTitle: 'PA'},
 
         })
 
         //create new / edit provider view
-        .state('hmo.benefits.benefitCreate', {
+        .state('hmo.services.serviceCreate', {
             url: "/create",
-            templateUrl: "modules/hmo/benefits/views/create.html",
-            controller: "HmoBenefitCreateCtrl",
-            data: {pageTitle: 'New Benefit'},
+            templateUrl: "modules/hmo/services/views/create.html",
+            controller: "HmoServiceCreateCtrl",
+            data: {pageTitle: 'New Service'},
 
         })
 

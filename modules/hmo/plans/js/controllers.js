@@ -3,7 +3,7 @@
  */
 //enrollees List controller
 angular.module('BmsApp')
-    .controller('HmoPolicyListCtrl', function($scope,$compile,$activityIndicator,EnrolleeService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
+    .controller('HmoPlanListCtrl', function($scope,$compile,$activityIndicator,EnrolleeService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
 
     $scope.dtInstance = {}; //instance ref for data tables
     $scope.filters = {}; // filters
@@ -73,7 +73,7 @@ angular.module('BmsApp')
 })
 
 //enrollee create / edit controller
-.controller('HmoPolicyCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService) {
+.controller('HmoPlanCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService) {
     $scope.enrollee = {
         type:'P'
     }

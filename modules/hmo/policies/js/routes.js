@@ -8,8 +8,8 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
     // parent state
-        .state('hmo.contracts',{
-            url: "/contracts",
+        .state('hmo.policies',{
+            url: "/policies",
             abstract: true,
             views:{"dash":{template:"<ui-view/>"}},
 
@@ -19,8 +19,8 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
                         name: 'BmsApp',
 
                         files: [
-                            'modules/hmo/contracts/js/service.js',
-                            'modules/hmo/contracts/js/controllers.js',
+                            'modules/hmo/policies/js/service.js',
+                            'modules/hmo/policies/js/controllers.js',
 
 
                         ]
@@ -30,20 +30,20 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
         })
 
         //list view
-        .state('hmo.contracts.paCodeList', {
+        .state('hmo.policies.policyList', {
             url: "/",
-            templateUrl: "modules/hmo/contracts/views/list.html",
-            controller: "HmoContractListCtrl",
+            templateUrl: "modules/hmo/policies/views/list.html",
+            controller: "HmoPolicyListCtrl",
             data: {pageTitle: 'PA'},
 
         })
 
         //create new / edit provider view
-        .state('hmo.contracts.paCodeCreate', {
+        .state('hmo.policies.policyCreate', {
             url: "/create",
-            templateUrl: "modules/hmo/contracts/views/create.html",
-            controller: "HmoContractCreateCtrl",
-            data: {pageTitle: 'New Contract'},
+            templateUrl: "modules/hmo/policies/views/create.html",
+            controller: "HmoPolicyCreateCtrl",
+            data: {pageTitle: 'New Policy'},
 
         })
 
