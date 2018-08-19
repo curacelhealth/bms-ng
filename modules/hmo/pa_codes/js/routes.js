@@ -7,9 +7,9 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
 
-    //enrollees parent state
-        .state('hmo.enrollees',{
-            url: "/enrollees",
+    // parent state
+        .state('hmo.paCodes',{
+            url: "/pa_codes",
             abstract: true,
             views:{"dash":{template:"<ui-view/>"}},
 
@@ -19,8 +19,8 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
                         name: 'BmsApp',
 
                         files: [
-                            'modules/hmo/enrollees/js/service.js',
-                            'modules/hmo/enrollees/js/controllers.js',
+                            'modules/hmo/pa_codes/js/service.js',
+                            'modules/hmo/pa_codes/js/controllers.js',
 
 
                         ]
@@ -30,20 +30,20 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
         })
 
         //list view
-        .state('hmo.enrollees.enrolleeList', {
+        .state('hmo.paCodes.paCodeList', {
             url: "/",
-            templateUrl: "modules/hmo/enrollees/views/list.html",
-            controller: "HmoEnrolleeListCtrl",
-            data: {pageTitle: 'Enrollees'},
+            templateUrl: "modules/hmo/pa_codes/views/list.html",
+            controller: "HmoPaCodeListCtrl",
+            data: {pageTitle: 'PA'},
 
         })
 
         //create new / edit provider view
-        .state('hmo.enrollees.enrolleeCreate', {
+        .state('hmo.paCodes.paCodeCreate', {
             url: "/create",
-            templateUrl: "modules/hmo/enrollees/views/create.html",
-            controller: "HmoEnrolleeCreateCtrl",
-            data: {pageTitle: 'New Enrollee'},
+            templateUrl: "modules/hmo/pa_codes/views/create.html",
+            controller: "HmoPaCodeCreateCtrl",
+            data: {pageTitle: 'New PaCode'},
 
         })
 
