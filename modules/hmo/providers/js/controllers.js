@@ -131,6 +131,18 @@ angular.module('BmsApp')
 
 //provider view/edit controller
 .controller('ProvidersViewCtrl', function($scope, $stateParams, ProviderService, OptionService) {
+
+	$scope.provider = {};
+
+    ProviderService.fetchSingleByID($stateParams.id)
+    .success(function(response){
+    	$scope.provider = response;
+    })
+    .error(function(response){
+        console.log(response.message);
+    });
+
+    //Info tab
     $scope.status = {};
     $scope.statuses = [];
 
@@ -144,25 +156,7 @@ angular.module('BmsApp')
     $scope.states = [];
 
     $scope.editView = false;
-
-    ProviderService.fetchSingleByID($stateParams.id)
-    .success(function(response){
-        $scope.id = response.id;
-        $scope.name = response.name;
-        $scope.email = response.email;
-        $scope.phone =  parseInt(response.phone, 10);
-        $scope.address = response.address;
-        $scope.state = response.state;
-        $scope.rc_no = parseInt(response.rc_no, 10);
-        $scope.tier = response.tier;
-        $scope.status = response.status,
-        $scope.representative_name = response.rep_name;
-        $scope.representative_email = response.rep_email;
-        $scope.representative_number = parseInt(response.rep_phone, 10);
-    })
-    .error(function(response){
-        console.log(response.message);
-    });
+    $scope.backupProvider = {};
 
     OptionService.getStates()
     .success(function (resp) {
@@ -188,35 +182,32 @@ angular.module('BmsApp')
         console.log(response.message);
     });
 
+    $scope.editProvider = function(){
+    	$scope.backupProvider = $scope.provider;
+    	$scope.editView = true;
+    }
 
     $scope.updateProvider = function (){
-//        if ($scope.providerEditForm.$valid) {
-            var newDataObj = {
-                "id": $scope.id,
-                "provider": {
-                    "name": $scope.name,
-                    "rc_no": $scope.rc_no,
-                    "address": $scope.address,
-                    "state_id": $scope.state.id,
-                    "email": $scope.email,
-                    "phone": $scope.phone,
-                    "website": $scope.website,
-                    "rep_name": $scope.representative_name,
-                    "rep_email": $scope.representative_email,
-                    "rep_phone": $scope.representative_number,
-                    "provider_status_id": $scope.status.id,
-                    "provider_tier_id": $scope.tier.id
-                }
-            };
+        var newDataObj = {
+            id: $scope.provider.id,
+            provider: $scope.provider
+        };
 
-            ProviderService.editSingleProvider($scope.id, newDataObj)
-            .success(function (resp) {
-                $scope.editView = false;
-                swal('Success', 'Provider modified successfully', 'success');
-            })
-            .error(function(response){
-                console.log(response.message);
-            });
- //       }
+        ProviderService.editSingleProvider($scope.id, newDataObj)
+        .success(function (resp) {
+            $scope.editView = false;
+            swal('Success', 'Provider modified successfully', 'success');
+        })
+        .error(function(response){
+            console.log(response.message);
+        });
     }
+
+    $scope.resetProvider = function(){
+    	$scope.provider = $scope.backupProvider;
+    	$scope.editView = false;
+    }
+
+    //Enrollees tab
+
 });
