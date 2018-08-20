@@ -74,7 +74,7 @@
                                     </ui-select-match>
 
                                     <ui-select-choices
-                                            repeat="item as item in (companies | filter: $select.search) track by item.id"
+                                            repeat="item.id as item in (companies | filter: $select.search) track by item.id"
                                             refresh="searchCompanies($select.search)"
                                     >
                                         <span> {{item.name}}</span>

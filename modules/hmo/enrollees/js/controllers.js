@@ -46,6 +46,12 @@ angular.module('BmsApp')
             .renderWith(function (data,type,full) {
                return data +' '+full.last_name
             }),
+        DTColumnBuilder.newColumn('company_id').withTitle('Company')
+            .renderWith(function (data,type,full) {
+                if(full.company)
+                return full.company.name
+                else return ''
+            }),
         
         //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
         DTColumnBuilder.newColumn('sex').withTitle('Sex')
