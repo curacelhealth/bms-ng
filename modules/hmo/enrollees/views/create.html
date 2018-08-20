@@ -239,6 +239,32 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >Provider</label>
+
+                            <div class="col-sm-4">
+                                <ui-select ng-model="enrollee.provider_id"
+                                           theme="bootstrap"
+                                >
+
+                                    <ui-select-match placeholder="Select Enrollee's Provider">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+
+                                    <ui-select-choices
+                                            repeat="item.id as item in (providers | filter: $select.search) track by item.id"
+                                            refresh="searchProviders($select.search)"
+                                    >
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+
+
+
+
+                        </div>
+
 
 
 
