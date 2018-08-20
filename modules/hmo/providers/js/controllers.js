@@ -48,7 +48,7 @@ angular.module('BmsApp')
             .renderWith(function(data, type, full, meta) {
                 // you should use full.id instead of data.id here
                 // they shouldnt be able to delete a provider here, so i removed the delete button
-                return '<a ui-sref="hmo.providers.providersView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>'
+                return '<a ui-sref="hmo.providers.providersView({id:'+full.id+'})" class="btn btn-primary btn-xs" title="View details"><i class="fa fa-eye"></i></a>'
             }),
     ];
 
@@ -213,12 +213,12 @@ angular.module('BmsApp')
 })
 
 //Enrollees tab controller
-.controller('ProvidersEnrolleeTabCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder) {
+.controller('ProvidersEnrolleeTabCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
 	var vm = this;
     vm.dtInstance = {}; //instance ref for data tables
     vm.filters = {provider_id: $scope.provider.id}; // filters
 
-
+console.log($scope.provider.id);
     //init options for datatable grid on this scope, using ajax for data source
     vm.dtOptions = DTOptionsBuilder.newOptions()
         .withOption('ajax', {
@@ -244,13 +244,20 @@ angular.module('BmsApp')
         );
     
     vm.dtColumns = [
+
+        DTColumnBuilder.newColumn('id').withTitle('ID'),
+        DTColumnBuilder.newColumn('photo').withTitle('Photo').notSortable()
+            .renderWith(function (data,type,full) {
+                if(data) return "<img src='"+full.photo_thumb+"'/>"
+                else return ''
+            }),
         DTColumnBuilder.newColumn('insurance_no').withTitle('Insurance No').notSortable(),
         DTColumnBuilder.newColumn('first_name').withTitle('Name')
             .renderWith(function (data,type,full) {
                return data +' '+full.last_name
             }),
         
-        DTColumnBuilder.newColumn('phone').withTitle('Phone'),
+        //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
         DTColumnBuilder.newColumn('sex').withTitle('Sex')
             .renderWith(function (data,type,full) {
                return EnrolleeService.getSex(data)
@@ -279,4 +286,7 @@ angular.module('BmsApp')
             })
     ];
 
-});
+    DTDefaultOptions.setLanguage({
+            searchPlaceholder: "Search enrollee"
+    });
+})
