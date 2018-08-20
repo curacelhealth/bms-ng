@@ -30,8 +30,9 @@ angular.module('BmsApp')
 
     //app controller for the app/dashboard after login
 
-    .controller('AppCtrl', function($scope,$activityIndicator,UserService,$state) {
+    .controller('AppCtrl', function($scope,$activityIndicator,UserService,$state,$timeout) {
         $scope.user = UserService.getUserData();
+
 
         $('body').layout('fix')
 

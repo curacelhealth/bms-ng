@@ -38,6 +38,11 @@ var BmsApp = angular.module('BmsApp',
 		$rootScope.$state = $state; // state to be accessed from view
 		authManager.checkAuthOnRefresh();
 		authManager.redirectWhenUnauthenticated();
+
+        $rootScope.$on('tokenHasExpired', function() {
+            UserService.logout();
+        });
+
 	}]);
 
 var showError = function (title,err) {
