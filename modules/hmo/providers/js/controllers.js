@@ -216,9 +216,8 @@ angular.module('BmsApp')
 .controller('ProvidersEnrolleeTabCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
 	var vm = this;
     vm.dtInstance = {}; //instance ref for data tables
-    vm.filters = {provider_id: $scope.provider.id}; // filters
+    vm.filters = {provider_id: $stateParams.id}; // filters
 
-console.log($scope.provider.id);
     //init options for datatable grid on this scope, using ajax for data source
     vm.dtOptions = DTOptionsBuilder.newOptions()
         .withOption('ajax', {
