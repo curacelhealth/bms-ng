@@ -39,3 +39,8 @@ var BmsApp = angular.module('BmsApp',
 		authManager.checkAuthOnRefresh();
 		authManager.redirectWhenUnauthenticated();
 	}]);
+
+var showError = function (title,err) {
+    if(err.message.constructor===Array) err.message = err.message.join("<br/>")
+    swal(title,err.message,'error')
+}

@@ -41,13 +41,21 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
 
         })
 
-        //create new / edit provider view
+        //create new
         .state('hmo.enrollees.enrolleeCreate', {
             url: "/create",
             templateUrl: "modules/hmo/enrollees/views/create.html",
             controller: "HmoEnrolleeCreateCtrl",
             data: {pageTitle: 'New Enrollee'},
 
+        })
+
+        //enrollee detail
+        .state('hmo.enrollees.enrolleeDetail', {
+            url: "/view/:id",
+            templateUrl: "modules/hmo/enrollees/views/view.html",
+            controller: "HmoEnrolleeDetailCtrl",
+            data: {pageTitle: 'Enrollee Detail'},
         })
 
     

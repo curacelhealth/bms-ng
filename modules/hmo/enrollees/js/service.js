@@ -20,12 +20,15 @@ angular.module('BmsApp')
               return   API_HOST+'/enrollees/DT'
             },
             
-            createNew: function (data) {
-                return $http.post(API_HOST+'/enrollees/create',data)
+            createNew: function (enrollee) {
+                return $http.post(API_HOST+'/enrollees/create',{enrollee:enrollee})
+            },
+            update: function (id,enrollee) {
+                return $http.post(API_HOST+'/enrollees/'+id+'/update',{enrollee:enrollee})
             },
             
             fetchSingleByID: function (id) {
-                
+                return $http.get(API_HOST+'/enrollees/'+id)
             },
 
             fetchPlans: function () {
