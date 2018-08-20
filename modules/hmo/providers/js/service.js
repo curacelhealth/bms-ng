@@ -2,11 +2,12 @@
  * Created by JFlash on 12/14/17.
  */
 angular.module('BmsApp')
-    .service('ProviderService', function ( $http, API_HOST) {
+    .service('ProviderService', function ( $http, API_HOST,$httpParamSerializer) {
 
         return {
-            fetchList: function () {
-                return $http.get(API_HOST+'/providers/');
+            fetchList: function (search) {
+                let rs = $httpParamSerializer({search:search})
+                return $http.get(API_HOST+'/providers/?'+rs);
             },
 
             //return api url for handling datatable requests ..i.e DT
