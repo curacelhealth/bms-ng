@@ -36,7 +36,7 @@ angular.module('BmsApp')
         //hmo app dashboard parent route (abstract)
         .state('hmo', {
             url: "/hmo",
-
+            data: {requiresLogin: true},
             abstract:true,
             views:{
                 "main":{
@@ -60,7 +60,8 @@ angular.module('BmsApp')
                             "libs/datatables/css/jquery.dataTables.min.css",
                         ]
                     });
-                }]
+                }],
+
             }
 
         })
