@@ -5,8 +5,7 @@
 angular.module('BmsApp')
 
 //providers List controller
-
-    .controller('ProvidersListCtrl', function($scope,$compile, $activityIndicator, UserService, $state, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, ProviderService) {
+.controller('ProvidersListCtrl', function($scope,$compile, $activityIndicator, UserService, $state, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, ProviderService) {
     var vm = this;
     //vm.dtOptions = DTOptionsBuilder.fromSource('modules/hmo/providers/data.json') 
     // .withPaginationType('full_numbers');
@@ -49,7 +48,7 @@ angular.module('BmsApp')
             .renderWith(function(data, type, full, meta) {
                 // you should use full.id instead of data.id here
                 // they shouldnt be able to delete a provider here, so i removed the delete button
-                return '<a ui-sref="hmo.providers.providersView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>'
+                return '<a ui-sref="hmo.providers.providersView({id:'+full.id+'})" class="btn btn-primary btn-xs" title="View details"><i class="fa fa-eye"></i></a>'
             }),
     ];
 
@@ -129,8 +128,24 @@ angular.module('BmsApp')
     }
 })
 
-//provider view/edit controller
-.controller('ProvidersViewCtrl', function($scope, $stateParams, ProviderService, OptionService) {
+//provider view controller
+.controller('ProvidersViewCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder) {
+
+	$scope.provider = {};
+
+    ProviderService.fetchSingleByID($stateParams.id)
+    .success(function(response){
+    	$scope.provider = response;
+    })
+    .error(function(response){
+        console.log(response);
+    });
+
+})
+
+//Info tab controller
+.controller('ProvidersInfoTabCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder) {
+
     $scope.status = {};
     $scope.statuses = [];
 
@@ -144,25 +159,7 @@ angular.module('BmsApp')
     $scope.states = [];
 
     $scope.editView = false;
-
-    ProviderService.fetchSingleByID($stateParams.id)
-    .success(function(response){
-        $scope.id = response.id;
-        $scope.name = response.name;
-        $scope.email = response.email;
-        $scope.phone =  parseInt(response.phone, 10);
-        $scope.address = response.address;
-        $scope.state = response.state;
-        $scope.rc_no = parseInt(response.rc_no, 10);
-        $scope.tier = response.tier;
-        $scope.status = response.status,
-        $scope.representative_name = response.rep_name;
-        $scope.representative_email = response.rep_email;
-        $scope.representative_number = parseInt(response.rep_phone, 10);
-    })
-    .error(function(response){
-        console.log(response.message);
-    });
+    $scope.backupProvider = {};
 
     OptionService.getStates()
     .success(function (resp) {
@@ -188,35 +185,107 @@ angular.module('BmsApp')
         console.log(response.message);
     });
 
+    $scope.editProvider = function(){
+    	$scope.backupProvider = $scope.provider;
+    	$scope.editView = true;
+    }
 
     $scope.updateProvider = function (){
-//        if ($scope.providerEditForm.$valid) {
-            var newDataObj = {
-                "id": $scope.id,
-                "provider": {
-                    "name": $scope.name,
-                    "rc_no": $scope.rc_no,
-                    "address": $scope.address,
-                    "state_id": $scope.state.id,
-                    "email": $scope.email,
-                    "phone": $scope.phone,
-                    "website": $scope.website,
-                    "rep_name": $scope.representative_name,
-                    "rep_email": $scope.representative_email,
-                    "rep_phone": $scope.representative_number,
-                    "provider_status_id": $scope.status.id,
-                    "provider_tier_id": $scope.tier.id
-                }
-            };
+        var newDataObj = {
+            id: $scope.provider.id,
+            provider: $scope.provider
+        };
 
-            ProviderService.editSingleProvider($scope.id, newDataObj)
-            .success(function (resp) {
-                $scope.editView = false;
-                swal('Success', 'Provider modified successfully', 'success');
-            })
-            .error(function(response){
-                console.log(response.message);
-            });
- //       }
+        ProviderService.editSingleProvider($scope.id, newDataObj)
+        .success(function (resp) {
+            $scope.editView = false;
+            swal('Success', 'Provider modified successfully', 'success');
+        })
+        .error(function(response){
+            console.log(response.message);
+        });
     }
-});
+
+    $scope.resetProvider = function(){
+    	$scope.provider = $scope.backupProvider;
+    	$scope.editView = false;
+    }
+})
+
+//Enrollees tab controller
+.controller('ProvidersEnrolleeTabCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
+	var vm = this;
+    vm.dtInstance = {}; //instance ref for data tables
+    vm.filters = {provider_id: $stateParams.id}; // filters
+
+    //init options for datatable grid on this scope, using ajax for data source
+    vm.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('ajax', {
+            // Either you specify the AjaxDataProp here
+            // dataSrc: 'data',
+            url: EnrolleeService.fetchListDTUrl(), // get url from service for datatable requests
+            type: 'GET',
+            data: vm.filters,
+            headers: {
+                Authorization: 'Bearer ' + UserService.loadToken() // add token for authentication
+            }
+        })
+        // or here
+        .withDataProp('data')
+        .withOption('processing', true)
+        .withOption('serverSide', true)
+        .withPaginationType('full_numbers')
+
+        .withOption('fnRowCallback',
+            function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                $compile(nRow)($scope); // this ensures angular directives are compiled after each row is created
+            }
+        );
+    
+    vm.dtColumns = [
+
+        DTColumnBuilder.newColumn('id').withTitle('ID'),
+        DTColumnBuilder.newColumn('photo').withTitle('Photo').notSortable()
+            .renderWith(function (data,type,full) {
+                if(data) return "<img src='"+full.photo_thumb+"'/>"
+                else return ''
+            }),
+        DTColumnBuilder.newColumn('insurance_no').withTitle('Insurance No').notSortable(),
+        DTColumnBuilder.newColumn('first_name').withTitle('Name')
+            .renderWith(function (data,type,full) {
+               return data +' '+full.last_name
+            }),
+        
+        //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
+        DTColumnBuilder.newColumn('sex').withTitle('Sex')
+            .renderWith(function (data,type,full) {
+               return EnrolleeService.getSex(data)
+            }),
+        DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
+            .renderWith(function (data,type,full) {
+                if(full.plan)
+                    return full.plan.name
+                else  return ''
+            }),
+        
+        DTColumnBuilder.newColumn('enrollee_status_code').withTitle('Status').notSortable()
+            .renderWith(function(data,type,full) {
+                if(full.status)
+                    return full.status.name
+                else  return ''
+            }),
+        DTColumnBuilder.newColumn('created_at').withTitle('Created'),
+        DTColumnBuilder.newColumn('action').withTitle('').notSortable()
+            .renderWith(function(data, type, full) {
+                var actions = [];
+                var view = '<a  class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a>';
+                actions.push(view);
+               
+                return actions.join(" ");
+            })
+    ];
+
+    DTDefaultOptions.setLanguage({
+            searchPlaceholder: "Search enrollee"
+    });
+})

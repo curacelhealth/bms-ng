@@ -21,6 +21,7 @@ angular.module('BmsApp').config(function($stateProvider) {
                         files: [
                             'modules/hmo/providers/js/service.js',
                             'modules/hmo/providers/js/controllers.js',
+                            'modules/hmo/enrollees/js/service.js',
 
 
                         ]
@@ -38,7 +39,7 @@ angular.module('BmsApp').config(function($stateProvider) {
 
         })
 
-        //providers unit view/edit
+        //providers unit view
         .state('hmo.providers.providersView', {
             url: "/view/:id",
             templateUrl: "modules/hmo/providers/views/view.html",
