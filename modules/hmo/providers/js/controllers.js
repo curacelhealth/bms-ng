@@ -5,8 +5,7 @@
 angular.module('BmsApp')
 
 //providers List controller
-
-    .controller('ProvidersListCtrl', function($scope,$compile, $activityIndicator, UserService, $state, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, ProviderService) {
+.controller('ProvidersListCtrl', function($scope,$compile, $activityIndicator, UserService, $state, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, ProviderService) {
     var vm = this;
     //vm.dtOptions = DTOptionsBuilder.fromSource('modules/hmo/providers/data.json') 
     // .withPaginationType('full_numbers');
@@ -129,8 +128,8 @@ angular.module('BmsApp')
     }
 })
 
-//provider view/edit controller
-.controller('ProvidersViewCtrl', function($scope, $stateParams, ProviderService, OptionService) {
+//provider view controller
+.controller('ProvidersViewCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder) {
 
 	$scope.provider = {};
 
@@ -139,10 +138,14 @@ angular.module('BmsApp')
     	$scope.provider = response;
     })
     .error(function(response){
-        console.log(response.message);
+        console.log(response);
     });
 
-    //Info tab
+})
+
+//Info tab controller
+.controller('ProvidersInfoTabCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder) {
+
     $scope.status = {};
     $scope.statuses = [];
 
@@ -207,7 +210,73 @@ angular.module('BmsApp')
     	$scope.provider = $scope.backupProvider;
     	$scope.editView = false;
     }
+})
 
-    //Enrollees tab
+//Enrollees tab controller
+.controller('ProvidersEnrolleeTabCtrl', function($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder) {
+	var vm = this;
+    vm.dtInstance = {}; //instance ref for data tables
+    vm.filters = {provider_id: $scope.provider.id}; // filters
+
+
+    //init options for datatable grid on this scope, using ajax for data source
+    vm.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('ajax', {
+            // Either you specify the AjaxDataProp here
+            // dataSrc: 'data',
+            url: EnrolleeService.fetchListDTUrl(), // get url from service for datatable requests
+            type: 'GET',
+            data: vm.filters,
+            headers: {
+                Authorization: 'Bearer ' + UserService.loadToken() // add token for authentication
+            }
+        })
+        // or here
+        .withDataProp('data')
+        .withOption('processing', true)
+        .withOption('serverSide', true)
+        .withPaginationType('full_numbers')
+
+        .withOption('fnRowCallback',
+            function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                $compile(nRow)($scope); // this ensures angular directives are compiled after each row is created
+            }
+        );
+    
+    vm.dtColumns = [
+        DTColumnBuilder.newColumn('insurance_no').withTitle('Insurance No').notSortable(),
+        DTColumnBuilder.newColumn('first_name').withTitle('Name')
+            .renderWith(function (data,type,full) {
+               return data +' '+full.last_name
+            }),
+        
+        DTColumnBuilder.newColumn('phone').withTitle('Phone'),
+        DTColumnBuilder.newColumn('sex').withTitle('Sex')
+            .renderWith(function (data,type,full) {
+               return EnrolleeService.getSex(data)
+            }),
+        DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
+            .renderWith(function (data,type,full) {
+                if(full.plan)
+                    return full.plan.name
+                else  return ''
+            }),
+        
+        DTColumnBuilder.newColumn('enrollee_status_code').withTitle('Status').notSortable()
+            .renderWith(function(data,type,full) {
+                if(full.status)
+                    return full.status.name
+                else  return ''
+            }),
+        DTColumnBuilder.newColumn('created_at').withTitle('Created'),
+        DTColumnBuilder.newColumn('action').withTitle('').notSortable()
+            .renderWith(function(data, type, full) {
+                var actions = [];
+                var view = '<a  class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a>';
+                actions.push(view);
+               
+                return actions.join(" ");
+            })
+    ];
 
 });
