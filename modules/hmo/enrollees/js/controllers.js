@@ -35,7 +35,12 @@ angular.module('BmsApp')
 
     //create columns for this grid
     $scope.dtColumns = [
-        DTColumnBuilder.newColumn('photo').withTitle('Photo').notSortable(),
+        DTColumnBuilder.newColumn('id').withTitle('ID'),
+        DTColumnBuilder.newColumn('photo').withTitle('Photo').notSortable()
+            .renderWith(function (data,type,full) {
+                if(data) return "<img src='"+full.photo_thumb+"'/>"
+                else return ''
+            }),
         DTColumnBuilder.newColumn('insurance_no').withTitle('Insurance No').notSortable(),
         DTColumnBuilder.newColumn('first_name').withTitle('Name')
             .renderWith(function (data,type,full) {
