@@ -46,18 +46,24 @@ angular.module('BmsApp')
             .renderWith(function (data,type,full) {
                return data +' '+full.last_name
             }),
+        DTColumnBuilder.newColumn('company_id').withTitle('Company')
+            .renderWith(function (data,type,full) {
+                if(full.company)
+                return full.company.name
+                else return ''
+            }),
         
         //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
         DTColumnBuilder.newColumn('sex').withTitle('Sex')
             .renderWith(function (data,type,full) {
                return EnrolleeService.getSex(data)
             }),
-        DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
+        /*DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
             .renderWith(function (data,type,full) {
                 if(full.plan)
                     return full.plan.name
                 else  return ''
-            }),
+            }),*/
         
         DTColumnBuilder.newColumn('enrollee_status_code').withTitle('Status').notSortable()
             .renderWith(function(data,type,full) {
@@ -79,7 +85,7 @@ angular.module('BmsApp')
 })
 
 //enrollee create / edit controller
-.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService,Upload) {
+.controller('HmoEnrolleeCreateCtrl', function($scope,$activityIndicator,ProviderService,UserService,$state,CompaniesService,EnrolleeService,OptionService,Upload) {
     $scope.enrollee = {
         type:'P'
     }
@@ -112,6 +118,14 @@ angular.module('BmsApp')
         })
     }
 
+    // providers
+    $scope.providers = [];
+    $scope.searchProviders = function (q) {
+        ProviderService.fetchList(q,10).success(function (resp) {
+            $scope.providers = resp;
+        })
+    }
+
     //states
     $scope.states = []
     OptionService.getStates().success(function (resp) {
@@ -133,9 +147,6 @@ angular.module('BmsApp')
     //submit enrollee
     $scope.submitEnrollee = function () {
         $activityIndicator.startAnimating();
-
-
-
 
         if(angular.isDefined($scope.enrollee.id)){
 

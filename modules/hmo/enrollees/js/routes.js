@@ -20,8 +20,10 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
 
                         files: [
                             'modules/hmo/enrollees/js/service.js',
-                            'modules/hmo/companies/js/service.js',
                             'modules/hmo/enrollees/js/controllers.js',
+
+                            'modules/hmo/companies/js/service.js',
+                            'modules/hmo/providers/js/service.js',
 
 
                         ]
