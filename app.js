@@ -34,7 +34,7 @@ var BmsApp = angular.module('BmsApp',
             // global configs go here
         });
     }])
-	.run(["$rootScope", "$state","authManager", function($rootScope, $state,authManager) {
+	.run(["$rootScope", "$state","authManager","UserService", function($rootScope, $state,authManager,UserService) {
 		$rootScope.$state = $state; // state to be accessed from view
 		authManager.checkAuthOnRefresh();
 		authManager.redirectWhenUnauthenticated();
