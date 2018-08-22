@@ -34,7 +34,7 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
             url: "/",
             templateUrl: "modules/hmo/contracts/views/list.html",
             //controller: "HmoContractListCtrl",
-            data: {pageTitle: 'PA'},
+            data: {pageTitle: 'Contracts'},
 
         })
 
@@ -45,6 +45,14 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
             //controller: "HmoContractCreateCtrl",
             data: {pageTitle: 'New Contract'},
 
+        })
+
+                  //Single Contract view
+        .state('hmo.contracts.contractView', {
+            url: "/view/:id",
+            templateUrl: "modules/hmo/contracts/views/view.html",
+           // controller: "HmoContractViewCtrl",
+            data: {pageTitle: 'Contract Detail'},
         })
 
     
