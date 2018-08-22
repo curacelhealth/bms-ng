@@ -33,7 +33,7 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
         .state('hmo.policies.policyList', {
             url: "/",
             templateUrl: "modules/hmo/policies/views/list.html",
-            controller: "HmoPolicyListCtrl",
+            //controller: "HmoPolicyListCtrl",
             data: {pageTitle: 'PA'},
 
         })
@@ -42,7 +42,7 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
         .state('hmo.policies.policyCreate', {
             url: "/create",
             templateUrl: "modules/hmo/policies/views/create.html",
-            controller: "HmoPolicyCreateCtrl",
+            //controller: "HmoPolicyCreateCtrl",
             data: {pageTitle: 'New Policy'},
 
         })
