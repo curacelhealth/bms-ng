@@ -21,7 +21,6 @@ angular.module('BmsApp')
 
             createNewProvider: function (obj) {
                 return $http.post(API_HOST+'/providers/create', obj);
-                
             },
 
             getProviderStatus: function (){
@@ -37,7 +36,6 @@ angular.module('BmsApp')
             },
 
             delistSingleProvider: function (id) {
-                console.log("provider id: ", id)
                 return $http.delete(API_HOST + '/providers/' + id);
             }
         };
