@@ -1,7 +1,7 @@
 /**
  * Created by JFlash on 12/14/17.
  */
-BmsApp
+angular.module('BmsApp')
     .service('UserService', function (API_HOST_AUTH , $http,jwtHelper,$state) {
         
         var token_name = "curacel_auth_token";
@@ -20,11 +20,11 @@ BmsApp
 
             },
             getUserData : function(){
-                if(userData==null){
-                    userData = jwtHelper.decodeToken(this.loadToken());
+                if(userData==null) {
+                    let token = this.loadToken()
+                    userData = jwtHelper.decodeToken(token);
 
                 }
-                if(userData.exp>=(Date.now()+60)) this.logout();
                 return userData;
             },
 
@@ -33,6 +33,10 @@ BmsApp
                 localStorage.clear();
                 userData = null;
                 $state.go("login");
+            },
+
+            checkToken:function () {
+                return $http.get(API_HOST_AUTH);
             }
 
 

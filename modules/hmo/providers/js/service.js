@@ -1,12 +1,13 @@
 /**
  * Created by JFlash on 12/14/17.
  */
-BmsApp
-    .service('ProviderService', function ( $http,API_HOST) {
+angular.module('BmsApp')
+    .service('ProviderService', function ( $http, API_HOST,$httpParamSerializer) {
 
         return {
-            fetchList: function () {
-                return $http.get(API_HOST+'/providers/');
+            fetchList: function (search) {
+                let rs = $httpParamSerializer({search:search})
+                return $http.get(API_HOST+'/providers/?'+rs);
             },
 
             //return api url for handling datatable requests ..i.e DT
@@ -20,6 +21,19 @@ BmsApp
 
             createNewProvider: function (obj) {
                 return $http.post(API_HOST+'/providers/create', obj);
+                
+            },
+
+            getProviderStatus: function (){
+                return $http.get(API_HOST+'/provider-statuses/');
+            },
+
+            getProviderTier: function (){
+                return $http.get(API_HOST+'/provider-tiers/');
+            },
+
+            editSingleProvider: function (id, obj) {
+                return $http.post(API_HOST+'/providers/'+id+'/update', obj);
             }
         };
 });

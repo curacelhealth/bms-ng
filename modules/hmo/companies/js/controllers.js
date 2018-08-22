@@ -2,7 +2,8 @@
  * Created by JFlash on 7/31/18.
  */
 //Companies List controller
-BmsApp.controller('HmoCompaniesListCtrl', function($scope,$compile,$activityIndicator,CompaniesService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
+angular.module('BmsApp')
+	.controller('HmoCompaniesListCtrl', function($scope,$compile,$activityIndicator,CompaniesService,$state,DTColumnBuilder,DTOptionsBuilder,UserService) {
    	$scope.dtInstance = {}; //instance reference for datatables
     $scope.filters = {}; // filters
 
@@ -55,13 +56,13 @@ BmsApp.controller('HmoCompaniesListCtrl', function($scope,$compile,$activityIndi
         DTColumnBuilder.newColumn('rep_email').withTitle('Rep.Email'),
         DTColumnBuilder.newColumn('action').withTitle('').notSortable()
              .renderWith(function(data, type, full, meta) {
-                return '<a ui-sref="hmo.companiesView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>&nbsp;'
+                return '<a ui-sref="hmo.companies.companiesView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>&nbsp;'
             }),
     ];
-});
+})
 
 // //company create controller
- BmsApp.controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state,OptionService,CompaniesService) {
+ .controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state,OptionService,CompaniesService) {
 
     $scope.states = []
     OptionService.getStates().success(function (resp) {
@@ -86,11 +87,11 @@ BmsApp.controller('HmoCompaniesListCtrl', function($scope,$compile,$activityIndi
     	});
     	}
     }
-});
+})
 
 
 //Controller for company edit
-BmsApp.controller('HmoCompaniesEditCtrl', function($scope,$stateParams,CompaniesService,OptionService) {
+.controller('HmoCompaniesEditCtrl', function($scope,$stateParams,CompaniesService,OptionService) {
 	CompaniesService.fetchSingleByID($stateParams.id)
 	.success(function(response) {
 		$scope.state ={};
@@ -120,10 +121,10 @@ BmsApp.controller('HmoCompaniesEditCtrl', function($scope,$stateParams,Companies
             var editedDataObj ='{id: "'+$scope.id+'",name: "'+$scope.name+'",email: "'+$scope.email+'",phone: "'+$scope.phone+'", website: "'+$scope.website+'",address: "'+$scope.address+'",state_id: "'+$scope.state_id+'",status_code: "'+$scope.status_code+'",company_plan_id: "'+$scope.company_plan_id+'",rep_name: "'+$scope.rep_name+'",rep_phone: "'+$scope.rep_phone+'",rep_email: "'+$scope.rep_email+'"}';
         }
     }
-});
+})
 
 //Company View Controller
-BmsApp.controller('HmoCompaniesViewCtrl', function($scope,$stateParams,CompaniesService) {
+.controller('HmoCompaniesViewCtrl', function($scope,$stateParams,CompaniesService) {
 	CompaniesService.fetchSingleByID($stateParams.id)
 	.success(function(response) {
 		$scope.id = response.id;

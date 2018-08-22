@@ -2,12 +2,14 @@ var BmsApp = angular.module('BmsApp',
 	[
 		'ui.router',
 		'ngActivityIndicator',
-		'angular-jwt',
+        "oc.lazyLoad",
+        'angular-jwt',
 		'datatables',
 		"ngSanitize",
 		'ui.select',
         'ngFileUpload',
-		'ngMask'
+		'ngMask',
+        'ui.bootstrap'
 	]
 )
 	.constant('API_HOST', BMS_API) // from config.js
@@ -27,8 +29,23 @@ var BmsApp = angular.module('BmsApp',
 
 		$httpProvider.interceptors.push('jwtInterceptor');
 	})
-	.run(["$rootScope", "$state","authManager", function($rootScope, $state,authManager) {
+    .config(['$ocLazyLoadProvider', function($ocLazyLoadProvider) {
+        $ocLazyLoadProvider.config({
+            // global configs go here
+        });
+    }])
+	.run(["$rootScope", "$state","authManager","UserService", function($rootScope, $state,authManager,UserService) {
 		$rootScope.$state = $state; // state to be accessed from view
 		authManager.checkAuthOnRefresh();
 		authManager.redirectWhenUnauthenticated();
+
+        $rootScope.$on('tokenHasExpired', function() {
+            UserService.logout();
+        });
+
 	}]);
+
+var showError = function (title,err) {
+    if(err.message.constructor===Array) err.message = err.message.join("<br/>")
+    swal(title,err.message,'error')
+}
