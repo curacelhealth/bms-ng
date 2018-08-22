@@ -298,7 +298,7 @@ angular.module('BmsApp')
             ProviderService.delistSingleProvider($stateParams.id)
                 .success(function (response) {
                     swal('Notification', "Provider DELISTED from system", 'info');
-                    $state.go('hmo.providers')
+                    $state.go('hmo.providers.providersList')
                 })
                 .error(function (response) {
                     console.log(response.message);
