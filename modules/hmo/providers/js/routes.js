@@ -3,8 +3,6 @@
  */
 BmsApp.config(function($stateProvider, $urlRouterProvider) {
 
-
-
     $stateProvider
     
         //providers list view
@@ -59,6 +57,5 @@ BmsApp.config(function($stateProvider, $urlRouterProvider) {
             data: {pageTitle: 'Providers'},
 
         })
-
     
 });

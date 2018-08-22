@@ -16,13 +16,10 @@ BmsApp
 
             fetchSingleByID: function (id) {
                 return $http.get(API_HOST+'/providers/'+id);
-                
             },
 
             createNewProvider: function (obj) {
                 return $http.post(API_HOST+'/providers/create', obj);
-                
             }
-
         };
 });
