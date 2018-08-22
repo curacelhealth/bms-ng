@@ -33,7 +33,7 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
         .state('hmo.services.serviceList', {
             url: "/",
             templateUrl: "modules/hmo/services/views/list.html",
-            controller: "HmoServiceListCtrl",
+            //controller: "HmoServiceListCtrl",
             data: {pageTitle: 'PA'},
 
         })
@@ -42,7 +42,7 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
         .state('hmo.services.serviceCreate', {
             url: "/create",
             templateUrl: "modules/hmo/services/views/create.html",
-            controller: "HmoServiceCreateCtrl",
+            //controller: "HmoServiceCreateCtrl",
             data: {pageTitle: 'New Service'},
 
         })
