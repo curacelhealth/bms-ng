@@ -5,88 +5,98 @@
                 <img class="profile-user-img img-responsive" src="assets/img/logo_default_dark.png" alt="Provider Image">
                 <h3 class="profile-username text-center">{{provider.name}}</h3>
             </div>
+
+            
+    <div class="row form-group text-center">
+        <div class="col-xs-12">
+            <button ng-hide="editView" ng-click="editProvider()" class="btn btn-primary">EDIT</button>
+            <button ng-show="editView" ng-click="updateProvider()" ng-disabled="providerEditForm.$invalid" class="btn btn-primary">SUBMIT</button>
+            <button ng-show="editView" ng-click="resetProvider()" class="btn btn-danger">CANCEL</button>
+        </div>
+    </div>
         </div>
         <div class="col-md-4">
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-body">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Provider Contact</h3>
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Provider Contact</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <form name="providerEditForm" id="providerEditForm">
+                            <strong><i class="fa fa-map-marker margin-r-5"></i> RC No</strong>
+                            <input ng-model="provider.rc_no" ng-show="editView" class="form-control" type="text" name="rc_no" placeholder="RC Number" maxlength="100" required>
+                            <p class="text-muted" ng-hide="editView">{{provider.rc_no}}</p>
+                            <hr>
+
+                            <strong><i class="fa fa-map-marker margin-r-5"></i> Provider Tier</strong>
+                            <ui-select ng-model="provider.tier" ng-show="editView" theme="bootstrap" required>
+                                    <ui-select-match placeholder="Tier">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item as item in (provider.tiers | filter: $select.search) track by item.id">
+                                        <span> {{provider.item.name}}</span>
+                                    </ui-select-choices>
+                            </ui-select>
+                            <input ng-model="tier.id" type="hidden" name="tier_id" required>
+                            <p class="text-muted" ng-hide="editView">{{provider.tier.name}}</p>
+                            <hr>
+
+                            <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
+                                <input ng-model="provider.address" ng-show="editView" class="form-control" type="text" name="address" placeholder="Address" maxlength="100" required>
+                            <p class="text-muted" ng-hide="editView">
+                                {{provider.address}}
+                            </p>
+                            <hr>
+
+                            <strong><i class="fa fa-map-marker margin-r-5"></i> State</strong>
+                            <ui-select ng-model="provider.state" ng-show="editView" theme="bootstrap" required>
+                                    <ui-select-match placeholder="State">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item as item in (provider.states | filter: $select.search) track by item.id">
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                            </ui-select>
+                            <input ng-model="state.id" type="hidden" name="state_id" required>
+                            <p class="text-muted" ng-hide="editView">{{provider.state.name}}</p>
+                            <hr>
+
+                            <strong><i class="fa fa-email margin-r-5"></i> Email</strong>
+                            <input ng-model="provider.email" ng-show="editView" class="form-control" type="email" name="email" placeholder="Email" maxlength="100" required>
+                            <p class="text-muted" ng-hide="editView">{{provider.email}}</p>
+                            <hr>
+
+                            <strong><i class="fa fa-email margin-r-5"></i> Phone Number</strong>
+                            <input ng-model="provider.phone" ng-show="editView" class="form-control" type="text" name="phone" placeholder="Phone Number" maxlength="100" required>
+                            <p class="text-muted" ng-hide="editView">{{provider.phone}}</p>
+                            <hr>
+
+                            <strong><i class="fa fa-globe margin-r-5"></i> Website</strong>
+                            <input ng-model="provider.website" ng-show="editView" class="form-control" type="text" name="website" placeholder="Website" maxlength="100" required>
+                            <p class="text-muted" ng-hide="editView">{{provider.website}}</p>
+                            <hr>
+
+                            <strong><i class="fa fa-map-marker margin-r-5"></i> Status</strong>
+                            <ui-select ng-model="provider.status" ng-show="editView" theme="bootstrap" required>
+                                    <ui-select-match placeholder="Status">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+                                    <ui-select-choices repeat="item as item in (provider.statuses | filter: $select.search) track by item.id">
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                            </ui-select>
+                            <input ng-model="provider.status.id" type="hidden" name="status_id" required>
+                            <p class="text-muted" ng-hide="editView">{{provider.status.name}}</p>
+                            <hr>
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <form name="providerEditForm" id="providerEditForm">
-                        <strong><i class="fa fa-map-marker margin-r-5"></i> RC No</strong>
-                        <input ng-model="provider.rc_no" ng-show="editView" class="form-control" type="text" name="rc_no" placeholder="RC Number" maxlength="100" required>
-                        <p class="text-muted" ng-hide="editView">{{provider.rc_no}}</p>
-                        <hr>
-
-                        <strong><i class="fa fa-map-marker margin-r-5"></i> Provider Tier</strong>
-                        <ui-select ng-model="provider.tier" ng-show="editView" theme="bootstrap" required>
-                                <ui-select-match placeholder="Tier">
-                                    <span>{{$select.selected.name}}</span>
-                                </ui-select-match>
-                                <ui-select-choices repeat="item as item in (provider.tiers | filter: $select.search) track by item.id">
-                                    <span> {{provider.item.name}}</span>
-                                </ui-select-choices>
-                        </ui-select>
-                        <input ng-model="tier.id" type="hidden" name="tier_id" required>
-                        <p class="text-muted" ng-hide="editView">{{provider.tier.name}}</p>
-                        <hr>
-
-                        <strong><i class="fa fa-map-marker margin-r-5"></i> Address</strong>
-                            <input ng-model="provider.address" ng-show="editView" class="form-control" type="text" name="address" placeholder="Address" maxlength="100" required>
-                        <p class="text-muted" ng-hide="editView">
-                            {{provider.address}}
-                        </p>
-                        <hr>
-
-                        <strong><i class="fa fa-map-marker margin-r-5"></i> State</strong>
-                        <ui-select ng-model="provider.state" ng-show="editView" theme="bootstrap" required>
-                                <ui-select-match placeholder="State">
-                                    <span>{{$select.selected.name}}</span>
-                                </ui-select-match>
-                                <ui-select-choices repeat="item as item in (provider.states | filter: $select.search) track by item.id">
-                                    <span> {{item.name}}</span>
-                                </ui-select-choices>
-                        </ui-select>
-                        <input ng-model="state.id" type="hidden" name="state_id" required>
-                        <p class="text-muted" ng-hide="editView">{{provider.state.name}}</p>
-                        <hr>
-
-                        <strong><i class="fa fa-email margin-r-5"></i> Email</strong>
-                        <input ng-model="provider.email" ng-show="editView" class="form-control" type="email" name="email" placeholder="Email" maxlength="100" required>
-                        <p class="text-muted" ng-hide="editView">{{provider.email}}</p>
-                        <hr>
-
-                        <strong><i class="fa fa-email margin-r-5"></i> Phone Number</strong>
-                        <input ng-model="provider.phone" ng-show="editView" class="form-control" type="text" name="phone" placeholder="Phone Number" maxlength="100" required>
-                        <p class="text-muted" ng-hide="editView">{{provider.phone}}</p>
-                        <hr>
-
-                        <strong><i class="fa fa-globe margin-r-5"></i> Website</strong>
-                        <input ng-model="provider.website" ng-show="editView" class="form-control" type="text" name="website" placeholder="Website" maxlength="100" required>
-                        <p class="text-muted" ng-hide="editView">{{provider.website}}</p>
-                        <hr>
-
-                        <strong><i class="fa fa-map-marker margin-r-5"></i> Status</strong>
-                        <ui-select ng-model="provider.status" ng-show="editView" theme="bootstrap" required>
-                                <ui-select-match placeholder="Status">
-                                    <span>{{$select.selected.name}}</span>
-                                </ui-select-match>
-                                <ui-select-choices repeat="item as item in (provider.statuses | filter: $select.search) track by item.id">
-                                    <span> {{item.name}}</span>
-                                </ui-select-choices>
-                        </ui-select>
-                        <input ng-model="provider.status.id" type="hidden" name="status_id" required>
-                        <p class="text-muted" ng-hide="editView">{{provider.status.name}}</p>
-                        <hr>
-                    </form>
-                </div>
-                <!-- /.box-body -->
-            </div>
-        </div>
+             </div>
+         </div>
         <div class="col-md-4">
-            <div class="box box-primary">
+            <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Representative Contact</h3>
                 </div>
@@ -114,11 +124,4 @@
         </div>
     </div>
 
-    <div class="row form-group text-center">
-        <div class="col-xs-12">
-            <button ng-hide="editView" ng-click="editProvider()" class="btn btn-primary">EDIT</button>
-            <button ng-show="editView" ng-click="updateProvider()" ng-disabled="providerEditForm.$invalid" class="btn btn-primary">SUBMIT</button>
-            <button ng-show="editView" ng-click="resetProvider()" class="btn btn-danger">CANCEL</button>
-        </div>
-    </div>
 </div>

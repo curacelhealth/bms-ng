@@ -12,3 +12,18 @@
 #enrollee-detail-div p.text-muted{
     height: 20px;
 }
+
+
+
+.staff-img{
+    width: 60px;
+}
+
+
+.treeview-menu > li > a {
+    cursor: pointer;
+    }
+
+.treeview-menu>li:hover{
+    background: #b1aeae;
+}
