@@ -34,6 +34,11 @@ angular.module('BmsApp')
 
             editSingleProvider: function (id, obj) {
                 return $http.post(API_HOST+'/providers/'+id+'/update', obj);
+            },
+
+            delistSingleProvider: function (id) {
+                console.log("provider id: ", id)
+                return $http.delete(API_HOST + '/providers/' + id);
             }
         };
 });

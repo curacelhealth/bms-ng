@@ -289,3 +289,24 @@ angular.module('BmsApp')
             searchPlaceholder: "Search enrollee"
     });
 })
+
+//Settings tab controller
+.controller('ProviderSettingsTabCtrl', function ($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
+    $scope.delistProvider = function () {
+        var delist_keyword = $scope.delist_keyword
+        if (delist_keyword == "DELIST") {
+            ProviderService.delistSingleProvider($stateParams.id)
+                .success(function (response) {
+                    swal('Notification', "Provider DELISTED from system", 'info');
+                    $state.go('hmo.providers')
+                })
+                .error(function (response) {
+                    console.log(response.message);
+                });
+        } else if (delist_keyword == undefined) {
+            swal('Warning', "Type 'DELIST' to delist this provider", 'warning');
+        }else {
+            swal('Warning', "Type 'DELIST' to delist this provider", 'warning');
+        }
+    }
+});

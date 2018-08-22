@@ -1,6 +1,5 @@
 <div class="active tab-pane" id="settings">
-
-    <ul class="timeline">
+    <ul class="timeline" ng-controller="ProviderSettingsTabCtrl">
 
         <li>
             <i class="fa fa-envelope bg-blue"></i>
@@ -107,24 +106,20 @@
             <i class="fa fa-user bg-aqua"></i>
 
             <div class="timeline-item">
-
                 <div class="timeline-body">
                     <div class="row">
                         <div class="col-md-3">
                             To Delist Provider: Type DELIST
                             <div class="input-group margin">
-                                <input type="text" class="form-control">
+                                <input type="text" ng-model="delist_keyword" class="form-control">
                                 <span class="input-group-btn">
-							                      <button type="button" class="btn btn-info btn-flat">DELIST</button>
-							                    </span>
+                                    <button type="button" class="btn btn-info btn-flat" ng-click="delistProvider()">DELIST</button>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
         </li>
 
 
@@ -239,9 +234,4 @@
         </li>
 
     </ul>
-
-
-
-
-
 </div>
