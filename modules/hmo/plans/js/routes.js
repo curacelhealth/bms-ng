@@ -47,5 +47,16 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
 
         })
 
+
+
+        //single Plan view
+        .state('hmo.plans.planView', {
+            url: "/view/:id",
+            templateUrl: "modules/hmo/plans/views/view.html",
+           // controller: "HmoPlanViewCtrl",
+            data: {pageTitle: 'Plan Detail'},
+        })
+
+
     
 });

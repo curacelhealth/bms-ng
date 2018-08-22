@@ -47,5 +47,16 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
 
         })
 
+
+        //Single Benefits view
+        .state('hmo.paCode.paCodeView', {
+            url: "/view/:id",
+            templateUrl: "modules/hmo/pa_codes/views/view.html",
+           // controller: "paCodeViewCtrl",
+            data: {pageTitle: 'PA Code Detail'},
+        })
+
+
+
     
 });
