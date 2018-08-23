@@ -63,6 +63,14 @@ angular.module('BmsApp')
 
 // //company create controller
  .controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state,OptionService,CompaniesService) {
+    $scope.companies = []
+    CompaniesService.fetchList('', 50)
+    .success(function(response) {
+        $scope.companies = response
+    })
+    .error(function(response) {
+        console.log(response)
+    })
 
     $scope.states = []
     OptionService.getStates().success(function (resp) {
@@ -70,22 +78,26 @@ angular.module('BmsApp')
     });
     
     $scope.createCompany = function() {
-    	if ($scope.companyCreateForm.$valid) {
-    	var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
-    	"website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
-    	"status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
-    	"rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email};
-    	CompaniesService.createNewCompany(newDataObj)
-    	.success(function(response) {
-    		$('#companyCreateForm')[0].reset();
-    		$scope.state = {};
-            console.log(response.id);
-            swal('Success', 'Company created successfully', 'success');
-     	})
-    	.error(function(response) {
-    		console.log(response.message);
-    	});
+        if ($scope.createCompanyForm.$valid) {
+            var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
+            "website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
+            "status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
+            "rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email,
+            "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id};
+            CompaniesService.createNewCompany(newDataObj)
+            .success(function(response) {
+                $('#companyCreateForm')[0].reset();
+                $scope.state = {};
+                swal('Success', 'Company created successfully', 'success');
+            })
+            .error(function(response) {
+                console.log(response.message);
+            });
     	}
+    }
+
+    $scope.resetForm = function() {
+        $state.reload()
     }
 })
 
