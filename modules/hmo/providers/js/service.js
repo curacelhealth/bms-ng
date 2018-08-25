@@ -17,12 +17,10 @@ angular.module('BmsApp')
 
             fetchSingleByID: function (id) {
                 return $http.get(API_HOST+'/providers/'+id);
-                
             },
 
             createNewProvider: function (obj) {
                 return $http.post(API_HOST+'/providers/create', obj);
-                
             },
 
             getProviderStatus: function (){
@@ -35,7 +33,10 @@ angular.module('BmsApp')
 
             editSingleProvider: function (id, obj) {
                 return $http.post(API_HOST+'/providers/'+id+'/update', obj);
-            }
+            },
 
+            delistSingleProvider: function (id) {
+                return $http.delete(API_HOST + '/providers/' + id);
+            }
         };
 });

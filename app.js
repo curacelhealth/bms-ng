@@ -46,6 +46,9 @@ var BmsApp = angular.module('BmsApp',
 	}]);
 
 var showError = function (title,err) {
-    if(err.message.constructor===Array) err.message = err.message.join("<br/>")
-    swal(title,err.message,'error')
+	let msg = err.message || err
+	//if(err.message) msg = err.message
+    if(msg.constructor===Array) msg = msg.join("<br/>")
+
+    swal(title,msg,'error')
 }

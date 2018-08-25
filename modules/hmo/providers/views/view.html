@@ -6,7 +6,7 @@
     <ol class="breadcrumb">
         <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a ui-sref="hmo.providersList">Providers</a></li>
-        <li class="active">{{name}}</li>
+        <li class="active">{{provider.name}}</li>
     </ol>
 </section>
 
@@ -17,76 +17,98 @@
     <div class="col-md-12">
 			<div class="nav-tabs-custom">
 				<uib-tabset active="active">
-
 					<uib-tab >
-						<uib-tab-heading><i class="fa fa-info"></i> Info</uib-tab-heading>
-
+                        <uib-tab-heading><i class="fa fa-info"></i> Info</uib-tab-heading>
+                        
 						<ng-include src="'modules/hmo/providers/views/tab-info.html'"/>
-
 					</uib-tab>
 
-
-					<uib-tab  >
-						<uib-tab-heading><i class="fa fa-envelope"></i> Messages</uib-tab-heading>
-
+					<uib-tab>
+                        <uib-tab-heading><i class="fa fa-envelope"></i> Messages</uib-tab-heading>
+                        
 						<ng-include src="'modules/hmo/providers/views/tab-messages.html'"/>
-
 					</uib-tab>
 
 					<uib-tab  >
-						<uib-tab-heading><i class="fa fa-users"></i> Enrollees</uib-tab-heading>
-
+                        <uib-tab-heading><i class="fa fa-users"></i> Enrollees</uib-tab-heading>
+                        
 						<ng-include src="'modules/hmo/providers/views/tab-enrollees.html'"/>
-
 					</uib-tab>
 
 					<uib-tab  >
-						<uib-tab-heading><i class="fa fa-money"></i> Financials</uib-tab-heading>
-
+                        <uib-tab-heading><i class="fa fa-money"></i> Financials</uib-tab-heading>
+                        
 						<ng-include src="'modules/hmo/providers/views/tab-financials.html'"/>
-
 					</uib-tab>
 
 					<uib-tab  >
 						<uib-tab-heading><i class="fa fa-user-secret"></i> PA Codes</uib-tab-heading>
-
 						<ng-include src="'modules/hmo/providers/views/tab-pa.html'"/>
-
 					</uib-tab>
 
 					<uib-tab  >
 						<uib-tab-heading><i class="fa fa-list"></i> Tariffs</uib-tab-heading>
 
 						<ng-include src="'modules/hmo/providers/views/tab-tariffs.html'"/>
-
 					</uib-tab>
 
+                    <uib-tab  >
+                        <uib-tab-heading><i class="fa fa-list"></i> Claims</uib-tab-heading>
 
-          <uib-tab  >
-            <uib-tab-heading><i class="fa fa-list"></i> Claims</uib-tab-heading>
-
-            <ng-include src="'modules/hmo/providers/views/tab-claims.html'"/>
-
-          </uib-tab>
-
+                        <ng-include src="'modules/hmo/providers/views/tab-claims.html'"/>
+                    </uib-tab>
 
 					<uib-tab  >
 						<uib-tab-heading><i class="fa fa-gear"></i> Settings</uib-tab-heading>
 
 						<ng-include src="'modules/hmo/providers/views/tab-settings.html'"/>
-
-
-						<!-- /.tab-pane -->
-
 					</uib-tab>
-
 				</uib-tabset>
-
 			</div>
 
 
 
-
+                                            <!-- <div class="input-group-btn">
+                                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-2">
+                                                    <a href="#" class="btn btn-primary btn-block margin-bottom">Add Payment</a>
+                                                </div>
+                                            </div>
+                                        <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <th>SN</th>
+                                                    <th>Date</th>
+                                                    <th>Narration</th>
+                                                    <th>Amount</th>
+                                                    <th>Payment Advice</th>
+                                                    <th>Status</th>
+                                                    <th>Transaction ID</th>
+                                                    <th>Created</th>
+                                                </tr>
+                                                                
+                                            
+                                            <tr>
+                                            <td>12</td>
+                                            <td>12/12/12</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur adbdb dkd dbd d</td>
+                                            <td>N232,323</td>
+                                            <td><a href="#" class="btn btn-primary btn-sm" title="View details"><i class="fa fa-eye"></i>&nbsp;View</a></td>
+                                            <td><span class="label label-danger">Paid</span></td>
+                                            <td>2323</td>
+                                            <td>11/23/12</td>
+                                            </tr>
+                                        </tbody></table>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div> -->
 
     </div>
   </div>
