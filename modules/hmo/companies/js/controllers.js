@@ -64,6 +64,15 @@ angular.module('BmsApp')
 
 // //company create controller
  .controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state,OptionService,CompaniesService) {
+     $scope.all_status = []
+     CompaniesService.fetchAllStatus()
+         .success(function (response) {
+             $scope.all_status = response
+         })
+         .error(function (response) {
+             console.log(response.message);
+         });
+
     $scope.companies = []
     CompaniesService.fetchList('', 50)
     .success(function(response) {
@@ -156,5 +165,4 @@ angular.module('BmsApp')
 	.error(function(response){
 		console.log(response.message);
 	});
-});
-
+})

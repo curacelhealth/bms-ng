@@ -20,8 +20,7 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
                         files: [
                             'modules/hmo/companies/js/service.js',
                             'modules/hmo/companies/js/controllers.js',
-
-
+                            'modules/hmo/companies/js/directives.js',
                         ]
                     });
                 }]
