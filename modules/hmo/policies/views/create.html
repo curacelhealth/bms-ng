@@ -2,13 +2,13 @@
 
 <section class="content-header">
     <h1>
-        Create Enrollee
+        Create Policy
 
     </h1>
 
     <ol class="breadcrumb">
         <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="hmo.enrollees.enrolleeList"><i class="fa fa-users"></i> Enrollees</a></li>
+        <li><a ui-sref="hmo.policies.policyList">Policies</a></li>
         <li class="active">Create</li>
     </ol>
 </section>
@@ -20,7 +20,7 @@
 
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Supply New Enrollee's Details</h3>
+                    <h3 class="box-title">New Policy Details</h3>
                 </div>
                 <!-- /.box-header -->
 
@@ -28,184 +28,15 @@
                 <form class="form-horizontal" name="regForm" ng-submit="submitEnrollee()">
                     <div class="box-body">
 
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" >Type</label>
-
-                            <div class="radio col-sm-2" >
-                                <label>
-                                    <input  type="radio" name="type" ng-model="enrollee.type" value="P" >
-                                    Principal
-                                </label>
-                            </div>
-
-                            <div class="radio col-sm-2" >
-                                <label>
-                                    <input  type="radio" name="type" ng-model="enrollee.type" value="D" >
-                                    Dependant
-                                </label>
-                            </div>
-
-                            <label class="col-sm-2 control-label" >Photo:</label>
-                            <div class="col-sm-4">
-                                <div class="margin-bottom">
-                                    <img ngf-thumbnail="enrollee.photo_b64 || 'assets/img/user.jpg'" width="100" class="user-image">
-                                </div>
-
-
-                                <div class="btn btn-default" ngf-select ng-model="enrollee.photo_b64" name="file" ngf-pattern="'image/*'"
-                                     ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-                                >Select Photo</div>
-                            </div>
-
-                        </div>
-
-                        <div class="form-group">
-
-                            <label ng-if="enrollee.type=='P'"  class="col-sm-2 control-label">Company / Employer</label>
-
-                            <div class="col-sm-4" ng-if="enrollee.type=='P'">
-                                <ui-select ng-model="enrollee.company_id"
-                                           theme="bootstrap"
-
-                                >
-
-                                    <ui-select-match placeholder="Name of Company">
-                                        <span>{{$select.selected.name}}</span>
-                                    </ui-select-match>
-
-                                    <ui-select-choices
-                                            repeat="item as item in (companies | filter: $select.search) track by item.id"
-                                            refresh="searchCompanies($select.search)"
-                                    >
-                                        <span> {{item.name}}</span>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-
-                            <label ng-if="enrollee.type=='D'"  class="col-sm-2 control-label">Parent</label>
-
-                            <div class="col-sm-4" ng-if="enrollee.type=='D'">
-                                <ui-select ng-model="enrollee.parent_id" required
-                                           theme="bootstrap"
-
-                                >
-
-                                    <ui-select-match placeholder="Select Principal Enrollee">
-                                        <span>{{$select.selected.first_name}} {{$select.selected.last_name}} - {{$select.selected.insurance_no}}</span>
-                                    </ui-select-match>
-
-                                    <ui-select-choices
-                                            repeat="item as item in (principals | filter: $select.search) track by item.id"
-                                            refresh="searchPrincipals($select.search)"
-                                    >
-                                        <span> {{item.first_name}} {{item.last_name}} - {{item.insurance_no}}</span>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>
-
-                            <label  class="col-sm-2 control-label" >Insurance No</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" required class="form-control"  ng-model="enrollee.insurance_no" placeholder="Insurance No">
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="enrollee-first-name" class="col-sm-2 control-label" >First Name</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" required class="form-control" id="enrollee-first-name" ng-model="enrollee.first_name" placeholder="First Name">
-                            </div>
-
-                            <label  class="col-sm-2 control-label">Last Name</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" required class="form-control" ng-model="enrollee.last_name"  placeholder="Last Name">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" >Birth Date</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" mask='9999/39/19' placeholder="YYYY/MM/DD" required class="form-control"  ng-model="enrollee.birthdate" >
-                            </div>
-
-                            <label  class="col-sm-2 control-label">Sex</label>
-
-                            <div class="radio col-sm-2" >
-                                <label>
-                                    <input  type="radio" name="sex" ng-model="enrollee.sex" value="M" >
-                                    Male
-                                </label>
-                            </div>
-
-                            <div class="radio col-sm-2" >
-                                <label>
-                                    <input  type="radio" name="sex" ng-model="enrollee.sex" value="F" >
-                                    Female
-                                </label>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" >Phone</label>
-
-                            <div class="col-sm-4">
-                                <input type="text"  class="form-control"  ng-model="enrollee.phone" placeholder="07088345435345">
-                            </div>
-
-                            <label  class="col-sm-2 control-label">Email Address</label>
-
-                            <div class="col-sm-4">
-                                <input type="text"  class="form-control" ng-model="enrollee.email"  placeholder="john@doe.com">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" >Address</label>
-
-                            <div class="col-sm-4">
-                                <input type="text" required class="form-control"  ng-model="enrollee.address" placeholder="">
-                            </div>
-
-                            <label  class="col-sm-2 control-label">State</label>
-
-                            <div class="col-md-4">
-
-                                <ui-select ng-model="enrollee.state_id"
-                                           theme="bootstrap"
-                                >
-
-                                    <ui-select-match placeholder="State">
-                                        <span>{{$select.selected.name}}</span>
-                                    </ui-select-match>
-
-                                    <ui-select-choices
-                                            repeat="item.id as item in (states | filter: $select.search) track by item.id"
-                                    >
-                                        <span> {{item.name}}</span>
-                                    </ui-select-choices>
-                                </ui-select>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" >Plan</label>
+                           <div class="form-group">
+                            <label class="col-sm-2 control-label" >Company</label>
 
                             <div class="col-sm-4">
                                 <ui-select ng-model="enrollee.enrollee_plan_id"
                                            theme="bootstrap"
                                 >
 
-                                    <ui-select-match placeholder="Select Enrollee's Plan">
+                                    <ui-select-match placeholder="Select Company">
                                         <span>{{$select.selected.name}}</span>
                                     </ui-select-match>
 
@@ -217,6 +48,106 @@
                                 </ui-select>
                             </div>
 
+                            <label  class="col-sm-2 control-label">Policy Description</label>
+
+                            <div class="col-md-4">
+
+                               <textarea class="form-control" rows="3" placeholder="Enter Description..."></textarea>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+
+                          <label class="col-sm-2 control-label" >Employee Class</label>
+
+                            <div class="col-sm-4">
+                                <ui-select ng-model="enrollee.enrollee_plan_id"
+                                           theme="bootstrap"
+                                >
+
+                                    <ui-select-match placeholder="Select ">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+
+                                    <ui-select-choices
+                                            repeat="item.id as item in (plans | filter: $select.search) track by item.id"
+                                    >
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+
+                            
+
+                        </div>
+
+                        <div class="form-group">
+
+
+                            <label class="col-sm-2 control-label" >Plan</label>
+
+                            <div class="col-sm-4">
+                                <ui-select ng-model="enrollee.enrollee_plan_id"
+                                           theme="bootstrap"
+                                >
+
+                                    <ui-select-match placeholder="Select Plan">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+
+                                    <ui-select-choices
+                                            repeat="item.id as item in (plans | filter: $select.search) track by item.id"
+                                    >
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+
+
+                           <label class="col-sm-2 control-label" >Premium</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="N23,323" disabled="">
+                            </div>
+
+
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >Start Date</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" mask='9999/39/19' placeholder="YYYY/MM/DD" required class="form-control"  ng-model="enrollee.birthdate" >
+                            </div>
+
+
+                            <label class="col-sm-2 control-label" >End Date</label>
+
+                            <div class="col-sm-4">
+                                <input type="text" mask='9999/39/19' placeholder="YYYY/MM/DD" required class="form-control"  ng-model="enrollee.birthdate" >
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" >Amount</label>
+
+                            <div class="col-sm-4">
+                                <input type="number"  class="form-control"  ng-model="enrollee.phone" placeholder="07088345435345">
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group">
                             <label  class="col-sm-2 control-label">Status</label>
 
                             <div class="col-md-4">
@@ -245,8 +176,8 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        <button type="button" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-success pull-right" ng-disabled="regForm.$invalid">Create</button>
+                        <button type="button" class="btn-lg btn-default">Cancel</button>
+                        <button type="submit" class="btn-lg btn-success pull-right" ng-disabled="regForm.$invalid">Create</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
