@@ -44,8 +44,8 @@ angular.module('BmsApp')
         //             return full.status.name
         //         else  return ''
         //     }),
-        DTColumnBuilder.newColumn('status_code').withTitle('Code').notSortable(),
-        DTColumnBuilder.newColumn('status').withTitle('Status').notSortable(),
+        DTColumnBuilder.newColumn('code').withTitle('Code').notSortable(),
+        DTColumnBuilder.newColumn('status.name').withTitle('Status').notSortable(),
         // DTColumnBuilder.newColumn('company_plan_id').withTitle('Plan')
         //             .renderWith(function (data,type,full) {
         //         if(full.plan)
