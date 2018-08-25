@@ -31,7 +31,14 @@
                                 <div class="form-group">
                                     <label for="settingsState" class="col-sm-2 control-label">State</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.state.name" type="text" class="form-control" id="settingsState" placeholder="State">
+                                        <ui-select ng-model="provider.state_id" theme="bootstrap" required>
+                                            <ui-select-match placeholder="State">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item.id as item in (states | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -52,8 +59,42 @@
                                         <input ng-model="provider.phone" type="text" class="form-control" id="settingsPhone" placeholder="Phone number">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="settingsProviderTeir" class="col-sm-2 control-label">Provider Teir</label>
+                                    <div class="col-sm-10">
+                                        <ui-select ng-model="provider.provider_tier_id" theme="bootstrap" required>
+                                            <ui-select-match placeholder="Tier">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item.id as item in (tiers | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsProviderRC" class="col-sm-2 control-label">Provider Status</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.rc_no" id="settingsProviderRC" class="form-control" type="text" name="rc_no" placeholder="RC Number"
+                                            maxlength="100" required>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="settingsProviderStatus" class="col-sm-2 control-label">Provider Status</label>
+                                    <div class="col-sm-10">
+                                        <ui-select ng-model="provider.provider_status_id" theme="bootstrap" required>
+                                            <ui-select-match placeholder="Status">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item.id as item in (statuses | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="settingsRepName" class="col-sm-2 control-label">Reps Name</label>
