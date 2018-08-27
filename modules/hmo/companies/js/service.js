@@ -19,6 +19,9 @@ angular.module('BmsApp')
                return $http.get(API_HOST+'/companies/'+id) 
             },
 
+            editCompany: function (id, data) {
+                return $http.post(API_HOST + '/companies/' + id + '/update', data)
+            },
 
             createNewCompany: function (obj) {
                 return $http.post(API_HOST+'/companies/create', obj);

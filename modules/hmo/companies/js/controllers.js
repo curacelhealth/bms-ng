@@ -137,10 +137,49 @@ angular.module('BmsApp')
 	})
 	.error(function(response){
 		console.log(response.message)
-	});
-	 $scope.companyUpdate = function (){
+    });
+
+    // Get all states
+    $scope.states = []
+    OptionService.getStates()
+        .success(function (resp) {
+            $scope.all_states = resp
+        })
+        .error(function (response) {
+            console.log(response.message);
+        });
+
+    // Get all status
+    $scope.all_status = []
+    CompaniesService.fetchAllStatus()
+        .success(function (response) {
+            $scope.all_status = response
+        })
+        .error(function (response) {
+            console.log(response.message);
+        });
+    
+    // Update company info
+	$scope.companyUpdate = function (){
         if ($scope.companyEditForm.$valid) {
-            var editedDataObj ='{id: "'+$scope.id+'",name: "'+$scope.name+'",email: "'+$scope.email+'",phone: "'+$scope.phone+'", website: "'+$scope.website+'",address: "'+$scope.address+'",state_id: "'+$scope.state_id+'",status_code: "'+$scope.status_code+'",company_plan_id: "'+$scope.company_plan_id+'",rep_name: "'+$scope.rep_name+'",rep_phone: "'+$scope.rep_phone+'",rep_email: "'+$scope.rep_email+'"}';
+            var editedDataObj = {
+                "name": $scope.name, "email": $scope.email, "phone": $scope.phone,
+                "website": $scope.website, "address": $scope.address, "state_id": $scope.state_id,
+                "status_code": $scope.status_code, "company_plan_id": $scope.company_plan_id,
+                "rep_name": $scope.rep_name, "rep_phone": $scope.rep_phone, "rep_email": $scope.rep_email,
+                "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id
+            };
+
+            CompaniesService.editCompany($stateParams.id, data)
+                .success(function (response) {
+                    $scope.all_status = response
+                })
+                .error(function (response) {
+                    console.log(response.message);
+                });
+        } else {
+            console.log('hi')
+            swal('Error!', 'KIndly fill all required fields', 'error')
         }
     }
 })
