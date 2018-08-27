@@ -21,10 +21,11 @@ angular.module('BmsApp')
 
             createNewCompany: function (obj) {
                 return $http.post(API_HOST+'/companies/create', obj);
-                
             },
 
-            
+            fetchAllStatus: function() {
+                return $http.get(API_HOST + '/company-statuses/') 
+            }
 
 
         };

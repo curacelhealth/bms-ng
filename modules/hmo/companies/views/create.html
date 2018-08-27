@@ -13,7 +13,6 @@
 
 <!-- Main content -->
 <section class="content container-fluid">
-
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
@@ -65,16 +64,7 @@
                             </div>
                             <label class="col-md-1 col-form-label">Status Code</label>
                             <div class="col-md-2">
-                                <ui-select ng-model="status_code" required theme="bootstrap">
-                                    <ui-select-match placeholder="Status Code">
-                                        <span>{{$select.selected.name}}</span>
-                                    </ui-select-match>
-                                    <ui-select-choices
-                                            repeat="item as item in (status | filter: $select.search) track by item.id"
-                                    >
-                                        <span> {{item.name}}</span>
-                                    </ui-select-choices>
-                                </ui-select>
+                                <status-select statuses="all_status" />
                             </div>
                         </div>
                         <div class="form-group ">
