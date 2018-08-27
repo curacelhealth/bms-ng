@@ -276,13 +276,36 @@ angular.module('BmsApp')
 
 //Settings tab controller
 .controller('ProviderSettingsTabCtrl', function ($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
-    // Instatiating provider scope
-    $scope.provider = {}
+    // Instatiating scope variables
+    $scope.provider = {};
+    $scope.statuses = [];
+    $scope.tiers = [];
+    $scope.states = [];
+
+    ProviderService.getProviderTier()
+        .success(function (response) {
+            $scope.tiers = response;
+        })
+        .error(function (response) {
+            console.log(response.message);
+        });
+
+    ProviderService.getProviderStatus()
+        .success(function (response) {
+            $scope.statuses = response;
+        })
+        .error(function (response) {
+            console.log(response.message);
+        });
+
+    OptionService.getStates().success(function (resp) {
+        $scope.states = resp;
+    });
 
     // Get provider details
     ProviderService.fetchSingleByID($stateParams.id)
         .success(function (response) {
-            $scope.provider = response
+            $scope.provider = response;
         })
         .error(function (response) {
             console.log(response.message);
@@ -300,7 +323,7 @@ angular.module('BmsApp')
                 swal('Success', 'Provider modified successfully', 'success');
             })
             .error(function (response) {
-                console.log(response.message);
+                showError("Error!", response.message);
             });
     }
 
