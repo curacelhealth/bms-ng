@@ -207,7 +207,7 @@ angular.module('BmsApp')
 })
 
 //Controller for company staff
-    .controller('HmoCompaniesStaffCtrl', function ($scope, $stateParams, CompaniesService, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, UserService, OptionService) {
+    .controller('CompaniesStaffTabCtrl', function ($scope, $stateParams, CompaniesService, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, UserService, OptionService) {
     var vm = this;
     vm.dtInstance = {}; //instance ref for data tables
     vm.filters = { provider_id: $stateParams.id }; // filters
@@ -232,7 +232,7 @@ angular.module('BmsApp')
 
         .withOption('fnRowCallback',
             function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                console.log('aData')
+                console.log(aData)
                 $compile(nRow)($scope); // this ensures angular directives are compiled after each row is created
             }
         );
@@ -252,10 +252,10 @@ angular.module('BmsApp')
             }),
 
         //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
-        DTColumnBuilder.newColumn('sex').withTitle('Sex')
-            .renderWith(function (data, type, full) {
-                return EnrolleeService.getSex(data)
-            }),
+        // DTColumnBuilder.newColumn('sex').withTitle('Sex')
+        //     .renderWith(function (data, type, full) {
+        //         return EnrolleeService.getSex(data)
+        //     }),
         DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
             .renderWith(function (data, type, full) {
                 if (full.plan)
