@@ -59,12 +59,19 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="settingsEmail" class="col-sm-2 control-label">Company Plan</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="settingsPlan" placeholder="Company Plan">
+                                        <ui-select id="settingsPlan" ng-model="company_plan_id" required theme="bootstrap">
+                                            <ui-select-match placeholder="Plan">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item as item in (plan | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="settingsRepName" class="col-sm-2 control-label">Reps Name</label>
                                     <div class="col-sm-10">
