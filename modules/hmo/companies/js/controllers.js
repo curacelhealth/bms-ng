@@ -205,3 +205,82 @@ angular.module('BmsApp')
 		console.log(response.message);
 	});
 })
+
+//Controller for company staff
+    .controller('HmoCompaniesStaffCtrl', function ($scope, $stateParams, CompaniesService, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, UserService, OptionService) {
+    var vm = this;
+    vm.dtInstance = {}; //instance ref for data tables
+    vm.filters = { provider_id: $stateParams.id }; // filters
+
+    //init options for datatable grid on this scope, using ajax for data source
+    vm.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('ajax', {
+            // Either you specify the AjaxDataProp here
+            // dataSrc: 'data',
+            url: CompaniesService.fetchListDTUrl(), // get url from service for datatable requests
+            type: 'GET',
+            data: vm.filters,
+            headers: {
+                Authorization: 'Bearer ' + UserService.loadToken() // add token for authentication
+            }
+        })
+        // or here
+        .withDataProp('data')
+        .withOption('processing', true)
+        .withOption('serverSide', true)
+        .withPaginationType('full_numbers')
+
+        .withOption('fnRowCallback',
+            function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                console.log('aData')
+                $compile(nRow)($scope); // this ensures angular directives are compiled after each row is created
+            }
+        );
+
+    vm.dtColumns = [
+
+        DTColumnBuilder.newColumn('id').withTitle('ID'),
+        DTColumnBuilder.newColumn('photo').withTitle('Photo').notSortable()
+            .renderWith(function (data, type, full) {
+                if (data) return "<img src='" + full.photo_thumb + "'/>"
+                else return ''
+            }),
+        DTColumnBuilder.newColumn('insurance_no').withTitle('Insurance No').notSortable(),
+        DTColumnBuilder.newColumn('first_name').withTitle('Name')
+            .renderWith(function (data, type, full) {
+                return data + ' ' + full.last_name
+            }),
+
+        //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
+        DTColumnBuilder.newColumn('sex').withTitle('Sex')
+            .renderWith(function (data, type, full) {
+                return EnrolleeService.getSex(data)
+            }),
+        DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
+            .renderWith(function (data, type, full) {
+                if (full.plan)
+                    return full.plan.name
+                else return ''
+            }),
+
+        DTColumnBuilder.newColumn('enrollee_status_code').withTitle('Status').notSortable()
+            .renderWith(function (data, type, full) {
+                if (full.status)
+                    return full.status.name
+                else return ''
+            }),
+        DTColumnBuilder.newColumn('created_at').withTitle('Created'),
+        DTColumnBuilder.newColumn('action').withTitle('').notSortable()
+            .renderWith(function (data, type, full) {
+                var actions = [];
+                var view = '<a  class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a>';
+                actions.push(view);
+
+                return actions.join(" ");
+            })
+    ];
+
+    DTDefaultOptions.setLanguage({
+        searchPlaceholder: "Search staff"
+    });
+})
