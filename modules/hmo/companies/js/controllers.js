@@ -207,17 +207,17 @@ angular.module('BmsApp')
 })
 
 //Controller for company staff
-    .controller('CompaniesStaffTabCtrl', function ($scope, $stateParams, CompaniesService, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, UserService, OptionService) {
+    .controller('CompaniesStaffTabCtrl', function ($scope, $compile, $stateParams, EnrolleeService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
     var vm = this;
     vm.dtInstance = {}; //instance ref for data tables
-    vm.filters = { provider_id: $stateParams.id }; // filters
+    vm.filters = { company_id: $stateParams.id }; // filters
 
     //init options for datatable grid on this scope, using ajax for data source
     vm.dtOptions = DTOptionsBuilder.newOptions()
         .withOption('ajax', {
             // Either you specify the AjaxDataProp here
             // dataSrc: 'data',
-            url: CompaniesService.fetchListDTUrl(), // get url from service for datatable requests
+            url: EnrolleeService.fetchListDTUrl(), // get url from service for datatable requests
             type: 'GET',
             data: vm.filters,
             headers: {
@@ -232,7 +232,7 @@ angular.module('BmsApp')
 
         .withOption('fnRowCallback',
             function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                console.log(aData)
+                console.log(nRow)
                 $compile(nRow)($scope); // this ensures angular directives are compiled after each row is created
             }
         );
@@ -252,10 +252,10 @@ angular.module('BmsApp')
             }),
 
         //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
-        // DTColumnBuilder.newColumn('sex').withTitle('Sex')
-        //     .renderWith(function (data, type, full) {
-        //         return EnrolleeService.getSex(data)
-        //     }),
+        DTColumnBuilder.newColumn('sex').withTitle('Sex')
+            .renderWith(function (data, type, full) {
+                return EnrolleeService.getSex(data)
+            }),
         DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
             .renderWith(function (data, type, full) {
                 if (full.plan)
@@ -281,6 +281,6 @@ angular.module('BmsApp')
     ];
 
     DTDefaultOptions.setLanguage({
-        searchPlaceholder: "Search staff"
+        searchPlaceholder: "Search enrollee"
     });
 })
