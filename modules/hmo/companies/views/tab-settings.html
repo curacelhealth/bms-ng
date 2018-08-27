@@ -1,12 +1,15 @@
 <div class="active tab-pane" id="settings">
-    <ul class="timeline" ng-controller="ProviderSettingsTabCtrl">
+
+
+    <ul class="timeline">
+
         <li>
             <i class="fa fa-envelope bg-blue"></i>
 
             <div class="timeline-item">
                 <span class="time"> ..</span>
 
-                <h3 class="timeline-header"><a href="#">Edit Provider Info</a></h3>
+                <h3 class="timeline-header"><a href="#">Edit Company Info</a></h3>
 
                 <div class="timeline-body">
                     <form class="form-horizontal">
@@ -19,99 +22,61 @@
                                 <div class="form-group">
                                     <label for="settingsName" class="col-sm-2 control-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.name" type="email" class="form-control" id="settingsName" placeholder="Name">
+                                        <input type="email" class="form-control" id="settingsName" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsAddress" class="col-sm-2 control-label">Address</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.address" type="text" class="form-control" id="settingsAddress" placeholder="Address">
+                                        <input type="email" class="form-control" id="settingsAddress" placeholder="Address">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsState" class="col-sm-2 control-label">State</label>
                                     <div class="col-sm-10">
-                                        <ui-select ng-model="provider.state_id" theme="bootstrap" required>
-                                            <ui-select-match placeholder="State">
-                                                <span>{{$select.selected.name}}</span>
-                                            </ui-select-match>
-                                            <ui-select-choices repeat="item.id as item in (states | filter: $select.search) track by item.id">
-                                                <span> {{item.name}}</span>
-                                            </ui-select-choices>
-                                        </ui-select>
+                                        <input type="text" class="form-control" id="settingsState" placeholder="State">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsWebsite" class="col-sm-2 control-label">Website</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.website" type="text" class="form-control" id="settingsWebsite" placeholder="Website url">
+                                        <textarea class="form-control" id="settingsWebsite" placeholder="Website"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsEmail" class="col-sm-2 control-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.email" type="email" class="form-control" id="settingsEmail" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsPhone" class="col-sm-2 control-label">Phone</label>
-                                    <div class="col-sm-10">
-                                        <input ng-model="provider.phone" type="text" class="form-control" id="settingsPhone" placeholder="Phone number">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsProviderTeir" class="col-sm-2 control-label">Provider Teir</label>
-                                    <div class="col-sm-10">
-                                        <ui-select ng-model="provider.provider_tier_id" theme="bootstrap" required>
-                                            <ui-select-match placeholder="Tier">
-                                                <span>{{$select.selected.name}}</span>
-                                            </ui-select-match>
-                                            <ui-select-choices repeat="item.id as item in (tiers | filter: $select.search) track by item.id">
-                                                <span> {{item.name}}</span>
-                                            </ui-select-choices>
-                                        </ui-select>
+                                        <input type="text" class="form-control" id="settingsEmail" placeholder="Email">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="settingsProviderRC" class="col-sm-2 control-label">Provider Status</label>
+                                    <label for="settingsEmail" class="col-sm-2 control-label">Company Plan</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.rc_no" id="settingsProviderRC" class="form-control" type="text" name="rc_no" placeholder="RC Number"
-                                            maxlength="100" required>
+                                        <input type="text" class="form-control" id="settingsEmail" placeholder="Company Plan">
                                     </div>
                                 </div>
+
+
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="settingsProviderStatus" class="col-sm-2 control-label">Provider Status</label>
-                                    <div class="col-sm-10">
-                                        <ui-select ng-model="provider.provider_status_id" theme="bootstrap" required>
-                                            <ui-select-match placeholder="Status">
-                                                <span>{{$select.selected.name}}</span>
-                                            </ui-select-match>
-                                            <ui-select-choices repeat="item.id as item in (statuses | filter: $select.search) track by item.id">
-                                                <span> {{item.name}}</span>
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label for="settingsRepName" class="col-sm-2 control-label">Reps Name</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.rep_name" type="text" class="form-control" id="settingsRepName" placeholder="Reps Name">
+                                        <input type="email" class="form-control" id="settingsRepName" placeholder="Reps Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsRepEmail" class="col-sm-2 control-label">Reps Email </label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.rep_email" type="email" class="form-control" id="settingsRepEmail" placeholder="Reps Email">
+                                        <input type="email" class="form-control" id="settingsRepEmail" placeholder="Reps Email">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsRepPhone" class="col-sm-2 control-label">Reps Phone</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.rep_phone" type="text" class="form-control" id="settingsRepPhone" placeholder="Reps Phone">
+                                        <input type="text" class="form-control" id="settingsRepPhone" placeholder="Reps Phone">
                                     </div>
                                 </div>
 
@@ -138,13 +103,13 @@
                     </form>
                 </div>
                 <div class="timeline-footer">
-                    <div class="form-group">
-                        <button type="button" 
-                                class="btn btn-block btn-primary" 
-                                ng-disabled="provider.rep_name == '' || provider.rep_email == '' || provider.rep_phone == ''"
-                                ng-click="updateProvider()">
-                            Save
-                        </button>
+
+                    <div class="row">
+                        <div class="col-md-4">           
+                            <div class="form-group">
+                                <button type="button" class="btn btn-block btn-primary">Save</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -155,20 +120,24 @@
             <i class="fa fa-user bg-aqua"></i>
 
             <div class="timeline-item">
+
                 <div class="timeline-body">
                     <div class="row">
                         <div class="col-md-3">
-                            To Delist Provider: Type DELIST
+                            To Delist Company: Type DELIST
                             <div class="input-group margin">
-                                <input type="text" ng-model="delist_keyword" class="form-control">
+                                <input type="text" class="form-control">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-flat" ng-click="delistProvider()">DELIST</button>
-                                </span>
+							                      <button type="button" class="btn btn-info btn-flat">DELIST</button>
+							                    </span>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+
+
         </li>
 
 
@@ -232,7 +201,16 @@
                                     </div>
                                 </div>
 
+                        <div class="row">
+
+
+
+                            <div class="col-md-4">
+
                                 <button type="button" class="btn btn-block btn-primary">Save</button>
+
+                            </div>
+                        </div>
 
 
                             </div>
@@ -283,4 +261,9 @@
         </li>
 
     </ul>
+
+
+
+
+
 </div>

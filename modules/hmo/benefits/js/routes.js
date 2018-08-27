@@ -47,5 +47,16 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
 
         })
 
+
+
+                  //Single Benefits view
+        .state('hmo.benefits.benefitView', {
+            url: "/view/:id",
+            templateUrl: "modules/hmo/benefits/views/view.html",
+           // controller: "HmoBenefitViewCtrl",
+            data: {pageTitle: 'Benefit Detail'},
+        })
+
+
     
 });
