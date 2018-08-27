@@ -32,22 +32,22 @@
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Email</label>
                             <div class="col-md-10">
-                                <input ng-model="email" class="form-control m-input" type="email" value="" id="email" required>
+                                <input ng-model="email" class="form-control m-input" type="email" value="" id="email">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Phone</label>
                             <div class="col-md-10">
-                                <input ng-model="phone" class="form-control m-input" type="tel" value="" id="phone" required>
+                                <input ng-model="phone" class="form-control m-input" type="text" value="" id="phone">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Website</label>
                             <div class="col-md-10">
-                                <input ng-model="website" class="form-control m-input" type="text" value="" id="number" required>
+                                <input ng-model="website" class="form-control m-input" type="text" value="" id="number">
                             </div>
                         </div>
-                        <div class="form-group ">
+                        <!-- <div class="form-group ">
                             <label class="col-md-2 col-form-label">Plan</label>
                             <div class="col-md-2">
                                 <ui-select ng-model="plan" required theme="bootstrap">
@@ -65,29 +65,29 @@
                             <div class="col-md-2">
                                 <status-select statuses="all_status" />
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Company Rep.Name</label>
                             <div class="col-md-10">
-                                <input ng-model="rep_name" class="form-control m-input" type="text" value="" id="comp_rep_name" required>
+                                <input ng-model="rep_name" class="form-control m-input" type="text" value="" id="comp_rep_name">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Rep. Telephone</label>
                             <div class="col-md-10">
-                                <input ng-model="rep_phone" class="form-control m-input" type="number" value="" id="rep_telephone" required>
+                                <input ng-model="rep_phone" class="form-control m-input" type="text" value="" id="rep_telephone">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Rep. Email</label>
                             <div class="col-md-10">
-                                <input ng-model="rep_email" class="form-control m-input" type="email" value="" id="rep_email" required>
+                                <input ng-model="rep_email" class="form-control m-input" type="email" value="" id="rep_email">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label  class="col-md-2 col-form-label">Address</label>
                             <div class="col-md-4">
-                                <textarea ng-model="address" class="form-control " id="exampleTextarea" rows="3"></textarea>
+                                <textarea ng-model="address" class="form-control " id="exampleTextarea" rows="3" required></textarea>
                             </div>
 
                             <label class="col-md-1">State</label>
@@ -123,7 +123,7 @@
                                 <div class="col-md-6">
                                     <label class="col-md-2 col-form-label">Parent Company</label>
                                     <div class="col-md-10">
-                                        <ui-select ng-model="parent_company_id" required theme="bootstrap">
+                                        <ui-select ng-model="parent_company_id" theme="bootstrap">
                                             <ui-select-match placeholder="Parent Company">
                                                 <span>{{$select.selected.name}}</span>
                                             </ui-select-match>
