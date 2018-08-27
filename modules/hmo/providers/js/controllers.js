@@ -318,17 +318,13 @@ angular.module('BmsApp')
             provider: $scope.provider
         };
 
-        if (providerEditForm.$valid) {
-            ProviderService.editSingleProvider($stateParams.id, newDataObj)
-                .success(function (resp) {
-                    swal('Success', 'Provider modified successfully', 'success')
-                })
-                .error(function (response) {
-                    showError("Error!", response.message);
-                });
-        }else {
-            swal('Error', 'Kindly fill all required fields', 'error')
-        }
+        ProviderService.editSingleProvider($stateParams.id, newDataObj)
+            .success(function (resp) {
+                swal('Success', 'Provider modified successfully', 'success')
+            })
+            .error(function (response) {
+                showError("Error!", response.message);
+            });
     }
 
     // Delisting provider
