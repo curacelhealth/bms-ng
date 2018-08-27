@@ -320,7 +320,7 @@ angular.module('BmsApp')
 
         ProviderService.editSingleProvider($stateParams.id, newDataObj)
             .success(function (resp) {
-                swal('Success', 'Provider modified successfully', 'success');
+                swal('Success', 'Provider modified successfully', 'success')
             })
             .error(function (response) {
                 showError("Error!", response.message);
