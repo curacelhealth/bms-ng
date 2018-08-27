@@ -3,8 +3,6 @@
  */
 angular.module('BmsApp').config(function($stateProvider) {
 
-
-
     $stateProvider
 
     //parent state
@@ -22,8 +20,6 @@ angular.module('BmsApp').config(function($stateProvider) {
                             'modules/hmo/providers/js/service.js',
                             'modules/hmo/providers/js/controllers.js',
                             'modules/hmo/enrollees/js/service.js',
-
-
                         ]
                     });
                 }]
@@ -36,7 +32,6 @@ angular.module('BmsApp').config(function($stateProvider) {
             templateUrl: "modules/hmo/providers/views/list.html",
             controller: "ProvidersListCtrl",
             data: {pageTitle: 'Providers'},
-
         })
 
         //providers unit view
@@ -53,7 +48,6 @@ angular.module('BmsApp').config(function($stateProvider) {
             templateUrl: "modules/hmo/providers/views/create.html",
             controller: "ProvidersCreateCtrl",
             data: {pageTitle: 'Providers'},
-
         })
     
 });

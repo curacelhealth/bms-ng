@@ -34,26 +34,27 @@ angular.module('BmsApp')
     $scope.dtColumns = [
     	DTColumnBuilder.newColumn('id').withTitle('ID'),
         DTColumnBuilder.newColumn('name').withTitle('Company Name').notSortable(),
-        DTColumnBuilder.newColumn('email').withTitle('Email'),        
-        DTColumnBuilder.newColumn('phone').withTitle('Phone'),
-        DTColumnBuilder.newColumn('website').withTitle('Website'),
-        DTColumnBuilder.newColumn('address').withTitle('Address'),
-        DTColumnBuilder.newColumn('state_id').withTitle('State')
-                 .renderWith(function(data,type,full) {
-                if(full.status)
-                    return full.status.name
-                else  return ''
-            }),
-        DTColumnBuilder.newColumn('status_code').withTitle('Status Code'),
-        DTColumnBuilder.newColumn('company_plan_id').withTitle('Plan')
-                    .renderWith(function (data,type,full) {
-                if(full.plan)
-                    return full.plan.name
-                else  return ''
-            }),
-        DTColumnBuilder.newColumn('rep_name').withTitle('Rep.Name'),
-        DTColumnBuilder.newColumn('rep_phone').withTitle('Rep.Phone'),
-        DTColumnBuilder.newColumn('rep_email').withTitle('Rep.Email'),
+        // DTColumnBuilder.newColumn('email').withTitle('Email'),        
+        // DTColumnBuilder.newColumn('phone').withTitle('Phone'),
+        // DTColumnBuilder.newColumn('website').withTitle('Website'),
+        // DTColumnBuilder.newColumn('address').withTitle('Address'),
+        // DTColumnBuilder.newColumn('state_id').withTitle('State')
+        //          .renderWith(function(data,type,full) {
+        //         if(full.status)
+        //             return full.status.name
+        //         else  return ''
+        //     }),
+        DTColumnBuilder.newColumn('code').withTitle('Code').notSortable(),
+        DTColumnBuilder.newColumn('status.name').withTitle('Status').notSortable(),
+        // DTColumnBuilder.newColumn('company_plan_id').withTitle('Plan')
+        //             .renderWith(function (data,type,full) {
+        //         if(full.plan)
+        //             return full.plan.name
+        //         else  return ''
+        //     }),
+        // DTColumnBuilder.newColumn('rep_name').withTitle('Rep.Name'),
+        // DTColumnBuilder.newColumn('rep_phone').withTitle('Rep.Phone'),
+        // DTColumnBuilder.newColumn('rep_email').withTitle('Rep.Email'),
         DTColumnBuilder.newColumn('action').withTitle('').notSortable()
              .renderWith(function(data, type, full, meta) {
                 return '<a ui-sref="hmo.companies.companiesView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>&nbsp;'
@@ -63,6 +64,23 @@ angular.module('BmsApp')
 
 // //company create controller
  .controller('HmoCompaniesCreateCtrl', function($scope,$activityIndicator,UserService,$state,OptionService,CompaniesService) {
+     $scope.all_status = []
+     CompaniesService.fetchAllStatus()
+         .success(function (response) {
+             $scope.all_status = response
+         })
+         .error(function (response) {
+             console.log(response.message);
+         });
+
+    $scope.companies = []
+    CompaniesService.fetchList('', 50)
+    .success(function(response) {
+        $scope.companies = response
+    })
+    .error(function(response) {
+        console.log(response)
+    })
 
     $scope.states = []
     OptionService.getStates().success(function (resp) {
@@ -70,22 +88,26 @@ angular.module('BmsApp')
     });
     
     $scope.createCompany = function() {
-    	if ($scope.companyCreateForm.$valid) {
-    	var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
-    	"website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
-    	"status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
-    	"rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email};
-    	CompaniesService.createNewCompany(newDataObj)
-    	.success(function(response) {
-    		$('#companyCreateForm')[0].reset();
-    		$scope.state = {};
-            console.log(response.id);
-            swal('Success', 'Company created successfully', 'success');
-     	})
-    	.error(function(response) {
-    		console.log(response.message);
-    	});
+        if ($scope.createCompanyForm.$valid) {
+            var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
+            "website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
+            "status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
+            "rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email,
+            "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id};
+            CompaniesService.createNewCompany(newDataObj)
+            .success(function(response) {
+                $('#companyCreateForm')[0].reset();
+                $scope.state = {};
+                swal('Success', 'Company created successfully', 'success');
+            })
+            .error(function(response) {
+                console.log(response.message);
+            });
     	}
+    }
+
+    $scope.resetForm = function() {
+        $state.reload()
     }
 })
 
@@ -143,5 +165,4 @@ angular.module('BmsApp')
 	.error(function(response){
 		console.log(response.message);
 	});
-});
-
+})

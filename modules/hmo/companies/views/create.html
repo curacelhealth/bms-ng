@@ -13,7 +13,6 @@
 
 <!-- Main content -->
 <section class="content container-fluid">
-
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
@@ -65,16 +64,7 @@
                             </div>
                             <label class="col-md-1 col-form-label">Status Code</label>
                             <div class="col-md-2">
-                                <ui-select ng-model="status_code" required theme="bootstrap">
-                                    <ui-select-match placeholder="Status Code">
-                                        <span>{{$select.selected.name}}</span>
-                                    </ui-select-match>
-                                    <ui-select-choices
-                                            repeat="item as item in (status | filter: $select.search) track by item.id"
-                                    >
-                                        <span> {{item.name}}</span>
-                                    </ui-select-choices>
-                                </ui-select>
+                                <status-select statuses="all_status" />
                             </div>
                         </div>
                         <div class="form-group ">
@@ -121,13 +111,38 @@
 
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="col-md-2 col-form-label">Staff Strength</label>
+                                    <div class="col-md-10">
+                                        <input ng-model="strength" type="number" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="col-md-2 col-form-label">Parent Company</label>
+                                    <div class="col-md-10">
+                                        <ui-select ng-model="parent_company_id" required theme="bootstrap">
+                                            <ui-select-match placeholder="Parent Company">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                        
+                                            <ui-select-choices repeat="item as item in (companies | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button ng-click="createCompany()" type="submit" class="btn btn-success">Submit</button>
-                        <button type="reset" class="btn btn-secondary">Cancel</button>
-
+                        <button ng-disabled="createCompanyForm.$invalid" ng-click="createCompany()" type="submit" class="btn btn-success">Submit</button>
+                        <button type="button" ng-click="resetForm()" class="btn btn-secondary">Cancel</button>
                     </div>
                 </form>
             </div>

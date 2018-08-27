@@ -5,15 +5,6 @@
                 <img class="profile-user-img img-responsive" src="assets/img/logo_default_dark.png" alt="Provider Image">
                 <h3 class="profile-username text-center">{{provider.name}}</h3>
             </div>
-
-            
-    <div class="row form-group text-center">
-        <div class="col-xs-12">
-            <button ng-hide="editView" ng-click="editProvider()" class="btn btn-primary">EDIT</button>
-            <button ng-show="editView" ng-click="updateProvider()" ng-disabled="providerEditForm.$invalid" class="btn btn-primary">SUBMIT</button>
-            <button ng-show="editView" ng-click="resetProvider()" class="btn btn-danger">CANCEL</button>
-        </div>
-    </div>
         </div>
         <div class="col-md-4">
             <div class="box">

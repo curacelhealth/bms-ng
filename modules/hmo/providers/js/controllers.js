@@ -185,26 +185,10 @@ angular.module('BmsApp')
         console.log(response.message);
     });
 
-    $scope.editProvider = function(){
-    	$scope.backupProvider = $scope.provider;
-    	$scope.editView = true;
-    }
-
-    $scope.updateProvider = function (){
-        var newDataObj = {
-            id: $scope.provider.id,
-            provider: $scope.provider
-        };
-
-        ProviderService.editSingleProvider($scope.id, newDataObj)
-        .success(function (resp) {
-            $scope.editView = false;
-            swal('Success', 'Provider modified successfully', 'success');
-        })
-        .error(function(response){
-            console.log(response.message);
-        });
-    }
+    // $scope.editProvider = function(){
+    // 	$scope.backupProvider = $scope.provider;
+    // 	$scope.editView = true;
+    // }
 
     $scope.resetProvider = function(){
     	$scope.provider = $scope.backupProvider;
@@ -289,3 +273,76 @@ angular.module('BmsApp')
             searchPlaceholder: "Search enrollee"
     });
 })
+
+//Settings tab controller
+.controller('ProviderSettingsTabCtrl', function ($scope, $compile, $activityIndicator, $state, $stateParams, ProviderService, EnrolleeService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
+    // Instatiating scope variables
+    $scope.provider = {};
+    $scope.statuses = [];
+    $scope.tiers = [];
+    $scope.states = [];
+
+    ProviderService.getProviderTier()
+        .success(function (response) {
+            $scope.tiers = response;
+        })
+        .error(function (response) {
+            console.log(response.message);
+        });
+
+    ProviderService.getProviderStatus()
+        .success(function (response) {
+            $scope.statuses = response;
+        })
+        .error(function (response) {
+            console.log(response.message);
+        });
+
+    OptionService.getStates().success(function (resp) {
+        $scope.states = resp;
+    });
+
+    // Get provider details
+    ProviderService.fetchSingleByID($stateParams.id)
+        .success(function (response) {
+            $scope.provider = response;
+        })
+        .error(function (response) {
+            console.log(response.message);
+        });
+
+    // Updating provider info
+    $scope.updateProvider = function () {
+        var newDataObj = {
+            id: $scope.provider.id,
+            provider: $scope.provider
+        };
+
+        ProviderService.editSingleProvider($stateParams.id, newDataObj)
+            .success(function (resp) {
+                swal('Success', 'Provider modified successfully', 'success');
+            })
+            .error(function (response) {
+                showError("Error!", response.message);
+            });
+    }
+
+    // Delisting provider
+    $scope.delistProvider = function () {
+        var delist_keyword = $scope.delist_keyword
+        if (delist_keyword == "DELIST") {
+            ProviderService.delistSingleProvider($stateParams.id)
+                .success(function (response) {
+                    swal('Notification', "Provider DELISTED from system", 'info');
+                    $state.go('hmo.providers.providersList')
+                })
+                .error(function (response) {
+                    console.log(response.message);
+                });
+        } else if (delist_keyword == undefined) {
+            swal('Warning', "Type 'DELIST' to delist this provider", 'warning');
+        }else {
+            swal('Warning', "Type 'DELIST' to delist this provider", 'warning');
+        }
+    }
+});

@@ -6,7 +6,7 @@ angular.module('BmsApp')
 
         return {
             fetchList: function (search,limit) {
-                 var qs = $httpParamSerializer({search:search||'', limit:limit||5})
+                var qs = $httpParamSerializer({search:search||'', limit:limit||5})
                 return $http.get(API_HOST+'/companies/?'+qs);
             },
 
@@ -22,10 +22,11 @@ angular.module('BmsApp')
 
             createNewCompany: function (obj) {
                 return $http.post(API_HOST+'/companies/create', obj);
-                
             },
 
-            
+            fetchAllStatus: function() {
+                return $http.get(API_HOST + '/company-statuses/') 
+            }
 
 
         };
