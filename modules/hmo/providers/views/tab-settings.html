@@ -15,7 +15,9 @@
                                 <div class="form-group">
                                     <label for="settingsName" class="col-sm-2 control-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.name" type="email" class="form-control" id="settingsName" placeholder="Name" required>
+
+                                        <input ng-model="provider.name" type="text" class="form-control" id="settingsName" placeholder="Name" required>
+
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -56,9 +58,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="settingsProviderTeir" class="col-sm-2 control-label">Provider Teir</label>
+                                    <label for="settingsTier" class="col-sm-2 control-label">Provider Teir</label>
                                     <div class="col-sm-10">
-                                        <ui-select ng-model="provider.provider_tier_id" theme="bootstrap" required>
+                                        <ui-select ng-model="provider.provider_tier_id" id="settingsTier" theme="bootstrap" required>
                                             <ui-select-match placeholder="Tier">
                                                 <span>{{$select.selected.name}}</span>
                                             </ui-select-match>
@@ -70,18 +72,18 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="settingsProviderRC" class="col-sm-2 control-label">Provider Status</label>
+                                    <label for="settingsProviderRC" class="col-sm-2 control-label">Provider RC Number</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.rc_no" id="settingsProviderRC" class="form-control" type="text" name="rc_no" placeholder="RC Number"
+                                        <input ng-model="provider.rc_no" id="settingsProviderRC" class="form-control" type="number" name="rc_no" placeholder="RC Number"
                                             maxlength="100" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="settingsProviderStatus" class="col-sm-2 control-label">Provider Status</label>
+                                    <label for="settingsStatus" class="col-sm-2 control-label">Provider Status</label>
                                     <div class="col-sm-10">
-                                        <ui-select ng-model="provider.provider_status_id" theme="bootstrap" required>
+                                        <ui-select ng-model="provider.provider_status_id" id="settingsStatus" theme="bootstrap" required>
                                             <ui-select-match placeholder="Status">
                                                 <span>{{$select.selected.name}}</span>
                                             </ui-select-match>
@@ -132,7 +134,7 @@
                     <div class="form-group">
                         <button type="button" 
                                 class="btn btn-block btn-primary" 
-                                ng-disabled="provider.rep_name == '' || provider.rep_email == '' || provider.rep_phone == ''"
+                                ng-disabled="providerEditForm.$invalid"
                                 ng-click="updateProvider()">
                             Save
                         </button>
