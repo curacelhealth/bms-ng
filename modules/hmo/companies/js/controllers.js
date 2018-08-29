@@ -88,16 +88,15 @@ angular.module('BmsApp')
     });
     
     $scope.createCompany = function() {
-        if ($scope.createCompanyForm.$valid) {
-            var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
-            "website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
-            "status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
-            "rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email,
-            "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id};
-            CompaniesService.createNewCompany(newDataObj)
+        if (true) {
+            // var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
+            // "website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
+            // "status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
+            // "rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email,
+            // "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id};
+            CompaniesService.createNewCompany($scope.company)
             .success(function(response) {
-                $('#companyCreateForm')[0].reset();
-                $scope.state = {};
+                $scope.provider = {};
                 swal('Success', 'Company created successfully', 'success');
             })
             .error(function(response) {
@@ -112,8 +111,8 @@ angular.module('BmsApp')
 })
 
 
-//Controller for company edit
-.controller('HmoCompaniesEditCtrl', function($scope,$stateParams,CompaniesService,OptionService) {
+//Controller for single company
+.controller('HmoCompaniesViewCtrl', function($scope,$stateParams,CompaniesService,OptionService) {
 	CompaniesService.fetchSingleByID($stateParams.id)
 	.success(function(response) {
 		$scope.state ={};
@@ -184,30 +183,8 @@ angular.module('BmsApp')
     }
 })
 
-//Company View Controller
-    .controller('HmoCompaniesViewCtrl', function ($scope, $compile, $stateParams, CompaniesService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder) {
-	CompaniesService.fetchSingleByID($stateParams.id)
-	.success(function(response) {
-		$scope.id = response.id;
-		$scope.name = response.name;
-		$scope.email = response.email;
-		$scope.phone = parseInt(response.phone, 13);
-		$scope.website = response.website;
-		$scope.address = response.address;
-		$scope.state_id = response.state_id;
-		$scope.status_code = parseInt(response.status_code, 5);
-		$scope.company_plan_id = response.company_plan_id;
-		$scope.rep_name = response.rep_name;
-		$scope.rep_phone = parseInt(response.rep_phone, 13);
-		$scope.rep_email = response.rep_email;
-	})
-	.error(function(response){
-		console.log(response.message);
-	});
-})
-
 //Controller for company staff
-    .controller('CompaniesStaffTabCtrl', function ($scope, $compile, $stateParams, EnrolleeService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
+.controller('CompaniesStaffTabCtrl', function ($scope, $compile, $stateParams, EnrolleeService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
     var vm = this;
     vm.dtInstance = {}; //instance ref for data tables
     vm.filters = { company_id: $stateParams.id }; // filters
