@@ -1,7 +1,7 @@
 /**
  * Created by JFlash on 7/31/18.
  */
-angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
+angular.module('BmsApp').config(function($stateProvider) {
 
 
 

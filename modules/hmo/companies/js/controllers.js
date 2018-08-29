@@ -185,7 +185,7 @@ angular.module('BmsApp')
 })
 
 //Company View Controller
-.controller('HmoCompaniesViewCtrl', function($scope,$stateParams,CompaniesService) {
+    .controller('HmoCompaniesViewCtrl', function ($scope, $compile, $stateParams, CompaniesService, OptionService, UserService, DTColumnBuilder, DTOptionsBuilder) {
 	CompaniesService.fetchSingleByID($stateParams.id)
 	.success(function(response) {
 		$scope.id = response.id;
