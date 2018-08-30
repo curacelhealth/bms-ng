@@ -348,6 +348,8 @@ angular.module('BmsApp')
 })
 
 .controller('providersBulkImportExportCtrl', function ($scope, $state, ProviderService) {
+    $scope.auth_token = localStorage.getItem('curacel_auth_token');
+
     $scope.uploadFile = function () {
         var file = $scope.myFile;
         ProviderService.uploadProvidersByExcel(file)
@@ -356,23 +358,7 @@ angular.module('BmsApp')
                 $state.reload()
             })
             .error(function (response) {
-                console.log(response.message);
-            });
-    };
-
-    $scope.exportProviders = function() {
-        var token = localStorage.getItem('curacel_auth_token')
-        ProviderService.importProvidersByExcel(token)
-            .success(function (response) {
-                var hiddenElement = document.createElement('a');
-
-                hiddenElement.href = 'data:attachment/csv;base64,' + encodeURI(response);
-                hiddenElement.target = '_blank';
-                hiddenElement.download = 'providers_list.csv';
-                hiddenElement.click();
-            })
-            .error(function (response) {
-                console.log(response.message);
+                swal('Error!', response.message, 'error');
             });
     }
 });
