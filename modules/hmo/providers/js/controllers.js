@@ -349,13 +349,25 @@ angular.module('BmsApp')
 
 .controller('providersBulkImportExportCtrl', function ($scope, $state, ProviderService) {
     $scope.auth_token = localStorage.getItem('curacel_auth_token');
+    $scope.btn_disable = false
+
+    $scope.openImportModal = function () {
+        $('#importModal').modal('show')
+    }
+
+    $scope.uploadExcelFile = function() {
+        document.getElementById('upload-excel-input').click()
+    }
 
     $scope.uploadFile = function () {
+        $scope.btn_disable = true
         var file = $scope.myFile;
         ProviderService.uploadProvidersByExcel(file)
             .success(function (response) {
+                $scope.btn_disable = false
+                $('#importModal').modal('hide');
+                // $state.reload();
                 swal('Success', "Providers successfully imported", 'success');
-                $state.reload()
             })
             .error(function (response) {
                 swal('Error!', response.message, 'error');

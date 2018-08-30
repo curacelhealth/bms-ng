@@ -13,7 +13,7 @@
 <section class="content container-fluid">
     <div class="margin-bottom">
         <button ui-sref="hmo.providers.providersCreate" class="btn btn-primary">Create New Provider</button>
-        <button class="btn btn-info" data-toggle="modal" data-target="#importModal">
+        <button class="btn btn-info" ng-click="openImportModal()" ng-controller="providersBulkImportExportCtrl">
             <i class="fa fa-upload"></i> Import Providers
         </button>
     </div>
@@ -24,7 +24,7 @@
     </div>
 
     <div class="pull-right" ng-controller="providersBulkImportExportCtrl">
-        <a ng-href="https://api.dev.bms.curacel.co/providers/export?token={{auth_token}}" class="btn btn-info">
+        <a ng-href="https://api.dev.bms.curacel.co/providers/export?token={{auth_token}}" class="btn btn-warning">
             <i class="fa fa-download"></i> Export Providers
         </a>
     </div>
@@ -37,16 +37,37 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title" id="importModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="importModalLabel">Upload Bulk Providers</h4>
                 </div>
                 <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        Upload your excel file by clicking the button below, 
+                        <a href="./providers-list-sample.xlsx" target="_blank" style="color: #000000;">here is a sample excel file</a> 
+                        showing how the excel columns should be arranged.
+                    </div>
+
+                    <br />
+
                     <center>
-                        <input type="file" file-model="myFile" />
+                        <!-- <input type="file" 
+                                file-model="myFile" 
+                                id="upload-excel-input"
+                                style="display: none;" /> -->
+                        <input type="file" file-model="myFile" id="upload-excel-input" />
+
+                        <!-- <button class="btn btn-info" 
+                                ng-click="uploadExcelFile()"
+                                ng-disabled="btn_disable == true"
+                                >
+                            Click to upload file
+                        </button> -->
                     </center>
+
+                    <br />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="uploadFile()">Upload File</button>
+                    <button type="button" class="btn btn-primary" ng-click="uploadFile()" ng-disabled="btn_disable == true">Upload File</button>
                 </div>
             </div>
         </div>
