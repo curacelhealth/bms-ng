@@ -98,6 +98,7 @@ angular.module('BmsApp')
             .success(function(response) {
                 $scope.provider = {};
                 swal('Success', 'Company created successfully', 'success');
+                $state.go('hmo.companies.companiesList')
             })
             .error(function(response) {
                 console.log(response);
