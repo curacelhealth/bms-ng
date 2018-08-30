@@ -13,7 +13,7 @@
 <section class="content container-fluid">
     <div class="margin-bottom">
         <button ui-sref="hmo.providers.providersCreate" class="btn btn-primary">Create New Provider</button>
-        <div class="pull-right" ng-controller="providersExcelUploadCtrl">
+        <div class="pull-right" ng-controller="providersBulkImportExportCtrl">
             <input type="file" file-model="myFile" />
             <button ng-click="uploadFile()" class="btn btn-info">
                 <i class="fa fa-upload"></i> Import Providers
@@ -24,6 +24,12 @@
         <div class="box-body">
             <table datatable="" dt-options="showCase.dtOptions" dt-columns="showCase.dtColumns" class="table-striped row-border hover"></table>
         </div>
+    </div>
+
+    <div class="pull-right" ng-controller="providersBulkImportExportCtrl">
+        <button ng-click="exportProviders()" class="btn btn-info">
+            <i class="fa fa-download"></i> Export Providers
+        </button>
     </div>
 </section>
 

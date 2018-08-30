@@ -28,6 +28,10 @@ angular.module('BmsApp')
                 });
             },
 
+            importProvidersByExcel: function (token) {
+                return $http.get(API_HOST + '/providers/export?token=' + token);
+            },
+
             createNewProvider: function (obj) {
                 return $http.post(API_HOST+'/providers/create', obj);
             },
