@@ -19,6 +19,15 @@ angular.module('BmsApp')
                 return $http.get(API_HOST+'/providers/'+id);
             },
 
+            uploadProvidersByExcel: function (file) {
+                var fd = new FormData();
+                fd.append('file', file);
+                return $http.post(API_HOST + '/providers/import', fd, {
+                    transformRequest: angular.identity,
+                    headers: { 'Content-Type': undefined }
+                });
+            },
+
             createNewProvider: function (obj) {
                 return $http.post(API_HOST+'/providers/create', obj);
             },

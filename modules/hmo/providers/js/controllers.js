@@ -345,4 +345,18 @@ angular.module('BmsApp')
             swal('Warning', "Type 'DELIST' to delist this provider", 'warning');
         }
     }
+})
+
+.controller('providersExcelUploadCtrl', function ($scope, $state, ProviderService) {
+    $scope.uploadFile = function () {
+        var file = $scope.myFile;
+        ProviderService.uploadProvidersByExcel(file)
+            .success(function (response) {
+                swal('Success', "Providers successfully imported", 'success');
+                $state.reload()
+            })
+            .error(function (response) {
+                console.log(response.message);
+            });
+    };
 });

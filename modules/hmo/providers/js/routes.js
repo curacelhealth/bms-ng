@@ -20,6 +20,7 @@ angular.module('BmsApp').config(function($stateProvider) {
                             'modules/hmo/providers/js/service.js',
                             'modules/hmo/providers/js/controllers.js',
                             'modules/hmo/enrollees/js/service.js',
+                            'modules/hmo/providers/js/directives.js'
                         ]
                     });
                 }]
