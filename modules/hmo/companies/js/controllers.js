@@ -100,7 +100,7 @@ angular.module('BmsApp')
                 swal('Success', 'Company created successfully', 'success');
             })
             .error(function(response) {
-                console.log(response.message);
+                console.log(response);
             });
     	}
     }
