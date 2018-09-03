@@ -17,7 +17,6 @@ angular.module('BmsApp')
 
             fetchSingleByID: function (id) {
                return $http.get(API_HOST+'/companies/'+id) 
-
             },
 
             editCompany: function (id, data) {
@@ -30,6 +29,10 @@ angular.module('BmsApp')
 
             fetchAllStatus: function() {
                 return $http.get(API_HOST + '/company-statuses/') 
+            },
+
+            delistCompany: function (id) {
+                return $http.delete(API_HOST + '/companies/' + id)
             }
         };
 });

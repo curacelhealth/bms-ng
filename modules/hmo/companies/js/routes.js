@@ -11,7 +11,7 @@ angular.module('BmsApp').config(function($stateProvider) {
             url: "/companies",
             abstract: true,
             views:{"dash":{template:"<ui-view/>"}},
-
+ 
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load({

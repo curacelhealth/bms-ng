@@ -88,22 +88,23 @@ angular.module('BmsApp')
     });
     
     $scope.createCompany = function() {
-        if (true) {
+        console.log($scope.company)
+        // if (true) {
             // var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
             // "website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
             // "status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
             // "rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email,
             // "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id};
-            CompaniesService.createNewCompany($scope.company)
-            .success(function(response) {
-                $scope.provider = {};
-                swal('Success', 'Company created successfully', 'success');
-                $state.go('hmo.companies.companiesList')
-            })
-            .error(function(response) {
-                console.log(response);
-            });
-    	}
+            // CompaniesService.createNewCompany($scope.company)
+            // .success(function(response) {
+            //     $scope.provider = {};
+            //     swal('Success', 'Company created successfully', 'success');
+            //     $state.go('hmo.companies.companiesList')
+            // })
+            // .error(function(response) {
+            //     swal('Error!', response.message, 'error');
+            // });
+    	// }
     }
 
     $scope.resetForm = function() {
@@ -113,7 +114,7 @@ angular.module('BmsApp')
 
 
 //Controller for single company
-.controller('HmoCompaniesViewCtrl', function($scope,$stateParams,CompaniesService,OptionService) {
+    .controller('HmoCompaniesViewCtrl', function ($scope,$state,$stateParams,CompaniesService,OptionService) {
 	CompaniesService.fetchSingleByID($stateParams.id)
 	.success(function(response) {
 		$scope.state ={};
@@ -175,11 +176,31 @@ angular.module('BmsApp')
                     $scope.all_status = response
                 })
                 .error(function (response) {
-                    console.log(response.message);
+                    swal('Error!', response.message, 'error')
                 });
         } else {
             console.log('hi')
             swal('Error!', 'KIndly fill all required fields', 'error')
+        }
+    }
+
+    // Delisting company
+    $scope.delist = {}
+    $scope.delistCompany = function () {
+        console.log($scope.delist.delist_keyword)
+        if ($scope.delist.delist_keyword == "DELIST") {
+            CompaniesService.delistCompany($stateParams.id)
+                .success(function (response) {
+                    swal('Notification', "Company DELISTED from system", 'info');
+                    $state.go('hmo.companies.companiesList')
+                })
+                .error(function (response) {
+                    swal('Error!', response.message, 'error')
+                });
+        } else if ($scope.delist.delist_keyword == undefined) {
+            swal('Warning', "Type 'DELIST' to delist this company", 'warning');
+        } else {
+            swal('Warning', "Type 'DELIST' to delist this company", 'warning');
         }
     }
 })
