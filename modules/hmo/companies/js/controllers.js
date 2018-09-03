@@ -187,7 +187,6 @@ angular.module('BmsApp')
     // Delisting company
     $scope.delist = {}
     $scope.delistCompany = function () {
-        console.log($scope.delist.delist_keyword)
         if ($scope.delist.delist_keyword == "DELIST") {
             CompaniesService.delistCompany($stateParams.id)
                 .success(function (response) {
