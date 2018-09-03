@@ -87,24 +87,31 @@ angular.module('BmsApp')
         $scope.states = resp
     });
     
+    $scope.status = {}
+    $scope.state = {}
+    $scope.parent = {}
+    $scope.company = {}
     $scope.createCompany = function() {
+        $scope.company.status_code = $scope.status.code
+        $scope.company.state_id = $scope.state.id
+        $scope.company.parent_company_id = $scope.parent.id
         console.log($scope.company)
-        // if (true) {
+        if (true) {
             // var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
             // "website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
             // "status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
             // "rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email,
             // "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id};
-            // CompaniesService.createNewCompany($scope.company)
-            // .success(function(response) {
-            //     $scope.provider = {};
-            //     swal('Success', 'Company created successfully', 'success');
-            //     $state.go('hmo.companies.companiesList')
-            // })
-            // .error(function(response) {
-            //     swal('Error!', response.message, 'error');
-            // });
-    	// }
+            CompaniesService.createNewCompany($scope.company)
+            .success(function(response) {
+                $scope.provider = {};
+                swal('Success', 'Company created successfully', 'success');
+                $state.go('hmo.companies.companiesList')
+            })
+            .error(function(response) {
+                swal('Error!', response.message, 'error');
+            });
+    	}
     }
 
     $scope.resetForm = function() {
@@ -114,7 +121,7 @@ angular.module('BmsApp')
 
 
 //Controller for single company
-    .controller('HmoCompaniesViewCtrl', function ($scope,$state,$stateParams,CompaniesService,OptionService) {
+.controller('HmoCompaniesViewCtrl', function ($scope,$state,$stateParams,CompaniesService,OptionService) {
 	CompaniesService.fetchSingleByID($stateParams.id)
 	.success(function(response) {
 		$scope.state ={};

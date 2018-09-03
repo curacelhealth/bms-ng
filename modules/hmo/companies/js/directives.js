@@ -2,7 +2,7 @@ angular.module('BmsApp')
 .directive('statusSelect', function () {
     return {
         template: `
-            <ui-select ng-model="company.status_code" required theme="bootstrap">
+            <ui-select ng-model="status.code" required theme="bootstrap">
                 <ui-select-match placeholder="Status">
                     <span>{{$select.selected.name}}</span>
                 </ui-select-match>
