@@ -73,64 +73,38 @@ angular.module('BmsApp')
 })
 
 //enrollee create / edit controller
-.controller('HmoServiceCreateCtrl', function($scope,$activityIndicator,UserService,$state,CompaniesService,EnrolleeService,OptionService) {
-    $scope.enrollee = {
-        type:'P'
-    }
-
-
+    .controller('HmoServiceCreateCtrl', function ($scope,$state,$activityIndicator,ServicesService) {
     // enrollee companies
-    $scope.companies = [];
-    $scope.searchCompanies = function (q) {
-        CompaniesService.fetchList(q,10).success(function (resp) {
-            $scope.companies = resp;
+    // $scope.companies = [];
+    // $scope.searchCompanies = function (q) {
+    //     CompaniesService.fetchList(q,10).success(function (resp) {
+    //         $scope.companies = resp;
+    //     })
+    // }
+
+    $scope.types = []
+    ServicesService.fetchServiceTypes()
+        .success(function (resp) {
+            $scope.types = resp
         })
-    }
-
-
-    // principals
-    $scope.principals = [];
-    $scope.searchPrincipals = function (q) {
-        EnrolleeService.fetchList(q,10,'P').success(function (resp) {
-            $scope.principals = resp;
+        .error(function(err) {
+            console.log(err)
         })
-    }
 
-    //states
-    $scope.states = []
-    OptionService.getStates().success(function (resp) {
-        $scope.states = resp
-    })
-
-    //plans
-    $scope.plans = []
-    EnrolleeService.fetchPlans().success(function (resp) {
-        $scope.plans = resp
-    })
-
-    //statuses
-    $scope.statuses = []
-    EnrolleeService.fetchStatuses().success(function (resp) {
-        $scope.statuses = resp
-    })
-
-    //submit enrollee
-    $scope.submitEnrollee = function () {
+    //save service
+    $scope.saveService = function () {
         $activityIndicator.startAnimating();
-        if(angular.isDefined($scope.enrollee.id)){
-
-        }else {
-            EnrolleeService.createNew($scope.enrollee)
-                .success(function (resp) {
-                    $activityIndicator.stopAnimating()
-                    $scope.enrollee = {}
-                    swal('Enrollee Created Successfully','','success')
-                })
-                .error(function (err) {
-                    $activityIndicator.stopAnimating()
-                    swal('Error Creating Enrollee',err.message,'error')
-                })
-        }
+        console.log($scope.service)
+        ServicesService.createService($scope.service)
+            .success(function (resp) {
+                $activityIndicator.stopAnimating()
+                $scope.service = {}
+                swal('Success', 'Service Created Successfully', 'success')
+            })
+            .error(function (err) {
+                $activityIndicator.stopAnimating()
+                swal('Error!', err.message, 'error')
+            })
     }
     
 });

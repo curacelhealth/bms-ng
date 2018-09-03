@@ -9,6 +9,11 @@ angular.module('BmsApp')
                 return $http.get(API_HOST + '/services/types')
             }, 
 
+            searchServices: function (search, limit) {
+                var qs = $httpParamSerializer({ search: search || '', limit: limit || 5 })
+                return $http.get(API_HOST + '/services?'+qs)
+            }, 
+
             fetchListDTUrl: function () {
                 return API_HOST + '/services/DT'
             },    

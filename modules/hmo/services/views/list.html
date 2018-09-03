@@ -20,25 +20,37 @@
                     </div>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body">
-                    <form class="form-horizontal ng-pristine ng-valid">
+                <div class="box-body" ng-controller="HmoServiceCreateCtrl">
+                    <form class="form-horizontal ng-pristine ng-valid" name="createServiceForm" id="createServiceForm">
                         <div class="row" style=" margin-left: 0px;">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="newName" class="col-md-3 ">Name</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" id="newName" placeholder="Enter Service Name">
+                                        <input type="text" class="form-control" ng-model="service.name" placeholder="Enter Service Name" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="newPassword" class="col-md-3">Type</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" id="newPassword" placeholder="Enter Service Type" required="">
+                                        <ui-select ng-model="service.type_code" required theme="bootstrap">
+                                            <ui-select-match placeholder="Type">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item.code as item in (types | filter: $select.search) track by item.code" required>
+                                                <span>{{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <button type="button" class="btn btn-block btn-primary">Save</button>
+                                        <button type="button" 
+                                                class="btn btn-block btn-primary"
+                                                 ng-disabled="createServiceForm.$invalid" 
+                                                 ng-click="saveService()">
+                                            Save
+                                        </button>
                                     </div>
                                 </div>
                             </div>
