@@ -15,13 +15,15 @@
                                 <div class="form-group">
                                     <label for="settingsName" class="col-sm-2 control-label">Name</label>
                                     <div class="col-sm-10">
+
                                         <input ng-model="provider.name" type="text" class="form-control" id="settingsName" placeholder="Name" required>
+
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsAddress" class="col-sm-2 control-label">Address</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.address" type="text" class="form-control" id="settingsAddress" placeholder="Address">
+                                        <input ng-model="provider.address" type="text" class="form-control" id="settingsAddress" placeholder="Address" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -40,23 +42,23 @@
                                 <div class="form-group">
                                     <label for="settingsWebsite" class="col-sm-2 control-label">Website</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.website" type="text" class="form-control" id="settingsWebsite" placeholder="Website url">
+                                        <input ng-model="provider.website" type="text" class="form-control" id="settingsWebsite" placeholder="Website url" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsEmail" class="col-sm-2 control-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.email" type="email" class="form-control" id="settingsEmail" placeholder="Email">
+                                        <input ng-model="provider.email" type="email" class="form-control" id="settingsEmail" placeholder="Email" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="settingsPhone" class="col-sm-2 control-label">Phone</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="provider.phone" type="text" class="form-control" id="settingsPhone" placeholder="Phone number">
+                                        <input ng-model="provider.phone" type="text" class="form-control" id="settingsPhone" placeholder="Phone number" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="settingsProviderTeir" class="col-sm-2 control-label">Provider Teir</label>
+                                    <label for="settingsTier" class="col-sm-2 control-label">Provider Teir</label>
                                     <div class="col-sm-10">
                                         <ui-select ng-model="provider.provider_tier_id" id="settingsTier" theme="bootstrap" required>
                                             <ui-select-match placeholder="Tier">
@@ -79,7 +81,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="settingsProviderStatus" class="col-sm-2 control-label">Provider Status</label>
+                                    <label for="settingsStatus" class="col-sm-2 control-label">Provider Status</label>
                                     <div class="col-sm-10">
                                         <ui-select ng-model="provider.provider_status_id" id="settingsStatus" theme="bootstrap" required>
                                             <ui-select-match placeholder="Status">
@@ -127,6 +129,7 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="timeline-footer">
                     <div class="form-group">
                         <button type="button" 
