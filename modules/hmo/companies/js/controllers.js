@@ -87,21 +87,29 @@ angular.module('BmsApp')
         $scope.states = resp
     });
     
+    $scope.status = {}
+    $scope.state = {}
+    $scope.parent = {}
+    $scope.company = {}
     $scope.createCompany = function() {
-        if ($scope.createCompanyForm.$valid) {
-            var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
-            "website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
-            "status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
-            "rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email,
-            "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id};
-            CompaniesService.createNewCompany(newDataObj)
+        $scope.company.status_code = $scope.status.code
+        $scope.company.state_id = $scope.state.id
+        $scope.company.parent_company_id = $scope.parent.id
+        console.log($scope.company)
+        if (true) {
+            // var newDataObj = {"name":$scope.name,"email":$scope.email,"phone":$scope.phone,
+            // "website":$scope.website,"address":$scope.address,"state_id":$scope.state_id,
+            // "status_code":$scope.status_code,"company_plan_id":$scope.company_plan_id,
+            // "rep_name":$scope.rep_name,"rep_phone":$scope.rep_phone,"rep_email":$scope.rep_email,
+            // "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id};
+            CompaniesService.createNewCompany($scope.company)
             .success(function(response) {
-                $('#companyCreateForm')[0].reset();
-                $scope.state = {};
+                $scope.provider = {};
                 swal('Success', 'Company created successfully', 'success');
+                $state.go('hmo.companies.companiesList')
             })
             .error(function(response) {
-                console.log(response.message);
+                showError('Error',response)
             });
     	}
     }
@@ -112,8 +120,8 @@ angular.module('BmsApp')
 })
 
 
-//Controller for company edit
-.controller('HmoCompaniesEditCtrl', function($scope,$stateParams,CompaniesService,OptionService) {
+//Controller for single company
+.controller('HmoCompaniesViewCtrl', function ($scope,$state,$stateParams,CompaniesService,OptionService) {
 	CompaniesService.fetchSingleByID($stateParams.id)
 	.success(function(response) {
 		$scope.state ={};
@@ -123,8 +131,8 @@ angular.module('BmsApp')
 		$scope.phone = parseInt(response.phone, 13);
 		$scope.website = response.website;
 		$scope.address = response.address;
-		$scope.state_id = response.state_id;
-		$scope.status_code = parseInt(response.status_code, 5);
+		$scope.state = response.state.name;
+        $scope.status_code = response.status.code;
 		$scope.company_plan_id = response.company_plan_id;
 		$scope.rep_name = response.rep_name;
 		$scope.rep_phone = parseInt(response.rep_phone, 13);
@@ -175,33 +183,109 @@ angular.module('BmsApp')
                     $scope.all_status = response
                 })
                 .error(function (response) {
-                    console.log(response.message);
+                    swal('Error!', response.message, 'error')
                 });
         } else {
             console.log('hi')
             swal('Error!', 'KIndly fill all required fields', 'error')
         }
     }
+
+    // Delisting company
+    $scope.delist = {}
+    $scope.delistCompany = function () {
+        if ($scope.delist.delist_keyword == "DELIST") {
+            CompaniesService.delistCompany($stateParams.id)
+                .success(function (response) {
+                    swal('Notification', "Company DELISTED from system", 'info');
+                    $state.go('hmo.companies.companiesList')
+                })
+                .error(function (response) {
+                    swal('Error!', response.message, 'error')
+                });
+        } else if ($scope.delist.delist_keyword == undefined) {
+            swal('Warning', "Type 'DELIST' to delist this company", 'warning');
+        } else {
+            swal('Warning', "Type 'DELIST' to delist this company", 'warning');
+        }
+    }
 })
 
-//Company View Controller
-.controller('HmoCompaniesViewCtrl', function($scope,$stateParams,CompaniesService) {
-	CompaniesService.fetchSingleByID($stateParams.id)
-	.success(function(response) {
-		$scope.id = response.id;
-		$scope.name = response.name;
-		$scope.email = response.email;
-		$scope.phone = parseInt(response.phone, 13);
-		$scope.website = response.website;
-		$scope.address = response.address;
-		$scope.state_id = response.state_id;
-		$scope.status_code = parseInt(response.status_code, 5);
-		$scope.company_plan_id = response.company_plan_id;
-		$scope.rep_name = response.rep_name;
-		$scope.rep_phone = parseInt(response.rep_phone, 13);
-		$scope.rep_email = response.rep_email;
-	})
-	.error(function(response){
-		console.log(response.message);
-	});
+//Controller for company staff
+.controller('CompaniesStaffTabCtrl', function ($scope, $compile, $stateParams, EnrolleeService, UserService, DTColumnBuilder, DTOptionsBuilder, DTDefaultOptions) {
+    var vm = this;
+    vm.dtInstance = {}; //instance ref for data tables
+    vm.filters = { company_id: $stateParams.id }; // filters
+
+    //init options for datatable grid on this scope, using ajax for data source
+    vm.dtOptions = DTOptionsBuilder.newOptions()
+        .withOption('ajax', {
+            // Either you specify the AjaxDataProp here
+            // dataSrc: 'data',
+            url: EnrolleeService.fetchListDTUrl(), // get url from service for datatable requests
+            type: 'GET',
+            data: vm.filters,
+            headers: {
+                Authorization: 'Bearer ' + UserService.loadToken() // add token for authentication
+            }
+        })
+        // or here
+        .withDataProp('data')
+        .withOption('processing', true)
+        .withOption('serverSide', true)
+        .withPaginationType('full_numbers')
+
+        .withOption('fnRowCallback',
+            function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                console.log(nRow)
+                $compile(nRow)($scope); // this ensures angular directives are compiled after each row is created
+            }
+        );
+
+    vm.dtColumns = [
+
+        DTColumnBuilder.newColumn('id').withTitle('ID'),
+        DTColumnBuilder.newColumn('photo').withTitle('Photo').notSortable()
+            .renderWith(function (data, type, full) {
+                if (data) return "<img src='" + full.photo_thumb + "'/>"
+                else return ''
+            }),
+        DTColumnBuilder.newColumn('insurance_no').withTitle('Insurance No').notSortable(),
+        DTColumnBuilder.newColumn('first_name').withTitle('Name')
+            .renderWith(function (data, type, full) {
+                return data + ' ' + full.last_name
+            }),
+
+        //DTColumnBuilder.newColumn('phone').withTitle('Phone'),
+        DTColumnBuilder.newColumn('sex').withTitle('Sex')
+            .renderWith(function (data, type, full) {
+                return EnrolleeService.getSex(data)
+            }),
+        DTColumnBuilder.newColumn('enrollee_plan_id').withTitle('Plan')
+            .renderWith(function (data, type, full) {
+                if (full.plan)
+                    return full.plan.name
+                else return ''
+            }),
+
+        DTColumnBuilder.newColumn('enrollee_status_code').withTitle('Status').notSortable()
+            .renderWith(function (data, type, full) {
+                if (full.status)
+                    return full.status.name
+                else return ''
+            }),
+        DTColumnBuilder.newColumn('created_at').withTitle('Created'),
+        DTColumnBuilder.newColumn('action').withTitle('').notSortable()
+            .renderWith(function (data, type, full) {
+                var actions = [];
+                var view = '<a  class="btn btn-default btn-xs"><i class="fa fa-eye"></i></a>';
+                actions.push(view);
+
+                return actions.join(" ");
+            })
+    ];
+
+    DTDefaultOptions.setLanguage({
+        searchPlaceholder: "Search enrollee"
+    });
 })
