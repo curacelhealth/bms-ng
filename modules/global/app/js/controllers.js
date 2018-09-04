@@ -53,6 +53,6 @@ angular.module('BmsApp')
 
         }
 
-        //$('body').layout('fix')
+        $('body').layout('fix')
     });
 
