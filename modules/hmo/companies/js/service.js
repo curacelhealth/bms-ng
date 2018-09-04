@@ -17,6 +17,7 @@ angular.module('BmsApp')
 
             fetchSingleByID: function (id) {
                return $http.get(API_HOST+'/companies/'+id) 
+
             },
 
             editCompany: function (id, data) {
