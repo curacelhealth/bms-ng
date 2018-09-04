@@ -367,7 +367,8 @@ angular.module('BmsApp')
                 $scope.btn_disable = false
                 $('#importModal').modal('hide');
                 // $state.reload();
-                swal('Success', "Providers successfully imported", 'success');
+                //swal('Success', "Providers successfully imported", 'success');
+                swal('Success', response.message, 'success');
             })
             .error(function (response) {
                 swal('Error!', response.message, 'error');
