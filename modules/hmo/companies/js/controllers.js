@@ -109,7 +109,7 @@ angular.module('BmsApp')
                 $state.go('hmo.companies.companiesList')
             })
             .error(function(response) {
-                swal('Error!', response.message, 'error');
+                showError('Error',response)
             });
     	}
     }
@@ -131,8 +131,8 @@ angular.module('BmsApp')
 		$scope.phone = parseInt(response.phone, 13);
 		$scope.website = response.website;
 		$scope.address = response.address;
-		$scope.state_id = response.state_id;
-		$scope.status_code = parseInt(response.status_code, 5);
+		$scope.state = response.state.name;
+        $scope.status_code = response.status.code;
 		$scope.company_plan_id = response.company_plan_id;
 		$scope.rep_name = response.rep_name;
 		$scope.rep_phone = parseInt(response.rep_phone, 13);
