@@ -36,8 +36,17 @@ angular.module('BmsApp')
         //create columns for this grid
         $scope.dtColumns = [
             DTColumnBuilder.newColumn('name').withTitle('Name').notSortable(),
-            DTColumnBuilder.newColumn('type_code').withTitle('Type'),
+            DTColumnBuilder.newColumn('type.name').withTitle('Type'),
             DTColumnBuilder.newColumn('created_at').withTitle('Created'),
+            DTColumnBuilder.newColumn('action').withTitle('').notSortable()
+                .renderWith(function (data, type, full) {
+                    var actions = [];
+                    var view = '<a ng-click="editServiceModal(' + full.id + ')" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a>';
+                    actions.push(view);
+
+                    return actions.join(" ");
+                })
+            ,
             DTColumnBuilder.newColumn('action').withTitle('').notSortable()
                 .renderWith(function(data, type, full) {
                     var actions = [];
@@ -48,6 +57,12 @@ angular.module('BmsApp')
                 })
             ,
         ];
+
+        $scope.current_service = {}
+        $scope.editServiceModal = function(data) {
+            $scope.current_service = data
+            $("#editModal").modal('show')
+        }
         
         $scope.deleteService = function(id) {
             var r = confirm("Are you sure you want to delete this service?")
@@ -62,6 +77,7 @@ angular.module('BmsApp')
                     .error(function (err) {
                         $activityIndicator.stopAnimating()
                         swal('Error!', err.message, 'error')
+                        $state.reload();
                     })
             }
         }
@@ -85,10 +101,13 @@ angular.module('BmsApp')
                 .success(function (resp) {
                     $activityIndicator.stopAnimating()
                     $scope.service = {}
+                    $state.reload()
                     swal('Success', 'Service Created Successfully', 'success')
                 })
                 .error(function (err) {
                     $activityIndicator.stopAnimating()
+                    $scope.service = {}
+                    $state.reload()
                     swal('Error!', err.message, 'error')
                 })
         }
