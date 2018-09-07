@@ -124,6 +124,7 @@ angular.module('BmsApp')
 .controller('HmoCompaniesViewCtrl', function ($scope,$state,$stateParams,CompaniesService,OptionService) {
 	CompaniesService.fetchSingleByID($stateParams.id)
 	.success(function(response) {
+        console.log(response)
 		$scope.state ={};
 		$scope.id = response.id;
 		$scope.name = response.name;
@@ -131,7 +132,7 @@ angular.module('BmsApp')
 		$scope.phone = parseInt(response.phone, 13);
 		$scope.website = response.website;
 		$scope.address = response.address;
-		$scope.state_id = response.state_id;
+		$scope.state = response.state;
         $scope.status = response.status;
 		$scope.company_plan_id = response.company_plan_id;
 		$scope.rep_name = response.rep_name;
