@@ -49,18 +49,11 @@
                     <br />
 
                     <center>
-                        <!-- <input type="file" 
-                                file-model="myFile" 
-                                id="upload-excel-input"
-                                style="display: none;" /> -->
-                        <input type="file" file-model="myFile" id="upload-excel-input" />
-
-                        <!-- <button class="btn btn-info" 
-                                ng-click="uploadExcelFile()"
-                                ng-disabled="btn_disable == true"
-                                >
-                            Click to upload file
-                        </button> -->
+                        <input type="file" file-model="myFile" id="upload-excel-input" /> <br />
+                        <div>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" ng-model="ignore">
+                            <label class="form-check-label" for="inlineCheckbox1">Ignore first row of spreadsheet</label>
+                        </div>
                     </center>
 
                     <br />
