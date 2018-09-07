@@ -366,10 +366,10 @@ angular.module('BmsApp')
             ProviderService.uploadProvidersByExcel($scope.myFile)
                 .success(function (response) {
                     $scope.btn_disable = false
-                    var element = angular.element("#importModal");
-                    element.modal('hide')
+                    angular.element("#importModal").modal('hide');
+                    angular.element('.modal-backdrop').remove();
                     $state.reload();
-                    swal('Success', "Providers successfully imported", 'success');
+                    swal('Success', response.message, 'success');
                 })
                 .error(function (response) {
                     swal('Error!', response.message, 'error');
@@ -380,9 +380,10 @@ angular.module('BmsApp')
             ProviderService.uploadProvidersByExcel(data)
                 .success(function (response) {
                     $scope.btn_disable = false
-                    var element = angular.element("#importModal");
-                    element.modal('hide')
-                    swal('Success', "Providers successfully imported", 'success');
+                    angular.element("#importModal").modal('hide');
+                    angular.element('.modal-backdrop').remove();
+                    $state.reload();
+                    swal('Success', response.message, 'success');
                 })
                 .error(function (response) {
                     swal('Error!', response.message, 'error');
