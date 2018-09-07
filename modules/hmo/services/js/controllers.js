@@ -52,15 +52,6 @@ angular.module('BmsApp')
                 })
         ];
 
-        $scope.service = {}
-        $scope.editServiceModal = function (id, name, type_code, type_name) {
-            $scope.service = { "id": id, "name": name.replace('+', ' '), "type_code": type_code, "type_name": type_name }
-            var element = angular.element("#editModal");
-            element.modal('show');
-            console.log($scope)
-        }
-        console.log($scope)
-
         $scope.types = []
         ServicesService.fetchServiceTypes()
             .success(function (resp) {
@@ -69,6 +60,22 @@ angular.module('BmsApp')
             .error(function (err) {
                 console.log(err)
             })
+
+        $scope.service = {}
+        $scope.editServiceModal = function (id, name, type_code, type_name) {
+            $scope.service = { "id": id, "name": name.replace('+', ' '), "type_code": type_code, "type_name": type_name };
+            var element = angular.element("#editModal");
+            element.modal('show');
+            angular.element("#myModalLabel").html('Edit ' + name.replace('+', ' ') + ' service')
+            angular.element("#service-name").val(name.replace('+', ' '))
+            angular.element("#service-type").val(type_code)
+            angular.element("#service-type").html(type_name)
+        }
+
+        $scope.editService = function() {
+            console.log($scope.sre)
+            // console.log(service.type_code)
+        }
         
         $scope.deleteService = function(id) {
             var r = confirm("Are you sure you want to delete this service?")
