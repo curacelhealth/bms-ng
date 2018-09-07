@@ -361,22 +361,21 @@ angular.module('BmsApp')
 
     $scope.uploadFile = function () {
         if($scope.ignore == true) {
-            var data = { "ignore_top_row": 1, "file": $scope.myFile }
-            console.log(data)
-            // $scope.btn_disable = true
-            // ProviderService.uploadProvidersByExcel($scope.myFile)
-            //     .success(function (response) {
-            //         $scope.btn_disable = false
-            //         var element = angular.element("#importModal");
-            //         element.modal('hide')
-            //         $state.reload();
-            //         swal('Success', "Providers successfully imported", 'success');
-            //     })
-            //     .error(function (response) {
-            //         swal('Error!', response.message, 'error');
-            //     });
+            var data = [{ "ignore_top_row": 1, "file": $scope.myFile }]
+            $scope.btn_disable = true
+            ProviderService.uploadProvidersByExcel($scope.myFile)
+                .success(function (response) {
+                    $scope.btn_disable = false
+                    var element = angular.element("#importModal");
+                    element.modal('hide')
+                    $state.reload();
+                    swal('Success', "Providers successfully imported", 'success');
+                })
+                .error(function (response) {
+                    swal('Error!', response.message, 'error');
+                });
         } else if ($scope.ignore == undefined) {
-            var data = { "ignore_top_row": 0, "file": $scope.myFile }
+            var data = [{ "ignore_top_row": 0, "file": $scope.myFile }]
             $scope.btn_disable = true
             ProviderService.uploadProvidersByExcel(data)
                 .success(function (response) {
