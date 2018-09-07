@@ -132,7 +132,7 @@ angular.module('BmsApp')
 		$scope.website = response.website;
 		$scope.address = response.address;
 		$scope.state_id = response.state_id;
-		$scope.status_code = response.status_code;
+        $scope.status = response.status;
 		$scope.company_plan_id = response.company_plan_id;
 		$scope.rep_name = response.rep_name;
 		$scope.rep_phone = parseInt(response.rep_phone, 13);
