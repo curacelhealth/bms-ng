@@ -57,8 +57,9 @@ angular.module('BmsApp')
             $scope.service = { "id": id, "name": name.replace('+', ' '), "type_code": type_code, "type_name": type_name }
             var element = angular.element("#editModal");
             element.modal('show');
-            console.log($scope.service)
+            console.log($scope)
         }
+        console.log($scope)
 
         $scope.types = []
         ServicesService.fetchServiceTypes()
