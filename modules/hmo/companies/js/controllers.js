@@ -132,7 +132,7 @@ angular.module('BmsApp')
 		$scope.website = response.website;
 		$scope.address = response.address;
 		$scope.state_id = response.state_id;
-		$scope.status_code = parseInt(response.status_code, 5);
+		$scope.status_code = response.status_code;
 		$scope.company_plan_id = response.company_plan_id;
 		$scope.rep_name = response.rep_name;
 		$scope.rep_phone = parseInt(response.rep_phone, 13);
@@ -169,26 +169,21 @@ angular.module('BmsApp')
     
     // Update company info
 	$scope.companyUpdate = function (){
-        if ($scope.companyEditForm.$valid) {
-            var editedDataObj = {
-                "name": $scope.name, "email": $scope.email, "phone": $scope.phone,
-                "website": $scope.website, "address": $scope.address, "state_id": $scope.state_id,
-                "status_code": $scope.status_code, "company_plan_id": $scope.company_plan_id,
-                "rep_name": $scope.rep_name, "rep_phone": $scope.rep_phone, "rep_email": $scope.rep_email,
-                "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id
-            };
+        var editedDataObj = {
+            "name": $scope.name, "email": $scope.email, "phone": $scope.phone,
+            "website": $scope.website, "address": $scope.address, "state_id": $scope.state_id,
+            "status_code": $scope.status_code, "company_plan_id": $scope.company_plan_id,
+            "rep_name": $scope.rep_name, "rep_phone": $scope.rep_phone, "rep_email": $scope.rep_email,
+            "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id
+        };
 
-            CompaniesService.editCompany($stateParams.id, data)
+            CompaniesService.editCompany($stateParams.id, editedDataObj)
                 .success(function (response) {
-                    $scope.all_status = response
+                    swal('Alert!', "Edits saved successfully", 'info')
                 })
                 .error(function (response) {
                     swal('Error!', response.message, 'error')
                 });
-        } else {
-            console.log('hi')
-            swal('Error!', 'KIndly fill all required fields', 'error')
-        }
     }
 
     // Delisting company

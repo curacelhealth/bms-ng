@@ -30,10 +30,18 @@
                                 <div class="form-group">
                                     <label for="settingsState" class="col-sm-2 control-label">State</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control"  name="settingsState" ng-model="company.state_id" required>
+                                        <!-- <select class="form-control"  name="settingsState" ng-model="company.state_id" required>
                                             <option ng-repeat="st in states" value="{{st.id}}">{{st.name}}</option>
-                                        </select>
-                                        <!-- <state-select states="all_states" id="settingsState" required /> -->
+                                        </select> -->
+                                        <ui-select ng-model="state_id" required theme="bootstrap">
+                                            <ui-select-match placeholder="State">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                        
+                                            <ui-select-choices repeat="item.id as item in (states | filter: $select.search) track by item.id">
+                                                <span>{{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -57,10 +65,18 @@
                                 <div class="form-group">
                                     <label for="settingsStatus" class="col-sm-2 control-label">Company Status</label>
                                     <div class="col-sm-10">
-                                        <select class="form-control" name="settingsStatus" ng-model="company.status_code" required>
+                                        <!-- <select class="form-control" name="settingsStatus" ng-model="company.status_code" required>
                                             <option ng-repeat="st in all_status" value="{{st.id}}">{{st.name}}</option>
-                                        </select>
-                                        <!-- <status-select statuses="all_status" id="settingsStatus" required /> -->
+                                        </select> -->
+                                        <ui-select ng-model="status_code" required theme="bootstrap">
+                                            <ui-select-match placeholder="Status">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                        
+                                            <ui-select-choices repeat="item.code as item in (all_status | filter: $select.search) track by item.code">
+                                                <span>{{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
                                     </div>
                                 </div>
                             </div>
