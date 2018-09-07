@@ -39,30 +39,35 @@ angular.module('BmsApp')
             DTColumnBuilder.newColumn('type.name').withTitle('Type'),
             DTColumnBuilder.newColumn('created_at').withTitle('Created'),
             DTColumnBuilder.newColumn('action').withTitle('').notSortable()
-                .renderWith(function (data, type, full) {
-                    var actions = [];
-                    var view = '<a ng-click="editServiceModal(' + full.id + ')" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a>';
-                    actions.push(view);
+                .renderWith(function (data, type, full, meta) {
+                    return `
+                        <a ng-click="editServiceModal(` + full.id + `, ` + `'` + full.name.replace(' ', '+') + `'` + `, ` + `'` + full.type.code + `'` + `, ` + `'` + full.type.name + `'` + `)" class="btn btn-info btn-xs">
+                            <i class="fa fa-edit"></i>
+                        </a>
 
-                    return actions.join(" ");
+                        <a data-ng-click="deleteService(` + full.id + `)" class="btn btn-danger btn-xs">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    `
                 })
-            ,
-            DTColumnBuilder.newColumn('action').withTitle('').notSortable()
-                .renderWith(function(data, type, full) {
-                    var actions = [];
-                    var view = '<a ng-click="deleteService(' + full.id + ')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>';
-                    actions.push(view);
-                
-                    return actions.join(" ");
-                })
-            ,
         ];
 
-        $scope.current_service = {}
-        $scope.editServiceModal = function(data) {
-            $scope.current_service = data
-            $("#editModal").modal('show')
+        $scope.service = {}
+        $scope.editServiceModal = function (id, name, type_code, type_name) {
+            $scope.service = { "id": id, "name": name.replace('+', ' '), "type_code": type_code, "type_name": type_name }
+            var element = angular.element("#editModal");
+            element.modal('show');
+            console.log($scope.service)
         }
+
+        $scope.types = []
+        ServicesService.fetchServiceTypes()
+            .success(function (resp) {
+                $scope.types = resp
+            })
+            .error(function (err) {
+                console.log(err)
+            })
         
         $scope.deleteService = function(id) {
             var r = confirm("Are you sure you want to delete this service?")

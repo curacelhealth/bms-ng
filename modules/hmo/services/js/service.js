@@ -22,6 +22,10 @@ angular.module('BmsApp')
                 return $http.post(API_HOST + '/services/create', obj);
             },
 
+            updateService: function (id) {
+                return $http.post(API_HOST + '/services/' + id + '/update');
+            },
+
             deleteService: function (id) {
                 return $http.delete(API_HOST + '/services/' + id)
             },
