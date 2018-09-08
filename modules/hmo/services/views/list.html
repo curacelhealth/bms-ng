@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7" ng-controller="HmoServiceListCtrl">
+        <div class="col-md-7">
             <div class="box box-info">
                 <div class="box-body">
                     <table datatable="" dt-options="dtOptions" dt-columns="dtColumns" class="table-striped row-border hover"></table>
@@ -81,12 +81,12 @@
         </div>
 
         <!-- Edit Modal -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" ng-controller="HmoServiceListCtrl">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{service}}</h4>
+                        <h4 class="modal-title" id="myModalLabel">Edit {{service.s_name}} name</h4>
                     </div>
                     <div class="modal-body">
                         <form class="form-horizontal ng-pristine ng-valid" name="editServiceForm" id="editServiceForm">
@@ -95,13 +95,13 @@
                                     <div class="form-group">
                                         <label for="newName" class="col-md-3 ">Name</label>
                                         <div class="col-md-9">
-                                            <input type="text" ng-model="service.name" class="form-control" placeholder="Enter Service Name" required>
+                                            <input type="text" ng-model="service.s_name" class="form-control" placeholder="Enter Service Name" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="newPassword" class="col-md-3">Type</label>
                                         <div class="col-md-9">
-                                            <ui-select ng-model="service.type_code" required theme="bootstrap">
+                                            <ui-select ng-model="service.s_type_code" required theme="bootstrap">
                                                 <ui-select-match placeholder="Type">
                                                     <span>{{$select.selected.name}}</span>
                                                 </ui-select-match>

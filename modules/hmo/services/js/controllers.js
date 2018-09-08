@@ -63,17 +63,31 @@ angular.module('BmsApp')
 
         $scope.service = {}
         $scope.editServiceModal = function (id, name, type_code, type_name) {
-            $scope.service = { "id": id, "name": name.replace('+', ' '), "type_code": type_code, "type_name": type_name };
+            $scope.service = { "s_id": id, "s_name": name.replace('+', ' '), "s_type_code": type_code, "s_type_name": type_name }
             angular.element("#editModal").modal('show');
-            // angular.element("#myModalLabel").html('Edit ' + name.replace('+', ' ') + ' service')
-            // angular.element("#service-name").val(name.replace('+', ' '))
-            // angular.element("#service-type").val(type_code)
-            // angular.element("#service-type").html(type_name)
         }
 
         $scope.editService = function() {
-            console.log($scope.sre)
-            // console.log(service.type_code)
+            var data = {
+                "name": $scope.service.s_name,
+                "type_code": $scope.service.s_type_code
+            }
+
+            ServicesService.updateService($scope.service.s_id, data)
+                .success(function (resp) {
+                    $activityIndicator.stopAnimating()
+                    swal('Alert!', resp.message, 'info')
+                    angular.element("#editModal").modal('hide');
+                    angular.element(".backdrop").remove;
+                    $state.reload();
+                })
+                .error(function (err) {
+                    $activityIndicator.stopAnimating();
+                    swal('Error!', err.message, 'error');
+                    angular.element("#editModal").modal('hide');
+                    angular.element(".backdrop").remove;
+                    $state.reload();
+                })
         }
         
         $scope.deleteService = function(id) {
