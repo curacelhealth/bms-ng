@@ -64,12 +64,11 @@ angular.module('BmsApp')
         $scope.service = {}
         $scope.editServiceModal = function (id, name, type_code, type_name) {
             $scope.service = { "id": id, "name": name.replace('+', ' '), "type_code": type_code, "type_name": type_name };
-            var element = angular.element("#editModal");
-            element.modal('show');
-            angular.element("#myModalLabel").html('Edit ' + name.replace('+', ' ') + ' service')
-            angular.element("#service-name").val(name.replace('+', ' '))
-            angular.element("#service-type").val(type_code)
-            angular.element("#service-type").html(type_name)
+            angular.element("#editModal").modal('show');
+            // angular.element("#myModalLabel").html('Edit ' + name.replace('+', ' ') + ' service')
+            // angular.element("#service-name").val(name.replace('+', ' '))
+            // angular.element("#service-type").val(type_code)
+            // angular.element("#service-type").html(type_name)
         }
 
         $scope.editService = function() {
