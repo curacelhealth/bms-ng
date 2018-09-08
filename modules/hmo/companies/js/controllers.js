@@ -109,7 +109,7 @@ angular.module('BmsApp')
                 $state.go('hmo.companies.companiesList')
             })
             .error(function(response) {
-                swal('Error!', response.message, 'error');
+                showError('Error',response)
             });
     	}
     }

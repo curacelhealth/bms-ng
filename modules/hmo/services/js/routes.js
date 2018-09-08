@@ -29,21 +29,12 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
             }
         })
 
-        //list view
+        //list view / create new / edit view
         .state('hmo.services.serviceList', {
             url: "/",
             templateUrl: "modules/hmo/services/views/list.html",
             //controller: "HmoServiceListCtrl",
             data: {pageTitle: 'PA'},
-
-        })
-
-        //create new / edit provider view
-        .state('hmo.services.serviceCreate', {
-            url: "/create",
-            templateUrl: "modules/hmo/services/views/create.html",
-            //controller: "HmoServiceCreateCtrl",
-            data: {pageTitle: 'New Service'},
 
         })
 
