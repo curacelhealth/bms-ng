@@ -345,4 +345,51 @@ angular.module('BmsApp')
             swal('Warning', "Type 'DELIST' to delist this provider", 'warning');
         }
     }
+})
+
+.controller('providersBulkImportExportCtrl', function ($scope, $state, ProviderService) {
+    $scope.auth_token = localStorage.getItem('curacel_auth_token');
+    $scope.btn_disable = false
+
+    $scope.openImportModal = function () {
+        $('#importModal').modal('show')
+    }
+
+    $scope.uploadExcelFile = function() {
+        document.getElementById('upload-excel-input').click()
+    }
+
+    $scope.uploadFile = function () {
+
+        if($scope.ignore == true) {
+            var data = [{ "ignore_top_row": 1, "file": $scope.myFile }]
+            $scope.btn_disable = true
+            ProviderService.uploadProvidersByExcel($scope.myFile)
+                .success(function (response) {
+                    $scope.btn_disable = false
+                    angular.element("#importModal").modal('hide');
+                    angular.element('.modal-backdrop').remove();
+                    $state.reload();
+                    swal('Success', response.message, 'success');
+                })
+                .error(function (response) {
+                    swal('Error!', response.message, 'error');
+                });
+        } else if ($scope.ignore == undefined) {
+            var data = [{ "ignore_top_row": 0, "file": $scope.myFile }]
+            $scope.btn_disable = true
+            ProviderService.uploadProvidersByExcel(data)
+                .success(function (response) {
+                    $scope.btn_disable = false
+                    angular.element("#importModal").modal('hide');
+                    angular.element('.modal-backdrop').remove();
+                    $state.reload();
+                    swal('Success', response.message, 'success');
+                })
+                .error(function (response) {
+                    swal('Error!', response.message, 'error');
+                });
+        }
+
+    }
 });

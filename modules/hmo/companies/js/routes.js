@@ -1,7 +1,7 @@
 /**
  * Created by JFlash on 7/31/18.
  */
-angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
+angular.module('BmsApp').config(function($stateProvider) {
 
 
 
@@ -11,7 +11,7 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
             url: "/companies",
             abstract: true,
             views:{"dash":{template:"<ui-view/>"}},
-
+ 
             resolve: {
                 deps: ['$ocLazyLoad', function($ocLazyLoad) {
                     return $ocLazyLoad.load({
@@ -20,7 +20,8 @@ angular.module('BmsApp').config(function($stateProvider, $urlRouterProvider) {
                         files: [
                             'modules/hmo/companies/js/service.js',
                             'modules/hmo/companies/js/controllers.js',
-                            'modules/hmo/companies/js/directives.js',
+                            // 'modules/hmo/companies/js/directives.js',
+                            'modules/hmo/enrollees/js/service.js'
                         ]
                     });
                 }]

@@ -34,7 +34,7 @@ angular.module('BmsApp')
         $scope.user = UserService.getUserData();
 
 
-        $('body').layout('fix')
+
 
         $scope.logout = function(){
             swal({
@@ -52,5 +52,10 @@ angular.module('BmsApp')
             } )
 
         }
+
+        $(function () {
+            $('body').layout('fix')
+        })
+
     });
 

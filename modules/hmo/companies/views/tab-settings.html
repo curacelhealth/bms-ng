@@ -6,106 +6,157 @@
         <li>
             <i class="fa fa-envelope bg-blue"></i>
 
-            <div class="timeline-item" ng-controller="HmoCompaniesEditCtrl">
+            <div class="timeline-item">
                 <span class="time"> ..</span>
 
                 <h3 class="timeline-header"><a href="#">Edit Company Info</a></h3>
 
                 <div class="timeline-body">
-                    <form class="form-horizontal" name="companyEditForm" id="companyEditForm">
+                    <form class="form-horizontal" name="companyEditForm" id="companyEditForm" novalidate>
                         <div class="row">
                             <div class="col-md-6">
+
                                 <div class="form-group">
                                     <label for="settingsName" class="col-sm-2 control-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input ng-model="name" type="email" class="form-control" id="settingsName" placeholder="Name" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsAddress" class="col-sm-2 control-label">Address</label>
-                                    <div class="col-sm-10">
-                                        <input ng-model="address" type="text" class="form-control" id="settingsAddress" placeholder="Address" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsState" class="col-sm-2 control-label">State</label>
-                                    <div class="col-sm-10">
-                                        <state-select states="all_states" id="settingsState" />
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsWebsite" class="col-sm-2 control-label">Website</label>
-                                    <div class="col-sm-10">
-                                        <textarea ng-model="website" class="form-control" id="settingsWebsite" placeholder="Website" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsEmail" class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input ng-model="email" type="text" class="form-control" id="settingsEmail" placeholder="Email" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsEmail" class="col-sm-2 control-label">Phone</label>
-                                    <div class="col-sm-10">
-                                        <input ng-model="phone" type="number" class="form-control" id="settingsPhone" placeholder="Phone" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsEmail" class="col-sm-2 control-label">Company Status</label>
-                                    <div class="col-sm-10">
-                                        <status-select statuses="all_status" id="settingsStatus" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="settingsEmail" class="col-sm-2 control-label">Company Plan</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="settingsPlan" placeholder="Company Plan">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsRepName" class="col-sm-2 control-label">Reps Name</label>
-                                    <div class="col-sm-10">
-                                        <input ng-model="rep_name" type="email" class="form-control" id="settingsRepName" placeholder="Reps Name" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsRepEmail" class="col-sm-2 control-label">Reps Email </label>
-                                    <div class="col-sm-10">
-                                        <input ng-model="rep_email" type="email" class="form-control" id="settingsRepEmail" placeholder="Reps Email" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="settingsRepPhone" class="col-sm-2 control-label">Reps Phone</label>
-                                    <div class="col-sm-10">
-                                        <input ng-model="rep_phone" type="text" class="form-control" id="settingsRepPhone" placeholder="Reps Phone" required>
+                                        <input ng-model="company.name" type="text" class="form-control" name="settingsName" id="settingsName" placeholder="Name" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="settingsStaffStrength" class="col-sm-2 control-label">Staff Strength</label>
+                                    <label for="settingsName" class="col-sm-2 control-label">Code</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="settingsStaffStrength" placeholder="Staff Strength">
+                                        <input ng-model="company.code" type="text" readonly class="form-control" required>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="settingsPaymentInfo" class="col-sm-2 control-label">Payment Info</label>
+                                    <label for="settingsAddress" class="col-sm-2 control-label">Address</label>
                                     <div class="col-sm-10">
+                                        <input ng-model="company.address" type="text" class="form-control" name="settingsAddress" id="settingsAddress" placeholder="Address" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsState" class="col-sm-2 control-label">State</label>
+                                    <div class="col-sm-10">
+                                        <!-- <select class="form-control"  name="settingsState" ng-model="company.state_id" required>
+                                            <option ng-repeat="st in states" value="{{st.id}}">{{st.name}}</option>
+                                        </select> -->
+                                        <ui-select ng-model="company.state_id" required theme="bootstrap">
+                                            <ui-select-match placeholder="State">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                        
+                                            <ui-select-choices repeat="item.id as item in (states | filter: $select.search) track by item.id">
+                                                <span>{{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsWebsite" class="col-sm-2 control-label">Website</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="company.website" type="website" id="settingsWebsite" class="form-control" placeholder="Website">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsEmail" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="company.email" type="text" class="form-control" id="settingsEmail" placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsEmail" class="col-sm-2 control-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="company.phone" type="text" class="form-control" id="settingsPhone" placeholder="Phone">
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <!-- <div class="form-group">
+                                    <label for="settingsEmail" class="col-sm-3 control-label">Company Plan</label>
+                                    <div class="col-sm-10">
+                                        <ui-select id="settingsPlan" ng-model="company_plan_id" required theme="bootstrap">
+                                            <ui-select-match placeholder="Plan">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item as item in (plan | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label for="settingsRepName" class="col-sm-3 control-label">Reps Name</label>
+                                    <div class="col-sm-9">
+                                        <input ng-model="company.rep_name" type="text" class="form-control" id="settingsRepName" placeholder="Reps Name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsRepEmail" class="col-sm-3 control-label">Reps Email </label>
+                                    <div class="col-sm-9">
+                                        <input ng-model="company.rep_email" type="email" class="form-control" id="settingsRepEmail" placeholder="Reps Email">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsRepPhone" class="col-sm-3 control-label">Reps Phone</label>
+                                    <div class="col-sm-9">
+                                        <input ng-model="company.rep_phone" type="text" class="form-control" id="settingsRepPhone" placeholder="Reps Phone">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsStaffStrength" class="col-sm-3 control-label">Staff Strength</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="settingsStaffStrength" ng-model="company.staff_strength" placeholder="Staff Strength">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsPaymentInfo" class="col-sm-3 control-label">Payment Info</label>
+                                    <div class="col-sm-9">
                                         <textarea class="form-control" id="settingsPaymentInfo" placeholder=""></textarea>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="settingsStatus" class="col-sm-3 control-label">Status</label>
+                                    <div class="col-sm-9">
+                                        <!-- <select class="form-control" name="settingsStatus" ng-model="company.status_code" required>
+                                            <option ng-repeat="st in all_status" value="{{st.id}}">{{st.name}}</option>
+                                        </select> -->
+                                        <ui-select ng-model="company.status_code" required theme="bootstrap">
+                                            <ui-select-match placeholder="Status">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+
+                                            <ui-select-choices repeat="item.code as item in (all_status | filter: $select.search) track by item.code">
+                                                <span>{{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </form>
                 </div>
-
                 <div class="timeline-footer">
                     <div class="row">
                         <div class="col-md-4">           
                             <div class="form-group">
                                 <button type="button" 
+                                        ng-disabled="companyEditForm.$invalid"
                                         ng-click="companyUpdate()"
                                         class="btn btn-block btn-primary">
                                         Save
@@ -122,24 +173,20 @@
             <i class="fa fa-user bg-aqua"></i>
 
             <div class="timeline-item">
-
                 <div class="timeline-body">
                     <div class="row">
                         <div class="col-md-3">
                             To Delist Company: Type DELIST
                             <div class="input-group margin">
-                                <input type="text" class="form-control">
+                                <input type="text" ng-model="delist.delist_keyword" class="form-control">
                                 <span class="input-group-btn">
-							                      <button type="button" class="btn btn-info btn-flat">DELIST</button>
-							                    </span>
+                                    <button type="button" class="btn btn-info btn-flat" ng-click="delistCompany()">DELIST</button>
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
         </li>
 
 
