@@ -34,27 +34,15 @@ angular.module('BmsApp')
     $scope.dtColumns = [
     	DTColumnBuilder.newColumn('id').withTitle('ID'),
         DTColumnBuilder.newColumn('name').withTitle('Company Name').notSortable(),
-        // DTColumnBuilder.newColumn('email').withTitle('Email'),        
-        // DTColumnBuilder.newColumn('phone').withTitle('Phone'),
-        // DTColumnBuilder.newColumn('website').withTitle('Website'),
-        // DTColumnBuilder.newColumn('address').withTitle('Address'),
-        // DTColumnBuilder.newColumn('state_id').withTitle('State')
-        //          .renderWith(function(data,type,full) {
-        //         if(full.status)
-        //             return full.status.name
-        //         else  return ''
-        //     }),
+
         DTColumnBuilder.newColumn('code').withTitle('Code').notSortable(),
-        DTColumnBuilder.newColumn('status.name').withTitle('Status').notSortable(),
-        // DTColumnBuilder.newColumn('company_plan_id').withTitle('Plan')
-        //             .renderWith(function (data,type,full) {
-        //         if(full.plan)
-        //             return full.plan.name
-        //         else  return ''
-        //     }),
-        // DTColumnBuilder.newColumn('rep_name').withTitle('Rep.Name'),
-        // DTColumnBuilder.newColumn('rep_phone').withTitle('Rep.Phone'),
-        // DTColumnBuilder.newColumn('rep_email').withTitle('Rep.Email'),
+        DTColumnBuilder.newColumn('status').withTitle('Status').notSortable()
+            .renderWith(function (data,type,full) {
+                if(data)
+                    return data.name
+                else return ''
+            }),
+
         DTColumnBuilder.newColumn('action').withTitle('').notSortable()
              .renderWith(function(data, type, full, meta) {
                 return '<a ui-sref="hmo.companies.companiesView({id:'+full.id+'})" class="btn btn-primary btn-sm" style="border-radius: 5px" title="View details"><i class="fa fa-eye"></i></a>&nbsp;'
