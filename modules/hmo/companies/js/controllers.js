@@ -123,20 +123,25 @@ angular.module('BmsApp')
 //Controller for single company
 .controller('HmoCompaniesViewCtrl', function ($scope,$state,$stateParams,CompaniesService,OptionService) {
 
+
+    //get the company
+    CompaniesService.fetchSingleByID($stateParams.id)
+        .success(function(response) {
+            console.log(response)
+            $scope.company = response;
+        })
+        .error(function(response){
+            console.log(response.message)
+        });
+
+
+
     $scope.states = [];
     OptionService.getStates().success(function (resp) {
         $scope.states = resp;
     });
 
 
-	CompaniesService.fetchSingleByID($stateParams.id)
-	.success(function(response) {
-        console.log(response)
-        $scope.company = response;
-	})
-	.error(function(response){
-		console.log(response.message)
-    });
 
     // Get all states
     $scope.states = []

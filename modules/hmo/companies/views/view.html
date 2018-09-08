@@ -1,12 +1,12 @@
 <section class="content-header">
     <h1>
-        {{name}}
-        <small>Active</small>
+        {{company.name}}
+        <small>{{company.status.name}}</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="hmo.companies.companiesList">Company</a></li>
-        <li class="active">{{name}}</li>
+        <li><a ui-sref="hmo.companies.companiesList">Companies</a></li>
+        <li class="active">{{company.name}}</li>
     </ol>
 </section>
 
