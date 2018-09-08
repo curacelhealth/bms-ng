@@ -135,7 +135,7 @@ angular.module('BmsApp')
         });
 
 
-
+    // Get all states
     $scope.states = [];
     OptionService.getStates().success(function (resp) {
         $scope.states = resp;
@@ -143,15 +143,8 @@ angular.module('BmsApp')
 
 
 
-    // Get all states
-    $scope.states = []
-    OptionService.getStates()
-        .success(function (resp) {
-            $scope.all_states = resp
-        })
-        .error(function (response) {
-            console.log(response.message);
-        });
+
+
 
     // Get all status
     $scope.all_status = []
@@ -162,20 +155,13 @@ angular.module('BmsApp')
         .error(function (response) {
             console.log(response.message);
         });
-    
+
+
     // Update company info
 	$scope.companyUpdate = function (){
-        var editedDataObj = {
-            "name": $scope.name, "email": $scope.email, "phone": $scope.phone,
-            "website": $scope.website, "address": $scope.address, "state_id": $scope.state_id,
-            "status_code": $scope.status_code, "company_plan_id": $scope.company_plan_id,
-            "rep_name": $scope.rep_name, "rep_phone": $scope.rep_phone, "rep_email": $scope.rep_email,
-            "staff_strength": $scope.staff_strength, "parent_company_id": $scope.parent_company_id
-        };
-
-            CompaniesService.editCompany($stateParams.id, editedDataObj)
+            CompaniesService.editCompany($stateParams.id, $scope.company)
                 .success(function (response) {
-                    swal('Alert!', "Edits saved successfully", 'info')
+                    swal('Company Updated successfully', "", 'success')
                 })
                 .error(function (response) {
                     swal('Error!', response.message, 'error')
@@ -185,7 +171,7 @@ angular.module('BmsApp')
     // Delisting company
     $scope.delist = {}
     $scope.delistCompany = function () {
-        if ($scope.delist.delist_keyword == "DELIST") {
+        if ($scope.delist.delist_keyword === "DELIST") {
             CompaniesService.delistCompany($stateParams.id)
                 .success(function (response) {
                     swal('Notification', "Company DELISTED from system", 'info');
@@ -194,7 +180,7 @@ angular.module('BmsApp')
                 .error(function (response) {
                     swal('Error!', response.message, 'error')
                 });
-        } else if ($scope.delist.delist_keyword == undefined) {
+        } else if ($scope.delist.delist_keyword === undefined) {
             swal('Warning', "Type 'DELIST' to delist this company", 'warning');
         } else {
             swal('Warning', "Type 'DELIST' to delist this company", 'warning');
