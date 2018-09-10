@@ -73,19 +73,23 @@ angular.module('BmsApp')
                 "type_code": $scope.service.s_type_code
             }
 
-            ServicesService.updateService($scope.service.s_id, data)
+            ServicesService.updateService($scope.service.s_id, { service: data })
                 .success(function (resp) {
                     $activityIndicator.stopAnimating()
-                    swal('Alert!', resp.message, 'info')
                     angular.element("#editModal").modal('hide');
-                    angular.element(".backdrop").remove;
+                    angular.element('.modal').remove();
+                    angular.element('.modal-backdrop').remove();
+                    angular.element('body').removeClass("modal-open");
+                    swal('Alert!', 'Service edited', 'info');
                     $state.reload();
                 })
                 .error(function (err) {
                     $activityIndicator.stopAnimating();
-                    swal('Error!', err.message, 'error');
                     angular.element("#editModal").modal('hide');
-                    angular.element(".backdrop").remove;
+                    angular.element('.modal').remove();
+                    angular.element('.modal-backdrop').remove();
+                    angular.element('body').removeClass("modal-open");
+                    swal('Error!', err.message, 'error');
                     $state.reload();
                 })
         }
