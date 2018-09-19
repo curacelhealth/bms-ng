@@ -95,21 +95,30 @@ angular.module('BmsApp')
         }
         
         $scope.deleteService = function(id) {
-            var r = confirm("Are you sure you want to delete this service?")
-            if (r == true) {
-                $activityIndicator.startAnimating();
-                ServicesService.deleteService(id)
-                    .success(function (resp) {
-                        $activityIndicator.stopAnimating()
-                        swal('Alert!', 'Service deleted', 'info')
-                        $state.reload();
-                    })
-                    .error(function (err) {
-                        $activityIndicator.stopAnimating()
-                        swal('Error!', err.message, 'error')
-                        $state.reload();
-                    })
-            }
+            swal({
+                title: 'Are you sure you want to delete this service?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value == true) {
+                    $activityIndicator.startAnimating();
+                    ServicesService.deleteService(id)
+                        .success(function (resp) {
+                            $activityIndicator.stopAnimating()
+                            swal('Alert!', 'Service deleted', 'info')
+                            $state.reload();
+                        })
+                        .error(function (err) {
+                            $activityIndicator.stopAnimating()
+                            swal('Error!', err.message, 'error')
+                            $state.reload();
+                        })
+                }
+            })
         }
     })
 
