@@ -6,14 +6,13 @@
 
     <ol class="breadcrumb">
         <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="hmo.companiesList"><i class="fa fa-building"></i> Companies</a></li>
+        <li><a ui-sref="hmo.companies.companiesList"><i class="fa fa-building"></i> Companies</a></li>
         <li class="active">New</li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content container-fluid">
-
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
@@ -27,32 +26,37 @@
                         <div class="form-group">
                             <label class="col-md-2 col-form-label">Company Name</label>
                             <div class="col-md-10">
-                                <input ng-model="name" class="form-control m-input" type="text" value="" id="company_name" required>
+                                <input ng-model="company.name" class="form-control m-input" type="text" value="" id="company_name" required>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="col-md-2 col-form-label">Code</label>
+                            <div class="col-md-10">
+                                <input ng-model="company.code" maxlength="3" class="form-control m-input" type="text" value="" id="code">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Email</label>
                             <div class="col-md-10">
-                                <input ng-model="email" class="form-control m-input" type="email" value="" id="email" required>
+                                <input ng-model="company.email" class="form-control m-input" type="email" value="" id="email">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Phone</label>
                             <div class="col-md-10">
-                                <input ng-model="phone" class="form-control m-input" type="tel" value="" id="phone" required>
+                                <input ng-model="company.phone" class="form-control m-input" type="text" value="" id="phone">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Website</label>
                             <div class="col-md-10">
-                                <input ng-model="website" class="form-control m-input" type="text" value="" id="number" required>
+                                <input ng-model="company.website" class="form-control m-input" type="text" value="" id="number">
                             </div>
                         </div>
                         <div class="form-group ">
-                            <label class="col-md-2 col-form-label">Plan</label>
+                            <!-- <label class="col-md-2 col-form-label">Plan</label>
                             <div class="col-md-2">
                                 <ui-select ng-model="plan" required theme="bootstrap">
-
                                     <ui-select-match placeholder="Plan">
                                         <span>{{$select.selected.name}}</span>
                                     </ui-select-match>
@@ -62,17 +66,19 @@
                                         <span> {{item.name}}</span>
                                     </ui-select-choices>
                                 </ui-select>
-                            </div>
-                            <label class="col-md-1 col-form-label">Status Code</label>
-                            <div class="col-md-2">
-                                <ui-select ng-model="status_code" required theme="bootstrap">
-                                    <ui-select-match placeholder="Status Code">
+                            </div> -->
+                            <label class="col-md-2 col-form-label">Status</label>
+                            <div class="col-md-10">
+                                <!-- <select class="form-control" ng-model="company.status_code">
+                                    <option ng-repeat="st in all_status" value="{{st.code}}">{{st.name}}</option>
+                                </select> -->
+                                <ui-select ng-model="status.code" required theme="bootstrap">
+                                    <ui-select-match placeholder="Status">
                                         <span>{{$select.selected.name}}</span>
                                     </ui-select-match>
-                                    <ui-select-choices
-                                            repeat="item as item in (status | filter: $select.search) track by item.id"
-                                    >
-                                        <span> {{item.name}}</span>
+                                
+                                    <ui-select-choices repeat="item.code as item in (all_status | filter: $select.search) track by item.code">
+                                        <span>{{item.name}}</span>
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
@@ -80,54 +86,76 @@
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Company Rep.Name</label>
                             <div class="col-md-10">
-                                <input ng-model="rep_name" class="form-control m-input" type="text" value="" id="comp_rep_name" required>
+                                <input ng-model="company.rep_name" class="form-control m-input" type="text" value="" id="comp_rep_name">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Rep. Telephone</label>
                             <div class="col-md-10">
-                                <input ng-model="rep_phone" class="form-control m-input" type="number" value="" id="rep_telephone" required>
+                                <input ng-model="company.rep_phone" class="form-control m-input" type="text" value="" id="rep_telephone">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label class="col-md-2 col-form-label">Rep. Email</label>
                             <div class="col-md-10">
-                                <input ng-model="rep_email" class="form-control m-input" type="email" value="" id="rep_email" required>
+                                <input ng-model="company.rep_email" class="form-control m-input" type="email" value="" id="rep_email">
                             </div>
                         </div>
                         <div class="form-group ">
                             <label  class="col-md-2 col-form-label">Address</label>
                             <div class="col-md-4">
-                                <textarea ng-model="address" class="form-control " id="exampleTextarea" rows="3"></textarea>
+                                <textarea ng-model="company.address" class="form-control " id="exampleTextarea" rows="3" required></textarea>
                             </div>
 
                             <label class="col-md-1">State</label>
                             <div class="col-md-4">
-
-                                <ui-select ng-model="state_id" required
-                                           theme="bootstrap"
-                                >
-
+                                <ui-select ng-model="state.id" required theme="bootstrap">
                                     <ui-select-match placeholder="State">
                                         <span>{{$select.selected.name}}</span>
                                     </ui-select-match>
-
-                                    <ui-select-choices
-                                            repeat="item as item in (states | filter: $select.search) track by item.id"
-                                    >
-                                        <span> {{item.name}}</span>
+                                
+                                    <ui-select-choices repeat="item.id as item in (states | filter: $select.search) track by item.id">
+                                        <span>{{item.name}}</span>
                                     </ui-select-choices>
                                 </ui-select>
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="col-md-2 col-form-label">Staff Strength</label>
+                                    <div class="col-md-10">
+                                        <input ng-model="company.strength" type="number" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="col-md-2 col-form-label">Parent Company</label>
+                                    <div class="col-md-10">
+                                        <!-- <select class="form-control" ng-model="company.company_plan_id">
+                                            <option ng-repeat="cm in companies" value="{{cm.id}}">{{cm.name}}</option>
+                                        </select> -->
+                                        <ui-select ng-model="parent.id" theme="bootstrap">
+                                            <ui-select-match placeholder="Parent Company">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                        
+                                            <ui-select-choices repeat="item.id as item in (companies | filter: $select.search) track by item.id">
+                                                <span>{{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button ng-click="createCompany()" type="submit" class="btn btn-success">Submit</button>
-                        <button type="reset" class="btn btn-secondary">Cancel</button>
-
+                        <!-- <button ng-click="createCompany()" type="submit" class="btn btn-success">Submit</button> -->
+                        <button ng-disabled="createCompanyForm.$invalid" ng-click="createCompany()" type="submit" class="btn btn-success">Submit</button>
+                        <button type="button" ng-click="resetForm()" class="btn btn-secondary">Cancel</button>
                     </div>
                 </form>
             </div>

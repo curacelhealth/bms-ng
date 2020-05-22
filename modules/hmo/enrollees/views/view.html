@@ -1,0 +1,101 @@
+<section class="content-header">
+    <h1>
+        {{enrollee.first_name}} {{enrollee.last_name}}
+        <small>{{enrollee.status.name}}</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a ui-sref="hmo.enrollees.enrolleeList">Enrollees</a></li>
+        <li class="active">{{enrollee.first_name}} {{enrollee.last_name}}</li>
+    </ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+			<div class="nav-tabs-custom">
+				<uib-tabset active="active">
+
+					<uib-tab >
+						<uib-tab-heading><i class="fa fa-info"></i> Info</uib-tab-heading>
+
+                      <ng-include src="'modules/hmo/enrollees/views/tab-info.html'" ></ng-include>
+
+					</uib-tab>
+
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-tags"></i> PA Codes</uib-tab-heading>
+						 <ng-include src="'modules/hmo/enrollees/views/tab-pa.html'" ></ng-include>
+
+
+					</uib-tab>
+
+
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-envelope"></i> Messages</uib-tab-heading>
+						 <ng-include src="'modules/hmo/enrollees/views/tab-messages.html'" ></ng-include>
+
+
+					</uib-tab>
+
+
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-money"></i> Dependants</uib-tab-heading>
+						 <ng-include src="'modules/hmo/enrollees/views/tab-dependants.html'" ></ng-include>
+
+
+					</uib-tab>
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-user-secret"></i> Policy</uib-tab-heading>
+						 <ng-include src="'modules/hmo/enrollees/views/tab-policy.html'" ></ng-include>
+
+
+					</uib-tab>
+
+
+
+		          <uib-tab  >
+		            <uib-tab-heading><i class="fa fa-fax"></i> Claims</uib-tab-heading>
+					 <ng-include src="'modules/hmo/enrollees/views/tab-claims.html'" ></ng-include>
+
+
+		          </uib-tab>
+
+		          <uib-tab  >
+						<uib-tab-heading><i class="fa fa-list"></i> ID Card</uib-tab-heading>
+						 <ng-include src="'modules/hmo/enrollees/views/tab-idcard.html'" ></ng-include>
+
+
+					</uib-tab>
+
+
+
+					<uib-tab  >
+						<uib-tab-heading><i class="fa fa-gear"></i> Settings</uib-tab-heading>
+                      <ng-include src="'modules/hmo/enrollees/views/tab-settings.html'" ng-controller="HmoEnrolleeCreateCtrl"></ng-include>
+
+
+
+
+						<!-- /.tab-pane -->
+
+					</uib-tab>
+
+				</uib-tabset>
+
+			</div>
+
+
+
+
+
+    </div>
+  </div>
+</section>
+

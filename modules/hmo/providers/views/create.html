@@ -1,8 +1,3 @@
-
-
-
-
-
 <section class="content-header">
     <h1>
         Providers
@@ -11,7 +6,7 @@
 
     <ol class="breadcrumb">
         <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a ui-sref="hmo.providersList">Providers</a></li>
+        <li><a ui-sref="hmo.providers.providersList">Providers</a></li>
         <li class="active">Create</li>
     </ol>
 </section>
@@ -21,60 +16,79 @@
 
     <div class="box">
         <div class="box-body">
-			<form id="providerCreateForm" name="providerCreateForm" ng-controller="ProvidersCreateCtrl" class="form-horizontal">
-				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3">Name</label>
-					<div class="col-md-5 col-sm-8">
-						<input ng-model="name" style="width: 100%" class="form-control" type="text" name="name" maxlength="100" required>
+			<form id="providerCreateForm" name="providerCreateForm" class="form-horizontal">
+				<div class="row">
+					<div class="col-md-offset-3 col-md-3" style="margin-right: 5px;">
+						<div class="form-group">
+							<input ng-model="provider.name" class="form-control" type="text" name="name" placeholder="Name" maxlength="100" required>
+						</div>
+						<div class="form-group">
+							<input ng-model="provider.address" class="form-control" type="text" name="address" placeholder="Address" maxlength="100" required>
+						</div>
+						<div class="form-group">
+							<input ng-model="provider.email" class="form-control" type="email" name="email" placeholder="Email" maxlength="100" required>
+						</div>
+						<div class="form-group">
+							<input ng-model="provider.website" class="form-control" type="text" name="website" placeholder="Website" maxlength="100" required>
+						</div>
+					</div>
+					<div class="col-md-3" style="margin-left: 5px;">
+						<div class="form-group">
+							<input ng-model="provider.rc_no" class="form-control" type="text" name="rc_no" placeholder="RC Number" maxlength="100" required>
+						</div>
+						<div class="form-group">
+				        	<ui-select ng-model="provider.state_id" theme="bootstrap" required>
+					                <ui-select-match placeholder="State">
+					                    <span>{{$select.selected.name}}</span>
+					                </ui-select-match>
+					                <ui-select-choices repeat="item.id as item in (states | filter: $select.search) track by item.id">
+					                    <span> {{item.name}}</span>
+					                </ui-select-choices>
+					        </ui-select>
+						</div>
+						<div class="form-group">
+							<input ng-model="provider.phone" class="form-control" type="text" name="phone" placeholder="Phone Number" maxlength="100" required>
+						</div>
+						<div class="form-group">
+				        	<ui-select ng-model="provider.provider_tier_id" theme="bootstrap" required>
+					                <ui-select-match placeholder="Tier">
+					                    <span>{{$select.selected.name}}</span>
+					                </ui-select-match>
+					                <ui-select-choices repeat="item.id as item in (tiers | filter: $select.search) track by item.id">
+					                    <span> {{item.name}}</span>
+					                </ui-select-choices>
+					        </ui-select>
+				    	</div>
+				    </div>
+				</div>
+				<div class="row">
+					<div class="col-md-offset-3 col-md-3" style="margin-right: 5px;">
+						<div class="form-group">
+							<input ng-model="provider.rep_name" class="form-control" type="text" name="rep_name" placeholder="Representative Name" maxlength="100" required>
+						</div>
+						<div class="form-group">
+							<input ng-model="provider.rep_email" class="form-control" type="email" name="rep_email" placeholder="Representative Email" maxlength="100" required>
+						</div>
+					</div>
+					<div class="col-md-3" style="margin-left: 5px;">
+						<div class="form-group">
+							<input ng-model="provider.rep_phone" class="form-control" type="text" name="rep_phone" placeholder="Representative Number" maxlength="100" required>
+						</div>
+						<div class="form-group">
+				        	<ui-select ng-model="provider.provider_status_id" theme="bootstrap" required>
+					                <ui-select-match placeholder="Status">
+					                    <span>{{$select.selected.name}}</span>
+					                </ui-select-match>
+					                <ui-select-choices repeat="item.id as item in (statuses | filter: $select.search) track by item.id">
+					                    <span> {{item.name}}</span>
+					                </ui-select-choices>
+					        </ui-select>
+					    </div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3">Email</label>
-					<div class="col-md-5 col-sm-8">
-						<input ng-model="email" style="width: 100%" class="form-control" type="email" name="email" maxlength="100" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3"">Phone Number</label>
-					<div class="col-md-5 col-sm-8">
-						<input ng-model="phone" style="width: 100%" class="form-control" type="number" name="phone" maxlength="100" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3"">Home Address</label>
-					<div class="col-md-5 col-sm-8">
-						<input ng-model="address" style="width: 100%" class="form-control" type="text" name="address" maxlength="100" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3"">State</label>
-					<div class="col-md-5 col-sm-8">
-			        	<ui-select ng-model="state.state" theme="bootstrap" style="width: 100%" required>
-				                <ui-select-match placeholder="State">
-				                    <span>{{$select.selected.name}}</span>
-				                </ui-select-match>
-				                <ui-select-choices repeat="item as item in (states | filter: $select.search) track by item.id">
-				                    <span> {{item.name}}</span>
-				                </ui-select-choices>
-				        </ui-select>
-					</div>
-				</div>
-				<input ng-model="state.state.id" type="hidden" name="state_id" required>
-				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3"">RC Number</label>
-					<div class="col-md-5 col-sm-8">
-						<input ng-model="rc_no" style="width: 100%" class="form-control" type="text" name="rc_no" maxlength="100" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label col-md-3 col-sm-3"">Provider Tier ID</label>
-					<div class="col-md-5 col-sm-8">
-						<input ng-model="provider_tier_id" style="width: 100%" class="form-control" type="text" name="provider_tier_id" maxlength="100" required>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="col-sm-offset-3 col-md-5 col-sm-8">
-						<button ng-click="createProvider()" class="form-control btn btn-primary">CREATE PROVIDER</button>
+					<div class="col-md-offset-3 col-md-6 text-center">
+						<button ng-click="createProvider()" ng-disabled="providerCreateForm.$invalid" class="btn btn-primary">CREATE PROVIDER</button>
 					</div>
 				</div>
 			</form>

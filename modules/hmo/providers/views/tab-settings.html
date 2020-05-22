@@ -1,0 +1,279 @@
+<div class="active tab-pane" id="settings">
+    <ul class="timeline" ng-controller="ProviderSettingsTabCtrl">
+        <li>
+            <i class="fa fa-envelope bg-blue"></i>
+
+            <div class="timeline-item">
+                <span class="time"> ..</span>
+
+                <h3 class="timeline-header"><a href="#">Edit Provider Info</a></h3>
+
+                <div class="timeline-body">
+                    <form class="form-horizontal" id="providerEditForm" name="providerEditForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="settingsName" class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-10">
+
+                                        <input ng-model="provider.name" type="text" class="form-control" id="settingsName" placeholder="Name" required>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsAddress" class="col-sm-2 control-label">Address</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.address" type="text" class="form-control" id="settingsAddress" placeholder="Address" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsState" class="col-sm-2 control-label">State</label>
+                                    <div class="col-sm-10">
+                                        <ui-select ng-model="provider.state_id" theme="bootstrap" required>
+                                            <ui-select-match placeholder="State">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item.id as item in (states | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsWebsite" class="col-sm-2 control-label">Website</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.website" type="text" class="form-control" id="settingsWebsite" placeholder="Website url" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsEmail" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.email" type="email" class="form-control" id="settingsEmail" placeholder="Email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsPhone" class="col-sm-2 control-label">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.phone" type="text" class="form-control" id="settingsPhone" placeholder="Phone number" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsTier" class="col-sm-2 control-label">Provider Teir</label>
+                                    <div class="col-sm-10">
+                                        <ui-select ng-model="provider.provider_tier_id" id="settingsTier" theme="bootstrap" required>
+                                            <ui-select-match placeholder="Tier">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item.id as item in (tiers | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsProviderRC" class="col-sm-2 control-label">Provider RC Number</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.rc_no" id="settingsProviderRC" class="form-control" type="number" name="rc_no" placeholder="RC Number"
+                                            maxlength="100" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="settingsStatus" class="col-sm-2 control-label">Provider Status</label>
+                                    <div class="col-sm-10">
+                                        <ui-select ng-model="provider.provider_status_id" id="settingsStatus" theme="bootstrap" required>
+                                            <ui-select-match placeholder="Status">
+                                                <span>{{$select.selected.name}}</span>
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="item.id as item in (statuses | filter: $select.search) track by item.id">
+                                                <span> {{item.name}}</span>
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsRepName" class="col-sm-2 control-label">Reps Name</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.rep_name" type="text" class="form-control" id="settingsRepName" placeholder="Reps Name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsRepEmail" class="col-sm-2 control-label">Reps Email </label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.rep_email" type="email" class="form-control" id="settingsRepEmail" placeholder="Reps Email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsRepPhone" class="col-sm-2 control-label">Reps Phone</label>
+                                    <div class="col-sm-10">
+                                        <input ng-model="provider.rep_phone" type="text" class="form-control" id="settingsRepPhone" placeholder="Reps Phone" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="settingsStaffStrength" class="col-sm-2 control-label">Staff Strength</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="settingsStaffStrength" placeholder="Staff Strength">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="settingsPaymentInfo" class="col-sm-2 control-label">Payment Info</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="settingsPaymentInfo" placeholder=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="timeline-footer">
+                    <div class="form-group">
+                        <button type="button" 
+                                class="btn btn-block btn-primary" 
+                                ng-disabled="providerEditForm.$invalid"
+                                ng-click="updateProvider()">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+        <li>
+            <i class="fa fa-user bg-aqua"></i>
+
+            <div class="timeline-item">
+                <div class="timeline-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            To Delist Provider: Type DELIST
+                            <div class="input-group margin">
+                                <input type="text" ng-model="delist_keyword" class="form-control">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-flat" ng-click="delistProvider()">DELIST</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+        <li>
+            <i class="fa fa-envelope bg-blue"></i>
+
+            <div class="timeline-item">
+                <span class="time"> ..</span>
+
+                <h3 class="timeline-header"><a href="#">Edit Profile Info</a></h3>
+
+                <div class="timeline-body">
+                    <form class="form-horizontal">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                Set Portal State:
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-default">Action</button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">ON</a></li>
+                                        <li><a href="#">OFF</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+
+
+                            <div class="col-md-6">
+                                <h3>New Portal Credentials</h3>
+
+                                <div class="form-group">
+                                    <label for="newName" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="newName" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword" class="col-sm-2 control-label">Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="newPassword" placeholder="password" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newConfirmPassword" class="col-sm-2 control-label">Confirm Password</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control" id="newConfirmPassword" placeholder="password" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newRole" class="col-sm-2 control-label">Role</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="newRole" placeholder="Role">
+                                    </div>
+                                </div>
+
+                                <button type="button" class="btn btn-block btn-primary">Save</button>
+
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="box-body table-responsive no-padding">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                        <tr>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Password</th>
+                                            <th colspan="2">Action</th>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>info@aniyun.com</td>
+                                            <td>HMO Admin</td>
+                                            <td>password</td>
+                                            <td colspan="2"><a href="#" class="btn btn-info btn-sm" title="View details">Edit</a>
+                                                <a href="#" class="btn btn-danger btn-sm" title="View details">Del</a>
+                                            </td>
+                                        </tr>
+                                        </tbody></table>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+        </li>
+
+
+
+        <li>
+            <i class="fa fa-user bg-aqua"></i>
+
+            <div class="timeline-item">
+
+            </div>
+        </li>
+
+    </ul>
+</div>

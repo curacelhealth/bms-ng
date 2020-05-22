@@ -1,52 +1,61 @@
 /**
  * Created by JFlash on 7/31/18.
  */
+
+angular.module('BmsApp')
 //login controller
-BmsApp.controller('LoginCtrl', function($scope,$activityIndicator,UserService,$state) {
-    $scope.loginData = {email:"",password:""};
-    $scope.login = function () {
-        $activityIndicator.startAnimating()
-        UserService.login($scope.loginData)
+    .controller('LoginCtrl', function($scope,$activityIndicator,UserService,$state) {
+        $scope.loginData = {email:"",password:""};
+        $scope.login = function () {
+            $activityIndicator.startAnimating()
+            UserService.login($scope.loginData)
 
-            .success(function (res) {
+                .success(function (res) {
 
-                UserService.saveToken(res.token);
-                var user = UserService.getUserData();
-                console.log(user);
+                    UserService.saveToken(res.token);
+                    var user = UserService.getUserData();
+                    console.log(user);
 
-                $state.go('hmo.home')
+                    $state.go('hmo.home')
 
-                $activityIndicator.stopAnimating();
-            })
+                    $activityIndicator.stopAnimating();
+                })
 
-            .error(function (err) {
-                $activityIndicator.stopAnimating();
-                swal("Login Failed",err.message,'error');
-            })
-    }
-});
+                .error(function (err) {
+                    $activityIndicator.stopAnimating();
+                    swal("Login Failed",err.message,'error');
+                })
+        }
+    })
 
-//app controller for the app/dashboard after login
-BmsApp.controller('AppCtrl', function($scope,$activityIndicator,UserService,$state) {
-    $scope.user = UserService.getUserData();
+    //app controller for the app/dashboard after login
 
-    $('body').layout('fix')
+    .controller('AppCtrl', function($scope,$activityIndicator,UserService,$state,$timeout) {
+        $scope.user = UserService.getUserData();
 
-    $scope.logout = function(){
-        swal({
-            title: 'Logout Now?',
-            text: "Proceed with logout?",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then(function (result) {
-            if (result.value) {
-                UserService.logout();
-            }
-        } )
 
-    }
-});
+
+
+        $scope.logout = function(){
+            swal({
+                title: 'Logout Now?',
+                text: "Proceed with logout?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then(function (result) {
+                if (result.value) {
+                    UserService.logout();
+                }
+            } )
+
+        }
+
+        $(function () {
+            $('body').layout('fix')
+        })
+
+    });
 

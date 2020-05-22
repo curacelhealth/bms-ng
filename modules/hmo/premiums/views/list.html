@@ -1,0 +1,140 @@
+
+
+<section class="content-header">
+    <h1>
+        Premiums
+        <small>List</small>
+    </h1>
+
+    <ol class="breadcrumb">
+        <li><a href=""><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Premiums</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="margin-bottom">
+                <button class="btn-primary btn" ui-sref="hmo.premiums.premiumCreate">New Premium</button>
+
+                <button class="btn-primary btn">Import Premiums</button>
+
+
+
+            </div>
+
+
+
+
+
+<!-- USE THIS
+
+            <div class="box">
+                <div class="box-header">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group input-group-sm pull-right" style="width: 300px;">
+                                <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body table-responsive">
+                    <table datatable="" dt-options="dtOptions" dt-columns="dtColumns"  class="row-border hover table-condensed "></table>
+                </div>
+            </div>
+
+ -->
+
+
+
+
+
+
+ <div class="box">
+
+        <div class="box-header">
+            <div class="row">
+                <div class="col-md-12">
+
+
+
+
+                    <div class="input-group input-group-sm pull-right" style="width: 250px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+
+
+                    <div class="input-group input-group-sm pull-right" style="width: 150px; margin-right: 10px">
+                        <ui-select ng-model="enrollee.enrollee_plan_id"
+                                           theme="bootstrap"
+                                >
+
+                                    <ui-select-match placeholder="Filter by Company">
+                                        <span>{{$select.selected.name}}</span>
+                                    </ui-select-match>
+
+                                    <ui-select-choices
+                                            repeat="item.id as item in (plans | filter: $select.search) track by item.id"
+                                    >
+                                        <span> {{item.name}}</span>
+                                    </ui-select-choices>
+                        </ui-select>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+                   <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th>SN</th>
+
+                                <th>Employee ID</th>
+                                <th>Amount</th>
+                                <th>Transaction Date</th>
+                                <th>Transaction ID</th>
+                            </tr>
+
+
+                            <tr>
+                                <td>12</td>
+
+                                <td>232323</td>
+                                <td>N23,323</td>
+                                <td>12/02/2013</td>
+                                <td>3232</td>
+                                
+                            </tr>
+                            </tbody></table>
+                    </div>
+                    <!-- /.box-body -->
+
+ </div>
+
+
+
+ 
+
+        </div>
+    </div>
+
+
+
+</section>
+
+
+

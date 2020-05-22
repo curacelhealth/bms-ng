@@ -1,0 +1,144 @@
+<div class="box-body">
+
+    <div class="col-md-2">
+        <div class="margin-bottom">
+            <img ngf-thumbnail="enrollee.photo_md || 'assets/img/user.jpg'" width="100" class="user-image">
+        </div>
+
+    </div>
+
+
+
+    <div class="col-md-10" id="enrollee-detail-div">
+        <div class="row">
+            <div class="col-md-6">
+                <strong>  Type</strong>
+                <p class="text-muted">
+                    {{enrollee.type=='P'?'Principal':'Dependant'}}
+                </p>
+                <hr>
+            </div>
+
+
+            <div class="col-md-6">
+                <strong>  Company / Employer</strong>
+                <p class="text-muted">
+                    {{enrollee.company.name}}
+                </p>
+                <hr>
+            </div>
+
+            <div class="col-md-6">
+                <strong>  Insurance No</strong>
+                <p class="text-muted">
+                    {{enrollee.insurance_no}}
+                </p>
+                <hr>
+            </div>
+
+            <div class="col-md-6">
+                <strong>  First Name</strong>
+                <p class="text-muted">
+                    {{enrollee.first_name}}
+                </p>
+                <hr>
+            </div>
+
+            <div class="col-md-6">
+                <strong>  Last Name</strong>
+                <p class="text-muted">
+                    {{enrollee.last_name}}
+                </p>
+                <hr>
+            </div>
+
+
+            <div class="col-md-6">
+                <strong>  Birth Date</strong>
+                <p class="text-muted">
+                    {{enrollee.birthdate}}
+                </p>
+                <hr>
+            </div>
+
+
+            <div class="col-md-6">
+                <strong>  Sex</strong>
+                <p class="text-muted">
+                    {{enrollee.sex}}
+                </p>
+                <hr>
+            </div>
+
+
+            <div class="col-md-6">
+                <strong>  Phone</strong>
+                <p class="text-muted">
+                    {{enrollee.phone}}
+                </p>
+                <hr>
+            </div>
+
+
+            <div class="col-md-6">
+                <strong>  Email Address</strong>
+                <p class="text-muted">
+                    {{enrollee.email}}
+                </p>
+                <hr>
+            </div>
+
+
+            <div class="col-md-6">
+                <strong>  Address</strong>
+                <p class="text-muted">
+                    {{enrollee.address}}
+                </p>
+                <hr>
+            </div>
+
+
+            <div class="col-md-6">
+                <strong>  State</strong>
+                <p class="text-muted">
+                    {{enrollee.state.name}}
+                </p>
+                <hr>
+            </div>
+
+            <div class="col-md-6">
+                <strong>  Plan</strong>
+                <p class="text-muted">
+                    {{enrollee.plan.name}}
+                </p>
+                <hr>
+            </div>
+
+
+            <div class="col-md-6">
+                <strong>  Status</strong>
+                <p class="text-muted">
+                    {{enrollee.status.name}}
+                </p>
+                <hr>
+            </div>
+
+            <div class="col-md-6">
+                <strong>  Provider</strong>
+                <p class="text-muted">
+                    {{enrollee.provider.name}}
+                </p>
+                <hr>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
